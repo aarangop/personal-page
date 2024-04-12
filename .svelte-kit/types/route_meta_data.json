@@ -1,0 +1,31 @@
+{
+	"/": [],
+	"/admin/podcast": [
+		"src/routes/admin/podcast/+page.server.ts"
+	],
+	"/admin/podcast/edit/[slug]": [
+		"src/routes/admin/podcast/edit/[slug]/+page.server.ts"
+	],
+	"/admin/podcast/new-feed": [
+		"src/routes/admin/podcast/new-feed/+page.server.ts"
+	],
+	"/api/podcasts": [
+		"src/routes/api/podcasts/+server.ts"
+	],
+	"/default-svelte": [
+		"src/routes/default-svelte/+page.ts"
+	],
+	"/default-svelte/about": [
+		"src/routes/default-svelte/about/+page.ts"
+	],
+	"/default-svelte/sverdle": [
+		"src/routes/default-svelte/sverdle/+page.server.ts"
+	],
+	"/default-svelte/sverdle/how-to-play": [
+		"src/routes/default-svelte/sverdle/how-to-play/+page.ts"
+	],
+	"/podcast": [
+		"src/routes/podcast/+page.server.ts"
+	],
+	"/podcast/[slug]": []
+}
