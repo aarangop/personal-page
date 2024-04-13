@@ -6,7 +6,6 @@
 	export let data: PageData;
 
 	const onPodcastClick = (slug: string) => {
-		console.log(slug);
 		goto(`/podcast/${slug}`);
 	};
 </script>
@@ -16,7 +15,7 @@
 	<div class="flex flex-col space-y-2 grow">
 		<div class="grid lg:grid-cols-3 gap-2">
 			{#each data.podcastFeeds as feed}
-				<PodcastCard enableEdit={false} onClick={() => onPodcastClick(feed.slug)} {...feed}
+				<PodcastCard enableEdit={false} onClick={() => onPodcastClick(feed.slug)} feedData={feed}
 					>{feed.slug}</PodcastCard
 				>
 			{/each}

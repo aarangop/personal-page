@@ -13,22 +13,28 @@ export const nodes = [
 	() => import('./nodes/9'),
 	() => import('./nodes/10'),
 	() => import('./nodes/11'),
-	() => import('./nodes/12')
+	() => import('./nodes/12'),
+	() => import('./nodes/13'),
+	() => import('./nodes/14'),
+	() => import('./nodes/15')
 ];
 
 export const server_loads = [];
 
 export const dictionary = {
 		"/": [3],
-		"/admin/podcast": [~4],
-		"/admin/podcast/edit/[slug]": [~5],
-		"/admin/podcast/new-feed": [~6],
-		"/default-svelte": [7,[2]],
-		"/default-svelte/about": [8,[2]],
-		"/default-svelte/sverdle": [~9,[2]],
-		"/default-svelte/sverdle/how-to-play": [10,[2]],
-		"/podcast": [~11],
-		"/podcast/[slug]": [12]
+		"/admin/blog": [~4],
+		"/admin/blog/new": [~5],
+		"/admin/podcast": [~6],
+		"/admin/podcast/edit/[slug]": [~7],
+		"/admin/podcast/new": [~8],
+		"/blog": [9],
+		"/default-svelte": [10,[2]],
+		"/default-svelte/about": [11,[2]],
+		"/default-svelte/sverdle": [~12,[2]],
+		"/default-svelte/sverdle/how-to-play": [13,[2]],
+		"/podcast": [~14],
+		"/podcast/[slug]": [15]
 	};
 
 export const hooks = {

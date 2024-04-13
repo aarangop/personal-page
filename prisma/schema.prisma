@@ -22,5 +22,7 @@ model PodcastFeeds {
 model BlogPost {
   id String @id @default(auto()) @map("_id") @db.ObjectId
   title String
+  subtitle String
   fileUrl String
+  imageUrl String
 }

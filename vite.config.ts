@@ -1,14 +1,24 @@
 import { sveltekit } from '@sveltejs/kit/vite';
 import { defineConfig } from 'vitest/config';
 import Icons from 'unplugin-icons/vite';
-export default defineConfig({
-	plugins: [
+import { nodeLoaderPlugin } from '@vavite/node-loader/plugin';
+
+export default defineConfig(({ mode }) => {
+	let plugins = [
 		sveltekit(),
 		Icons({
 			autoInstall: true
 		})
-	],
-	test: {
-		include: ['src/**/*.{test,spec}.{js,ts}']
+	];
+
+	if (mode === 'development') {
+		plugins = [nodeLoaderPlugin(), ...plugins];
 	}
+
+	return {
+		plugins,
+		test: {
+			include: ['src/**/*.{test,spec}.{js,ts}']
+		}
+	};
 });

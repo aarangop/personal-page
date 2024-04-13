@@ -1,9 +1,9 @@
 import prisma from '$lib/prisma';
 import { fail, redirect } from '@sveltejs/kit';
-import type { Actions } from '../$types';
+import type { Actions } from './$types';
 
 export const actions = {
-	saveNewFeed: async ({ request }) => {
+	saveFeed: async ({ request }) => {
 		const data = await request.formData();
 		const podcastName = data.get('podcast_slug');
 		const podcastFeed = data.get('rss_feed');

@@ -1,17 +1,24 @@
 {
 	"/": [],
+	"/admin/blog": [
+		"src/routes/admin/blog/+page.server.ts"
+	],
+	"/admin/blog/new": [
+		"src/routes/admin/blog/new/+page.server.ts"
+	],
 	"/admin/podcast": [
 		"src/routes/admin/podcast/+page.server.ts"
 	],
 	"/admin/podcast/edit/[slug]": [
 		"src/routes/admin/podcast/edit/[slug]/+page.server.ts"
 	],
-	"/admin/podcast/new-feed": [
-		"src/routes/admin/podcast/new-feed/+page.server.ts"
+	"/admin/podcast/new": [
+		"src/routes/admin/podcast/new/+page.server.ts"
 	],
 	"/api/podcasts": [
 		"src/routes/api/podcasts/+server.ts"
 	],
+	"/blog": [],
 	"/default-svelte": [
 		"src/routes/default-svelte/+page.ts"
 	],
