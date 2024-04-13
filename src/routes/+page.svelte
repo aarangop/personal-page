@@ -2,11 +2,15 @@
 	import myPhoto from '$lib/images/my_photo.jpg';
 </script>
 
-<section class="m-2 px-24 py-12 flex flex-col space-y-4">
-	<h1 class="text-4xl">About Me</h1>
-	<div class="flex flex-row w-full space-x-4 bg-primary-900 p-4 rounded-lg">
-		<img alt="This website's author" src={myPhoto} class="rounded-lg w-1/2 drop-shadow-lg" />
-		<div class="w-1/2 flex flex-col space-y-2 p-4 h-full rounded-lg drop-shadow-md">
+<section class="m-2 lg:px-32 py-12 flex flex-col space-y-4 w-full justify-center">
+	<h1 class="text-4xl font-serif">About Me</h1>
+	<div class="flex flex-row w-full space-x-4 bg-armadillo-100 dark:bg-primary-900 p-4 rounded-lg">
+		<img
+			alt="This website's author"
+			src={myPhoto}
+			class="rounded-lg object-contain w-64 h-64 drop-shadow-lg"
+		/>
+		<div class="w-full flex flex-col space-y-2 p-4 h-full rounded-lg drop-shadow-md">
 			<div class="flex items-end font-serif">
 				<div>
 					<p>This is me,&nbsp;</p>

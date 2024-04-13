@@ -22,7 +22,7 @@
 			</div>
 		</div>
 		<div class="flex flex-col grow">
-			<span class="line-clamp-3 mb-2 text-gray-300">{description}</span>
+			<span class="line-clamp-3 mb-2 text-gray-700 dark:text-gray-200">{description}</span>
 		</div>
 		<div class="flex flex-row">
 			{#if enableEdit}
