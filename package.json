@@ -25,6 +25,7 @@
 		"@sveltejs/vite-plugin-svelte": "^3.0.0",
 		"@types/eslint": "^8.56.7",
 		"@types/node": "^20.12.7",
+		"@vavite/node-loader": "^4.1.1",
 		"autoprefixer": "^10.4.19",
 		"eslint": "^8.0.0",
 		"eslint-config-prettier": "^9.1.0",
@@ -51,7 +52,11 @@
 	"type": "module",
 	"dependencies": {
 		"@prisma/client": "^5.12.1",
+		"@trpc/client": "^10.45.2",
+		"@trpc/server": "^10.45.2",
 		"cheerio": "^1.0.0-rc.12",
-		"fast-xml-parser": "^4.3.6"
+		"fast-xml-parser": "^4.3.6",
+		"trpc-sveltekit": "^3.6.1",
+		"zod": "^3.22.4"
 	}
 }
