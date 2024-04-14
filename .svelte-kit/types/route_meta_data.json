@@ -15,10 +15,12 @@
 	"/admin/podcast/new": [
 		"src/routes/admin/podcast/new/+page.server.ts"
 	],
-	"/api/podcasts": [
-		"src/routes/api/podcasts/+server.ts"
+	"/api/blog": [
+		"src/routes/api/blog/+server.ts"
 	],
-	"/blog": [],
+	"/blog": [
+		"src/routes/blog/+page.server.ts"
+	],
 	"/default-svelte": [
 		"src/routes/default-svelte/+page.ts"
 	],
