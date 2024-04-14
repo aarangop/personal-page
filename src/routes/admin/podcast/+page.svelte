@@ -6,7 +6,7 @@
 	export let data: PageData;
 
 	const onClick = () => {
-		goto('/admin/podcast/new-feed');
+		goto('/admin/podcast/new');
 	};
 </script>
 

@@ -18,10 +18,12 @@
 				</div>
 			</div>
 			<p class="font-serif leading-relaxed h-full">
-				...podcaster, developer and writer from Colombia. It feels kinda weird to talk about myself
-				but yeah, whatever, this is my personal website. Here you'll find some of my essence, which
-				I have distilled into my <a class="font-bold" href="/podcast">podcasts</a> and
-				<a class="font-semibold" href="/blog">writings</a>.
+				...developer, aspiring pocaster from Colombia. Checkout my <a
+					class="font-bold"
+					href="/podcast">podcasts</a
+				>
+				and
+				<a class="font-semibold" href="/blog">blog</a>!
 			</p>
 		</div>
 	</div>

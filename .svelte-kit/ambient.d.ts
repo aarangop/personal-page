@@ -27,6 +27,9 @@
  */
 declare module '$env/static/private' {
 	export const DATABASE_URL: string;
+	export const GCP_PROJECT: string;
+	export const GCP_BUCKET: string;
+	export const GCP_STORAGE_KEY: string;
 	export const MANPATH: string;
 	export const TERM_PROGRAM: string;
 	export const NODE: string;
@@ -138,6 +141,9 @@ declare module '$env/static/public' {
 declare module '$env/dynamic/private' {
 	export const env: {
 		DATABASE_URL: string;
+		GCP_PROJECT: string;
+		GCP_BUCKET: string;
+		GCP_STORAGE_KEY: string;
 		MANPATH: string;
 		TERM_PROGRAM: string;
 		NODE: string;
