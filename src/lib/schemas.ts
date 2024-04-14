@@ -34,6 +34,6 @@ export const BlogPostSchema = z.object({
 	id: z.string().optional(),
 	title: z.string(),
 	subtitle: z.string().optional(),
-	fileUrl: z.string().url(),
-	imageUrl: z.string().url()
+	fileUrl: z.string().url().optional(),
+	imageUrl: z.string().url().optional()
 });

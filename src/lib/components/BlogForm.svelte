@@ -6,7 +6,7 @@
 </script>
 
 <section>
-	<form class="flex flex-col">
+	<form method="post" class="flex flex-col" enctype="multipart/form-data">
 		<Label for="title" class="mb-2">Title</Label>
 		<Input type="text" class="mb-4" placeholder="Post Title" required id="title" name="title" />
 		<Label for="subtitle" class="mb-2">Subtitle</Label>
@@ -17,16 +17,10 @@
 			placeholder="What's it about?..."
 			rows="4"
 		/>
-		<Label for="image-url" class="mb-2">Image Url</Label>
-		<Input
-			type="url"
-			id="image-url"
-			name="image-url"
-			placeholder="https://my.awesome.image.url"
-			class="mb-4"
-		/>
-		<Label for="file-url" class="mb-2">File</Label>
-		<Input type="file" id="file-url" name="file-url" class="mb-4" />
+		<Label for="image" class="mb-2">Image</Label>
+		<Input type="file" id="image" name="image" class="mb-4" accept="image/*" required />
+		<Label for="file" class="mb-2">File</Label>
+		<Input type="file" id="file" name="file" class="mb-4" />
 		<div class="flex flex-row w-full justify-between">
 			<Button type="submit" formaction={`?/${saveFormAction}`}>Save</Button>
 			{#if allowDelete}
