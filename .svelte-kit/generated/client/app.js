@@ -28,7 +28,7 @@ export const dictionary = {
 		"/admin/podcast": [~6],
 		"/admin/podcast/edit/[slug]": [~7],
 		"/admin/podcast/new": [~8],
-		"/blog": [9],
+		"/blog": [~9],
 		"/default-svelte": [10,[2]],
 		"/default-svelte/about": [11,[2]],
 		"/default-svelte/sverdle": [~12,[2]],

@@ -20,7 +20,7 @@
 		<Label for="image" class="mb-2">Image</Label>
 		<Input type="file" id="image" name="image" class="mb-4" accept="image/*" required />
 		<Label for="file" class="mb-2">File</Label>
-		<Input type="file" id="file" name="file" class="mb-4" />
+		<Input type="file" id="file" name="file" accept=".md" class="mb-4" />
 		<div class="flex flex-row w-full justify-between">
 			<Button type="submit" formaction={`?/${saveFormAction}`}>Save</Button>
 			{#if allowDelete}
