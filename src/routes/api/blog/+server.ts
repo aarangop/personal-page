@@ -2,16 +2,11 @@ import { error, json, redirect } from '@sveltejs/kit';
 import { GCP_BUCKET, GCP_PROJECT, GCP_STORAGE_KEY } from '$env/static/private';
 import { Storage } from '@google-cloud/storage';
 import prisma from '$lib/prisma';
+import { toSlug } from '$lib/utils';
 
 export async function GET() {
-	const options: ResponseInit = {
-		status: 418,
-		headers: {
-			X: 'Gon give it to ya'
-		}
-	};
-
-	return new Response('Hello', options);
+	const blogPosts = await prisma.blogPost.findMany();
+	return json(blogPosts);
 }
 
 export async function POST({ request }) {
@@ -33,7 +28,6 @@ export async function POST({ request }) {
 			const imageFilename = `blog/img/${new Date().getTime()}_${image.name}`;
 			const imageUpload = bucket.file(imageFilename);
 			await imageUpload.save(Buffer.from(await image.arrayBuffer()));
-			console.log('Image saved to gcp!');
 			await imageUpload.makePublic();
 			imageUrl = imageUpload.publicUrl();
 		}
@@ -41,16 +35,18 @@ export async function POST({ request }) {
 			const fileFilename = `blog/files/${new Date().getTime()}_blog_post.md`;
 			const fileUpload = bucket.file(fileFilename);
 			await fileUpload.save(Buffer.from(await file.arrayBuffer()));
-			console.log('Blog file saved to gcp!');
 			await fileUpload.makePublic();
 			fileUrl = fileUpload.publicUrl();
 		}
 	} catch (e) {
 		error(500, { message: 'Error saving data' });
 	}
+	const title = formData.get('title')!.toString();
+	const slug = toSlug(title);
 	const result = await prisma.blogPost.create({
 		data: {
-			title: formData.get('title')!.toString(),
+			title,
+			slug,
 			subtitle: formData.get('subtitle')!.toString(),
 			fileUrl: fileUrl!,
 			imageUrl: imageUrl!
