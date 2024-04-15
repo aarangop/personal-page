@@ -2,29 +2,24 @@
 	import { goto } from '$app/navigation';
 	import { Button } from 'flowbite-svelte';
 	import type { PageData } from './$types';
+	import BlogCard from '$lib/components/BlogCard.svelte';
 	export let data: PageData;
 
 	const onClick = () => {
-		goto('/admin/podcast/new-feed');
+		goto('/admin/blog/new');
 	};
 </script>
 
 <section class="px-16 py-4 flex flex-col space-y-4 grow">
-	<h1 class="font-serif text-2xl grow-0">Podcasts admin page</h1>
+	<h2 class="h2 text-2xl grow-0">Blogs Admin Page</h2>
 	<div class="flex flex-col space-y-2 grow">
 		<div class="flex flex-col grow">
-			<!-- {#if data.blogPosts.length == 0}
-				<div class="">No podcast feeds!</div>
-			{:else}
-				<div class="grid lg:grid-cols-3 gap-2">
-					{#each data.podcastFeeds as feed}
-						<PodcastCard enableEdit={true} feedData={feed} />
-					{/each}
-				</div>
-			{/if} -->
+			{#each data.blogPosts as blogPost}
+				<BlogCard {blogPost}></BlogCard>
+			{/each}
 		</div>
 		<div>
-			<Button on:click={onClick}>Add Podcast Feed</Button>
+			<button class="btn variant-filled" on:click={onClick}>Add Blog Entry</button>
 		</div>
 	</div>
 </section>

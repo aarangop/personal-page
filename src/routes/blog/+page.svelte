@@ -7,10 +7,11 @@
 	export let data: PageData;
 </script>
 
-<section class="flex flex-col px-24">
-	<h2 class="text-gray-950 font-serif text-2xl">My Blog</h2>
-	<div class="flex flex-wrap gap-2 space-y-2"></div>
-	{#each data.posts as blog}
-		<BlogCard blogPost={blog}></BlogCard>
-	{/each}
+<section class="flex flex-col p-8">
+	<h2 class="h2 text-2xl mb-2">My Blog</h2>
+	<div class="grid grid-cols-1 space-y-4">
+		{#each data.posts as blog}
+			<BlogCard blogPost={blog}></BlogCard>
+		{/each}
+	</div>
 </section>
