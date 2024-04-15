@@ -5,7 +5,7 @@
 <section class="m-2 grow lg:px-32 py-12 flex flex-col space-y-4 w-full justify-start">
 	<h1 class="text-4xl font-serif">About Me</h1>
 	<div
-		class="flex grow flex-row w-full space-x-4 drop-shadow-lg bg-armadillo-100 dark:bg-primary-900 p-4 rounded-lg items-center"
+		class="flex grow flex-row w-full space-x-4 drop-shadow-lg bg-primary-100 dark:bg-primary-800 p-4 rounded-lg items-center"
 	>
 		<img alt="This website's author" src={myPhoto} class="rounded-full lg:h-64 drop-shadow-lg" />
 		<div class="w-full flex flex-col space-y-2 p-4 grow rounded-lg justify-between drop-shadow-md">
