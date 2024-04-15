@@ -1,30 +1,46 @@
 <script lang="ts">
-	import { Button, Input, Label, Textarea } from 'flowbite-svelte';
-	export let allowDelete = false;
-	export let saveFormAction: string = 'save';
-	export let deleteFormAction: string = 'delete';
+	import Icon from '@iconify/svelte';
+	export let saveFormAction: string;
+	export let deleteFormAction: string | null = null;
 </script>
 
-<section>
+<section class={$$props.class}>
 	<form method="post" class="flex flex-col" enctype="multipart/form-data">
-		<Label for="title" class="mb-2">Title</Label>
-		<Input type="text" class="mb-4" placeholder="Post Title" required id="title" name="title" />
-		<Label for="subtitle" class="mb-2">Subtitle</Label>
-		<Textarea
+		<label for="title" class="label mb-1">Title</label>
+		<input
+			type="text"
+			class="input mb-2"
+			placeholder="Post Title"
+			required
+			maxlength="50"
+			minlength="1"
+			id="title"
+			name="title"
+		/>
+		<label for="subtitle" class="label mb-1">Subtitle</label>
+		<input
+			maxlength="50"
+			minlength="1"
+			class="input mb-2"
 			name="subtitle"
 			id="subtitle"
-			class="mb-4"
-			placeholder="What's it about?..."
-			rows="4"
+			placeholder="Subtitle"
 		/>
-		<Label for="image" class="mb-2">Image</Label>
-		<Input type="file" id="image" name="image" class="mb-4" accept="image/*" required />
-		<Label for="file" class="mb-2">File</Label>
-		<Input type="file" id="file" name="file" accept=".md" class="mb-4" />
-		<div class="flex flex-row w-full justify-between">
-			<Button type="submit" formaction={`?/${saveFormAction}`}>Save</Button>
-			{#if allowDelete}
-				<Button type="submit" formaction={`?/${deleteFormAction}`}>Delete</Button>
+		<label for="image" class="label mb-2">Image</label>
+		<input type="file" id="image" name="image" class="input mb-4" accept="image/*" required />
+		<label for="file" class="label mb-2">File</label>
+		<input type="file" id="file" name="file" accept=".md" class="input mb-4" />
+		<div class="flex flex-row w-full justify-start">
+			<button class="btn variant-filled" type="submit" formaction={`?/${saveFormAction}`}>
+				<span>
+					<Icon icon="ph:floppy-disk" />
+				</span>
+				<span>Save</span>
+			</button>
+			{#if deleteFormAction}
+				<button class="btn variant-filled-error" type="submit" formaction={`?/${deleteFormAction}`}
+					>Delete</button
+				>
 			{/if}
 		</div>
 	</form>

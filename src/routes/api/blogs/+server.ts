@@ -3,10 +3,12 @@ import { GCP_BUCKET, GCP_PROJECT, GCP_STORAGE_KEY } from '$env/static/private';
 import { Storage } from '@google-cloud/storage';
 import prisma from '$lib/prisma';
 import { toSlug } from '$lib/utils';
+import { BlogPostSchema } from '$lib/schemas.js';
+import { z } from 'zod';
 
 export async function GET() {
 	const blogPosts = await prisma.blogPost.findMany();
-	return json(blogPosts);
+	return json(z.array(BlogPostSchema).parse(blogPosts));
 }
 
 export async function POST({ request }) {

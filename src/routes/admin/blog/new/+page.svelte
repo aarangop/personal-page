@@ -1,11 +1,10 @@
 <script lang="ts">
 	import BlogForm from '$lib/components/BlogForm.svelte';
-	import { Card } from 'flowbite-svelte';
 </script>
 
-<section class="flex grow px-48 justify-center">
-	<Card class="min-w-64">
-		<h2 class="font-serif text-gray-950 text-2xl mb-4">New Blog Post</h2>
-		<BlogForm saveFormAction="saveBlogPost"></BlogForm>
-	</Card>
+<section class=" content-center w-full p-4 flex justify-center">
+	<div class="card min-w-64 lg:w-1/3 md:w-1/2 p-4">
+		<h3 class="h3 mb-2">New Blog Post</h3>
+		<BlogForm saveFormAction="saveBlogPost" class=""></BlogForm>
+	</div>
 </section>

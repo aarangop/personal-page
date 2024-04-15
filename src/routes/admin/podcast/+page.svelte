@@ -25,7 +25,7 @@
 			{/if}
 		</div>
 		<div>
-			<Button on:click={onClick}>Add Podcast Feed</Button>
+			<button class="btn variant-filled" on:click={onClick}>Add Podcast Feed</button>
 		</div>
 	</div>
 </section>

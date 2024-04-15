@@ -26,4 +26,5 @@ model BlogPost {
   subtitle String
   fileUrl String
   imageUrl String
+  dateCreated DateTime @default(now())
 }
