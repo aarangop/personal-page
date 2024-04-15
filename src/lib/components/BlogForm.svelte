@@ -1,11 +1,17 @@
 <script lang="ts">
 	import Icon from '@iconify/svelte';
-	export let saveFormAction: string;
+	export let submitAction: string;
 	export let deleteFormAction: string | null = null;
+	export let onDelete: ((event: Event) => Promise<void>) | null = null;
 </script>
 
 <section class={$$props.class}>
-	<form method="post" class="flex flex-col" enctype="multipart/form-data">
+	<form
+		method="post"
+		class="flex flex-col"
+		enctype="multipart/form-data"
+		action={`?/${submitAction}`}
+	>
 		<label for="title" class="label mb-1">Title</label>
 		<input
 			type="text"
@@ -31,13 +37,13 @@
 		<label for="file" class="label mb-2">File</label>
 		<input type="file" id="file" name="file" accept=".md" class="input mb-4" />
 		<div class="flex flex-row w-full justify-start">
-			<button class="btn variant-filled" type="submit" formaction={`?/${saveFormAction}`}>
+			<button class="btn variant-filled" type="submit">
 				<span>
 					<Icon icon="ph:floppy-disk" />
 				</span>
 				<span>Save</span>
 			</button>
-			{#if deleteFormAction}
+			{#if onDelete}
 				<button class="btn variant-filled-error" type="submit" formaction={`?/${deleteFormAction}`}
 					>Delete</button
 				>

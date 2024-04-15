@@ -14,10 +14,8 @@
 <button class="card flex flex-row overflow-clip items-center">
 	<Avatar src={blogPost.imageUrl} class="w-36" rounded="rounded-r-none" />
 	<div class="flex flex-col h-full w-full p-4">
-		<h5 class="font-serif text-xl text-left mb-2">{blogPost.title}</h5>
-		<span class="font-serif text-left text-gray-600 dark:text-gray-300 line-clamp-1"
-			>{blogPost.subtitle}</span
-		>
+		<h4 class="h4 text-left mb-2">{blogPost.title}</h4>
+		<span class="text-left text-gray-600 dark:text-gray-300 line-clamp-1">{blogPost.subtitle}</span>
 	</div>
 	<div class="p-2 flex flex-row space-x-2">
 		<div class="btn-group variant-soft">
