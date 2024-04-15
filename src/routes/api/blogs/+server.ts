@@ -5,16 +5,31 @@ import prisma from '$lib/prisma';
 import { toSlug } from '$lib/utils';
 import { BlogPostSchema } from '$lib/schemas.js';
 import { z } from 'zod';
+import sharp from 'sharp';
 
 export async function GET() {
 	const blogPosts = await prisma.blogPost.findMany();
 	return json(z.array(BlogPostSchema).parse(blogPosts));
 }
 
+async function compressImage(imageFile: File): Promise<File> {
+	const imageBuffer = await imageFile.arrayBuffer();
+	const compressedImage = await sharp(imageBuffer)
+		.resize({ width: 800 }) // Adjust width as needed
+		.jpeg({ quality: 70 }) // Adjust quality
+		.toBuffer();
+
+	return new File([compressedImage], imageFile.name, { type: imageFile.type });
+}
+
 export async function POST({ request }) {
 	const formData = await request.formData();
+
 	const image = formData.get('image') as File;
 	const file = formData.get('file') as File;
+
+	const compressedImage = await compressImage(image);
+
 	let imageUrl: string | null = null;
 	let fileUrl: string | null = null;
 
@@ -27,9 +42,9 @@ export async function POST({ request }) {
 
 	try {
 		if (image) {
-			const imageFilename = `blog/img/${new Date().getTime()}_${image.name}`;
+			const imageFilename = `blog/img/${new Date().getTime()}_${compressedImage.name}`;
 			const imageUpload = bucket.file(imageFilename);
-			await imageUpload.save(Buffer.from(await image.arrayBuffer()));
+			await imageUpload.save(Buffer.from(await compressedImage.arrayBuffer()));
 			await imageUpload.makePublic();
 			imageUrl = imageUpload.publicUrl();
 		}
@@ -44,6 +59,7 @@ export async function POST({ request }) {
 		error(500, { message: 'Error saving data' });
 	}
 	const title = formData.get('title')!.toString();
+	const dateCreated = new Date();
 	const slug = toSlug(title);
 	const result = await prisma.blogPost.create({
 		data: {
@@ -51,7 +67,8 @@ export async function POST({ request }) {
 			slug,
 			subtitle: formData.get('subtitle')!.toString(),
 			fileUrl: fileUrl!,
-			imageUrl: imageUrl!
+			imageUrl: imageUrl!,
+			dateCreated
 		}
 	});
 	return json(result);
