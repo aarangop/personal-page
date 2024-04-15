@@ -1,8 +1,8 @@
 <script lang="ts">
 	import { goto } from '$app/navigation';
-	import { Avatar, Button, Card } from 'flowbite-svelte';
-	import type { PageData } from './$types';
 	import PodcastCard from '$lib/components/PodcastCard.svelte';
+	import { Button } from 'flowbite-svelte';
+	import type { PageData } from './$types';
 	export let data: PageData;
 
 	const onClick = () => {

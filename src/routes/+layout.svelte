@@ -1,13 +1,17 @@
 <script>
 	import Header from '$lib/components/Header.svelte';
-	import { Footer } from 'flowbite-svelte';
+	import { AppBar, AppShell, LightSwitch } from '@skeletonlabs/skeleton';
+
 	import './styles.css';
 </script>
 
-<div class="flex flex-col min-h-screen">
-	<Header />
+<section class="flex flex-col min-h-screen">
+	<AppShell regionPage="relative" slotPageHeader="sticky top-0 z-10">
+		<svelte:fragment slot="header">
+			<Header></Header>
+		</svelte:fragment>
+	</AppShell>
 	<main class="flex flex-col p-1 w-full flex-1 m-0">
 		<slot />
 	</main>
-	<Footer class="flex flex-row justify-center items-center p-2"></Footer>
-</div>
+</section>

@@ -12,29 +12,14 @@ export const load = async ({ params }: Parameters<PageServerLoad>[0]) => {
 };
 
 export const actions = {
-	saveFeed: async ({ request }) => {
-		const data = await request.formData();
-		const id = data.get('podcast_id');
-		if (!id) {
-			throw Error('Invalid podcast id!');
-		}
-		const slug = data.get('podcast_slug');
-		if (!slug) {
-			throw Error('Invalid slug');
-		}
-		const feed = data.get('rss_feed');
-		if (!feed) {
-			throw Error('Invalid feed');
-		}
-		const result = await prisma.podcastFeeds.update({
-			where: { id: id!.toString() },
-			data: {
-				slug: slug!.toString(),
-				rssFeed: feed!.toString()
-			}
-		});
-		redirect(303, `/admin/podcast`);
-	},
+	saveFeed: async ({ fetch, request }) =>
+		await fetch('/api/podcast', {
+			method: 'POST',
+			body: await request.formData()
+		}).then(async (data) => {
+			const res = await data.json();
+			redirect(303, `/admin/podcast/${res.slug}`);
+		}),
 	deleteFeed: async ({ request }) => {
 		const data = await request.formData();
 		console.log('Deleting feed');
