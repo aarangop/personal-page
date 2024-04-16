@@ -1,43 +1,39 @@
 <script lang="ts">
 	import { page } from '$app/stores';
+	import { fade, blur, fly } from 'svelte/transition';
 
+	const getCrumbDisplayText = (crumb: string) => {
+		return crumb.replace(/-/g, ' ').replace(/\b[a-z]/g, (substr) => substr[0].toUpperCase());
+	};
 	let breadCrumbs: { href: string; text: string }[] = [];
 	$: {
-		const url = $page.url;
+		const url = $page.url.pathname;
+
 		const homeCrumb = {
 			href: '/',
 			text: 'Home'
 		};
-		const crumbs = url.pathname
+		const crumbs = url
 			.slice(1)
 			.split('/')
-			.map((crumb, i, array) => ({
-				href: `${i == 0 ? '' : '/' + array[i - 1]}/${crumb}`,
-				text: crumb.replace(/-/g, ' ').replace(/\b[a-z]/g, function () {
-					return arguments[0].toUpperCase();
-				})
+			.map((crumb, i, allCrumbs) => ({
+				href: '/' + (i == 0 ? crumb : [...allCrumbs.slice(0, 1), crumb].join('/')),
+				text: `${getCrumbDisplayText(crumb)}`
 			}));
-		console.log(url.pathname);
-		// if (url.pathname.split('/').length == 2) {
-		// 	breadCrumbs = [homeCrumb];
-		// } else {
 		breadCrumbs = [homeCrumb, ...crumbs];
-		// }
 	}
 </script>
 
 <ol
-	class="breadcrumb bg-gray-800/50 flex-0 px-4 py-2 rounded-full backdrop-blur-sm border border-gray-700/70"
+	transition:fade
+	class="breadcrumb bg-gray-100/30 dark:bg-gray-800/30 flex-0 px-4 py-2 rounded-full backdrop-blur-sm border border-gray-300/70 dark:border-gray-400/30"
 >
-	{#each breadCrumbs as breadCrumb, i}
-		{#if i == breadCrumbs.length - 1}
-			<li class="crumb">{breadCrumb.text}</li>
+	{#each breadCrumbs as crumb, i}
+		{#if i < breadCrumbs.length - 1}
+			<li class="crumb"><a href={crumb.href} class="anchor">{crumb.text}</a></li>
+			<li class="crumb-separator" aria-hidden>/</li>
 		{:else}
-			<li class="crumb"><a href={breadCrumb.href} class="anchor">{breadCrumb.text}</a></li>
-			<li class="crumb-separator" aria-hidden>&rsaquo;</li>
+			<li class="crumb">{crumb.text}</li>
 		{/if}
-
-		<!-- <li class="crumb"><a class="anchor" href={breadCrumb.href}>{breadCrumb.text}</a></li>
-		<li class="crumb-separator" aria-hidden>&rsaquo;</li> -->
 	{/each}
 </ol>
