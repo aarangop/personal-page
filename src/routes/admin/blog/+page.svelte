@@ -1,8 +1,7 @@
 <script lang="ts">
 	import { goto } from '$app/navigation';
-	import { Button } from 'flowbite-svelte';
 	import type { PageData } from './$types';
-	import BlogCard from '$lib/components/BlogCard.svelte';
+	import BlogCard from '$lib/components/blog/BlogCard.svelte';
 	export let data: PageData;
 
 	const onClick = () => {

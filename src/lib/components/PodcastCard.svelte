@@ -10,7 +10,7 @@
 	export let onEdit = () => {};
 </script>
 
-<button class="card p-4 flex flex-col" on:click={onClick}>
+<button class="card p-4 flex flex-col backdrop-blur-sm" on:click={onClick}>
 	<div class="flex flex-row justify-between items-center space-x-2 mb-2 h-24">
 		<Avatar
 			class="min-w-20 max-w-20"

@@ -5,5 +5,8 @@ import { z } from 'zod';
 export const load: PageServerLoad = async ({ fetch }) => ({
 	posts: await fetch('/api/blogs')
 		.then((response) => response.json())
-		.then((data) => data)
+		.then((data) => {
+			console.log(data);
+			return data;
+		})
 });

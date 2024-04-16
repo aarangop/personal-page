@@ -5,3 +5,5 @@ export function toSlug(text: string): string {
 		.replace(/-{2,}/g, '-') // Replace multiple hyphens with a single hyphen
 		.trim(); // Remove leading/trailing hyphens
 }
+
+export const slugRegex = /^[A-Za-z0-9]+(?:-[A-Za-z0-9]+)*$/;
