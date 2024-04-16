@@ -5,9 +5,9 @@
 	export let data: PageData;
 </script>
 
-<section class="flex flex-col py-4">
+<section class="flex flex-col">
 	<h2 class="h2 text-2xl mb-2">My Blog</h2>
-	<div class="grid grid-cols-1 space-y-4">
+	<div class="flex flex-col">
 		{#each data.posts as blog}
 			<BlogCard blogPost={blog}></BlogCard>
 		{/each}
