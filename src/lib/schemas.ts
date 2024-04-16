@@ -34,7 +34,13 @@ export const BlogPostSchema = z.object({
 	title: z.string(),
 	subtitle: z.string().optional(),
 	slug: z.string(),
-	dateCreated: z.date(),
+	dateCreated: z.coerce.date(),
 	fileUrl: z.string().url().optional(),
 	imageUrl: z.string().url().optional()
 });
+
+export const BlogPostDisplaySchema = z
+	.object({
+		markdown: z.string()
+	})
+	.merge(BlogPostSchema);

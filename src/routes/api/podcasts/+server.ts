@@ -32,7 +32,9 @@ export async function GET() {
 				});
 			});
 	});
-	return json(await Promise.all(fetchFeedDataPromises));
+	const podcasts = await Promise.all(fetchFeedDataPromises);
+	console.log(podcasts);
+	return json(podcasts);
 }
 
 export async function POST({ request }) {
