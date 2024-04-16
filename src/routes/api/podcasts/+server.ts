@@ -33,7 +33,6 @@ export async function GET() {
 			});
 	});
 	const podcasts = await Promise.all(fetchFeedDataPromises);
-	console.log(podcasts);
 	return json(podcasts);
 }
 

@@ -38,7 +38,6 @@
 			})
 			.catch((e) => {
 				feedOk = false;
-				console.log(e);
 				rssFeedError = e;
 			});
 		feedChecked = true;
