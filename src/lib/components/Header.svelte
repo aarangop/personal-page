@@ -1,5 +1,4 @@
 <script>
-	import { DarkMode, NavHamburger, NavLi, NavUl, Navbar } from 'flowbite-svelte';
 	import { AppBar, LightSwitch } from '@skeletonlabs/skeleton';
 	import Icon from '@iconify/svelte';
 	import Link from './Link.svelte';
