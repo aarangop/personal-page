@@ -3,6 +3,6 @@
 	export let href = '/';
 </script>
 
-<a {href} class={twMerge($$props.class, 'hover:font-semibold focus:text-sm transition-all')}>
+<a {href} class={twMerge($$props.class, 'hover:font-semibold transition-all')}>
 	<slot />
 </a>
