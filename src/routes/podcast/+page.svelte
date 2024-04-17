@@ -18,11 +18,13 @@
 	<h2 class="h2 mb-4 dark:text-white text-2xl">My Podcasts</h2>
 	<div class="flex flex-col space-y-2 grow">
 		<div class="grid lg:grid-cols-2 sm:grid-cols-1 gap-2">
-			{#each data.podcastFeeds as feed}
-				<PodcastCard enableEdit={false} onClick={() => onPodcastClick(feed.slug)} feedData={feed}
-					>{feed.slug}</PodcastCard
-				>
-			{/each}
+			{#if data.podcastFeeds.length > 0}
+				{#each data.podcastFeeds as feed}
+					<PodcastCard enableEdit={false} onClick={() => onPodcastClick(feed.slug)} feedData={feed}
+						>{feed.slug}</PodcastCard
+					>
+				{/each}
+			{/if}
 		</div>
 	</div>
 </section>

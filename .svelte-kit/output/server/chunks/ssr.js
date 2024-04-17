@@ -27,14 +27,6 @@ function get_store_value(store) {
   subscribe(store, (_) => value = _)();
   return value;
 }
-function compute_rest_props(props, keys) {
-  const rest = {};
-  keys = new Set(keys);
-  for (const k in props)
-    if (!keys.has(k) && k[0] !== "$")
-      rest[k] = props[k];
-  return rest;
-}
 function compute_slots(slots) {
   const result = {};
   for (const key in slots) {
@@ -283,16 +275,14 @@ export {
   subscribe as f,
   each as g,
   getContext as h,
-  spread as i,
-  escape_object as j,
-  createEventDispatcher as k,
-  compute_rest_props as l,
+  get_store_value as i,
+  safe_not_equal as j,
+  spread as k,
+  escape_object as l,
   missing_component as m,
-  escape_attribute_value as n,
+  noop as n,
   onDestroy as o,
-  get_store_value as p,
-  noop as q,
-  safe_not_equal as r,
+  createEventDispatcher as p,
   setContext as s,
   validate_component as v
 };

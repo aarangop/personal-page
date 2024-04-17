@@ -5,9 +5,7 @@
 
 	let breadCrumbs: BreadCrumb[] = [];
 
-	$: {
-		breadCrumbs = getBreadCrumbs(url, { href: '/', text: 'Home' });
-	}
+	$: breadCrumbs = getBreadCrumbs(url, { href: '/', text: 'Home' });
 </script>
 
 <ol

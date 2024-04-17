@@ -3,7 +3,7 @@ import { P as PodcastFeedDataSchema } from "../../../../chunks/schemas.js";
 import { j as json } from "../../../../chunks/index.js";
 import { XMLParser } from "fast-xml-parser";
 async function GET() {
-  const response = await prisma.podcastFeeds.findMany({});
+  const response = await prisma.podcastFeed.findMany({});
   const fetchFeedDataPromises = response.map(async (feedMetaData) => {
     return await fetch(feedMetaData.rssFeed).then((res) => res.text()).then((str) => {
       const parser = new XMLParser({
@@ -46,7 +46,7 @@ async function POST({ request }) {
   if (!feed) {
     throw Error("Invalid feed");
   }
-  const result = await prisma.podcastFeeds.update({
+  const result = await prisma.podcastFeed.update({
     where: { id: id.toString() },
     data: {
       slug: slug.toString(),

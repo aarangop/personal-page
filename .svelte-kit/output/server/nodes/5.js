@@ -1,10 +1,10 @@
-import * as server from '../entries/pages/admin/podcast/_page.server.ts.js';
+import * as server from '../entries/pages/admin/blog/new/_page.server.ts.js';
 
 export const index = 5;
 let component_cache;
-export const component = async () => component_cache ??= (await import('../entries/pages/admin/podcast/_page.svelte.js')).default;
+export const component = async () => component_cache ??= (await import('../entries/pages/admin/blog/new/_page.svelte.js')).default;
 export { server };
-export const server_id = "src/routes/admin/podcast/+page.server.ts";
-export const imports = ["_app/immutable/nodes/5.DTjDhQkv.js","_app/immutable/chunks/scheduler.CIki45mO.js","_app/immutable/chunks/index.CqOp4gxH.js","_app/immutable/chunks/each.D6YF6ztN.js","_app/immutable/chunks/entry.Z-bY69p6.js","_app/immutable/chunks/PodcastCard.CPU2gDly.js","_app/immutable/chunks/ProgressBar.svelte_svelte_type_style_lang.ptTb_PIh.js","_app/immutable/chunks/spread.CgU5AtxT.js"];
-export const stylesheets = ["_app/immutable/assets/ProgressBar.Cirlo5Z8.css"];
+export const server_id = "src/routes/admin/blog/new/+page.server.ts";
+export const imports = ["_app/immutable/nodes/5.BGELx-QW.js","_app/immutable/chunks/scheduler.B5yUOgXq.js","_app/immutable/chunks/index.DViKZBH0.js","_app/immutable/chunks/Icon.CGOUE8U-.js"];
+export const stylesheets = [];
 export const fonts = [];

@@ -23,11 +23,14 @@ export const getBreadCrumbs = (
 	crumbs: string,
 	homeCrumb: BreadCrumb = { href: '/', text: 'Home' }
 ): BreadCrumb[] => {
-	const breadCrumbs = crumbs.slice(1).split('/');
-
-	if (breadCrumbs.length == 1) {
+	if (crumbs == '/') {
 		return [homeCrumb];
 	}
+	const breadCrumbs = crumbs.slice(1).split('/');
+
+	// if (breadCrumbs.length == 1) {
+	// 	return [homeCrumb];
+	// }
 
 	const breadCrumbsArray = breadCrumbs.map((crumb, i, allCrumbs) => ({
 		href: '/' + (i == 0 ? crumb : [...allCrumbs.slice(0, i), crumb].join('/')),
