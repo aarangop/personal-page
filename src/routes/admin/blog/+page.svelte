@@ -12,7 +12,7 @@
 <section class="px-16 py-4 flex flex-col space-y-4 grow">
 	<h2 class="h2 text-2xl grow-0">Blogs Admin Page</h2>
 	<div class="flex flex-col space-y-2 grow">
-		<div class="flex flex-col grow">
+		<div class="flex flex-col grow space-y-2">
 			{#each data.blogPosts as blogPost}
 				<BlogCard {blogPost}></BlogCard>
 			{/each}

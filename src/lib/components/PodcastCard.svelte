@@ -7,7 +7,7 @@
 	export let feedData: z.infer<typeof PodcastFeedDataSchema>;
 	export let enableEdit: boolean = false;
 
-	export let onClick = () => {};
+	export let onClick = (event: Event) => {};
 	export let onEdit = () => {};
 </script>
 
@@ -34,7 +34,7 @@
 	</div>
 	<div class="justify-end flex">
 		<div class="btn-group variant-soft">
-			<button>
+			<button on:click={onClick}>
 				<Icon icon="ph:arrow-up-right" />
 			</button>
 			{#if feedData.links}
