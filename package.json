@@ -4,6 +4,7 @@
 	"scripts": {
 		"dev": "vite dev",
 		"build": "vite build",
+		"postinstall": "prisma generate",
 		"preview": "vite preview",
 		"vitest": "vitest run",
 		"test": "npm run test:integration && npm run test:unit",
