@@ -16,7 +16,8 @@ const config = {
 		extend: {
 			fontFamily: {
 				sans: ['Inter Variable'],
-				serif: ['Libre Baskerville']
+				serif: ['Lora'],
+				mono: ['NotoSansMono']
 			}
 		}
 	},

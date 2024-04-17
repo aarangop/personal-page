@@ -18,7 +18,12 @@ export default defineConfig(({ mode }) => {
 	return {
 		plugins,
 		test: {
-			include: ['src/**/*.{test,spec}.{js,ts}']
+			environment: 'jsdom',
+			setupFiles: ['./vitest-setup.ts'],
+			include: ['tests/unit_tests/**/*.{test,spec}.{js,ts}']
+		},
+		resolve: {
+			conditions: mode === 'test' ? ['browser'] : []
 		}
 	};
 });

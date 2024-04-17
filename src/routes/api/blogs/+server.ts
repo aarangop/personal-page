@@ -1,4 +1,4 @@
-import { error, json, redirect } from '@sveltejs/kit';
+import { error, json, type RequestHandler } from '@sveltejs/kit';
 import { GCP_BUCKET, GCP_PROJECT, GCP_STORAGE_KEY } from '$env/static/private';
 import { Storage } from '@google-cloud/storage';
 import prisma from '$lib/prisma';
@@ -7,16 +7,16 @@ import { BlogPostSchema } from '$lib/schemas.js';
 import { z } from 'zod';
 import sharp from 'sharp';
 
-export async function GET() {
+export const GET: RequestHandler = async ({ url }) => {
 	const blogPosts = await prisma.blogPost.findMany();
 	return json(z.array(BlogPostSchema).parse(blogPosts));
-}
+};
 
 async function compressImage(imageFile: File): Promise<File> {
 	const imageBuffer = await imageFile.arrayBuffer();
 	const compressedImage = await sharp(imageBuffer)
-		.resize({ width: 800 }) // Adjust width as needed
-		.jpeg({ quality: 70 }) // Adjust quality
+		.resize({ width: 700 }) // Adjust width as needed
+		.jpeg({ quality: 80 }) // Adjust quality
 		.toBuffer();
 
 	return new File([compressedImage], imageFile.name, { type: imageFile.type });

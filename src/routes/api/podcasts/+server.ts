@@ -4,7 +4,7 @@ import { json } from '@sveltejs/kit';
 import { XMLParser } from 'fast-xml-parser';
 
 export async function GET() {
-	const response = await prisma.podcastFeeds.findMany({});
+	const response = await prisma.podcastFeed.findMany({});
 	const fetchFeedDataPromises = response.map(async (feedMetaData) => {
 		return await fetch(feedMetaData.rssFeed)
 			.then((res) => res.text())
@@ -32,7 +32,8 @@ export async function GET() {
 				});
 			});
 	});
-	return json(await Promise.all(fetchFeedDataPromises));
+	const podcasts = await Promise.all(fetchFeedDataPromises);
+	return json(podcasts);
 }
 
 export async function POST({ request }) {
@@ -49,7 +50,7 @@ export async function POST({ request }) {
 	if (!feed) {
 		throw Error('Invalid feed');
 	}
-	const result = await prisma.podcastFeeds.update({
+	const result = await prisma.podcastFeed.update({
 		where: { id: id!.toString() },
 		data: {
 			slug: slug!.toString(),
