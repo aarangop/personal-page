@@ -1,11 +1,12 @@
 import { error, json, type RequestHandler } from '@sveltejs/kit';
-import { GCP_BUCKET, GCP_PROJECT, GCP_STORAGE_KEY } from '$env/static/private';
+import { GCP_BUCKET, GCP_PROJECT_ID, GCP_STORAGE_KEY, VERCEL } from '$env/static/private';
 import { Storage } from '@google-cloud/storage';
 import prisma from '$lib/prisma';
 import { toSlug } from '$lib/utils';
 import { BlogPostSchema } from '$lib/schemas.js';
 import { z } from 'zod';
 import sharp from 'sharp';
+import { getGCPCredentials } from '../../../lib/utils.js';
 
 export const GET: RequestHandler = async ({ url }) => {
 	const blogPosts = await prisma.blogPost.findMany();
@@ -22,7 +23,7 @@ async function compressImage(imageFile: File): Promise<File> {
 	return new File([compressedImage], imageFile.name, { type: imageFile.type });
 }
 
-export async function POST({ request }) {
+export const POST = async ({ request }) => {
 	const formData = await request.formData();
 
 	const image = formData.get('image') as File;
@@ -32,12 +33,19 @@ export async function POST({ request }) {
 
 	let imageUrl: string | null = null;
 	let fileUrl: string | null = null;
+	let credentials;
+	console.log(VERCEL);
+	if (process.env.VERCEL) {
+		credentials = getGCPCredentials();
+	} else {
+		credentials = {
+			projectId: GCP_PROJECT_ID,
+			keyFilename: GCP_STORAGE_KEY
+		};
+	}
 
 	// Setup Google Cloud Platform
-	const storage = new Storage({
-		projectId: GCP_PROJECT,
-		keyFilename: GCP_STORAGE_KEY
-	});
+	const storage = new Storage(credentials);
 	const bucket = storage.bucket(GCP_BUCKET);
 
 	try {
@@ -72,4 +80,4 @@ export async function POST({ request }) {
 		}
 	});
 	return json(result);
-}
+};
