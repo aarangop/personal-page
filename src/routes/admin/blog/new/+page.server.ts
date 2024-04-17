@@ -8,6 +8,7 @@ export const actions = {
 			body: await request.formData()
 		}).then(async (data) => {
 			const res = await data.json();
+			console.log(res);
 			throw redirect(303, `/admin/blog/${res.slug}`);
 		})
 } satisfies Actions;

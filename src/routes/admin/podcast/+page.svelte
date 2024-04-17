@@ -1,7 +1,6 @@
 <script lang="ts">
 	import { goto } from '$app/navigation';
 	import PodcastCard from '$lib/components/PodcastCard.svelte';
-	import { Button } from 'flowbite-svelte';
 	import type { PageData } from './$types';
 	export let data: PageData;
 

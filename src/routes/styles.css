@@ -10,6 +10,10 @@
 	font-family: 'Lora';
 	src: url('/fonts/Lora-VariableFont_wght.ttf');
 }
+@font-face {
+	font-family: 'NotoSansMono';
+	src: url('/fonts/NotoSansMono-VariableFont_wdth,wght.ttf')
+}
 
 :root [data-theme='wintry'] {
 	--theme-font-family-base: 'Inter', sans-serif;

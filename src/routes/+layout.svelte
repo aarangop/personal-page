@@ -1,8 +1,11 @@
-<script>
+<script lang="ts">
 	import Header from '$lib/components/Header.svelte';
-	import { AppBar, AppShell, LightSwitch } from '@skeletonlabs/skeleton';
+	import { AppShell } from '@skeletonlabs/skeleton';
 
+	import Breadcrumbs from '$lib/components/Breadcrumbs.svelte';
 	import './styles.css';
+	import { page } from '$app/stores';
+	$: url = $page.url.pathname;
 </script>
 
 <section class="flex flex-col min-h-screen">
@@ -11,7 +14,12 @@
 			<Header></Header>
 		</svelte:fragment>
 	</AppShell>
-	<main class="flex flex-col p-1 w-full flex-1 m-0">
-		<slot />
+	<main class="flex flex-col py-4 justify-center px-8">
+		<div class="self-center flex-0 sticky top-0 mb-2">
+			<Breadcrumbs {url} />
+		</div>
+		<div class="lg:px-48">
+			<slot />
+		</div>
 	</main>
 </section>

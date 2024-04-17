@@ -1,4 +1,3 @@
-import { P } from 'flowbite-svelte';
 import { z } from 'zod';
 export type PodcastFeed = {
 	id: string;
@@ -6,10 +5,16 @@ export type PodcastFeed = {
 	rssFeed: string;
 };
 
+export const PodcastLinkSchema = z.object({
+	platform: z.string(),
+	link: z.string().url()
+});
+
 export const PodcastFeedSchema = z.object({
 	id: z.string(),
 	slug: z.string().regex(/^[A-Za-z0-9]+(?:-[A-Za-z0-9]+)*$/),
-	rssFeed: z.string().url()
+	rssFeed: z.string().url(),
+	links: z.array(PodcastLinkSchema).optional()
 });
 
 export const PodcastEpisodeSchema = z.object({
@@ -35,7 +40,13 @@ export const BlogPostSchema = z.object({
 	title: z.string(),
 	subtitle: z.string().optional(),
 	slug: z.string(),
-	dateCreated: z.date(),
+	dateCreated: z.coerce.date(),
 	fileUrl: z.string().url().optional(),
 	imageUrl: z.string().url().optional()
 });
+
+export const BlogPostDisplaySchema = z
+	.object({
+		markdown: z.string()
+	})
+	.merge(BlogPostSchema);
