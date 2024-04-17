@@ -1,26 +1,23 @@
-import { getBreadCrumbs } from '$lib/utils';
+import { render, screen, within } from '@testing-library/svelte';
+import Breadcrumbs from '$lib/components/Breadcrumbs.svelte';
 import { expect, test } from 'vitest';
 
-test('get correct breadcrumbs for deep route', () => {
-	const url = '/my/sample/url';
+test('no link for home route', () => {
+	render(Breadcrumbs, { url: '/' });
 
-	const breadCrumbs = getBreadCrumbs(url);
-	expect(breadCrumbs.length).toBe(4);
-	expect(breadCrumbs).toStrictEqual([
-		{ href: '/', text: 'Home' },
-		{ href: '/my', text: 'My' },
-		{ href: '/my/sample', text: 'Sample' },
-		{ href: '/my/sample/url', text: 'Url' }
-	]);
+	const link = screen.queryByRole('link');
+	const breadcrumbs = screen.getByRole('listitem');
+	const breadcrumb = within(breadcrumbs).getByText('Home');
+
+	expect(breadcrumb).toBeInTheDocument();
+	expect(link).not.toBeInTheDocument();
 });
 
-test('returns no link for home route url', () => {
-	const url = '/';
-	const breadCrumbs = getBreadCrumbs(url);
-	expect(breadCrumbs).toStrictEqual([
-		{
-			href: '/',
-			text: 'Home'
-		}
-	]);
+test('no link for last route', () => {
+	render(Breadcrumbs, { url: '/my/sample/url' });
+
+	const breadcrumbs = screen.getAllByRole('listitem');
+	const lastLink = breadcrumbs[breadcrumbs.length - 1];
+
+	expect(within(lastLink).queryByRole('link')).not.toBeInTheDocument();
 });

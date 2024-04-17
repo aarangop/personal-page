@@ -6,10 +6,10 @@ const getCrumbDisplayText = (crumb) => {
   return crumb.replace(/-/g, " ").replace(/\b[a-z]/g, (substr) => substr[0].toUpperCase());
 };
 const getBreadCrumbs = (crumbs, homeCrumb = { href: "/", text: "Home" }) => {
-  const breadCrumbs = crumbs.slice(1).split("/");
-  if (breadCrumbs.length == 1) {
+  if (crumbs == "/") {
     return [homeCrumb];
   }
+  const breadCrumbs = crumbs.slice(1).split("/");
   const breadCrumbsArray = breadCrumbs.map((crumb, i, allCrumbs) => ({
     href: "/" + (i == 0 ? crumb : [...allCrumbs.slice(0, i), crumb].join("/")),
     text: getCrumbDisplayText(crumb)

@@ -29,6 +29,7 @@
     "imports": [
       "_ssr.js",
       "_schemas.js",
+      "_Icon.js",
       "_ProgressBar.svelte_svelte_type_style_lang.js"
     ]
   },
@@ -143,7 +144,7 @@
       "_stores.js"
     ],
     "css": [
-      "_app/immutable/assets/_layout.DewhumFZ.css"
+      "_app/immutable/assets/_layout.CU5x-Fzj.css"
     ]
   },
   "src/routes/+page.svelte": {
@@ -156,6 +157,15 @@
     ],
     "assets": [
       "_app/immutable/assets/my_photo.naCLr7ks.jpg"
+    ]
+  },
+  "src/routes/admin/+page.svelte": {
+    "file": "entries/pages/admin/_page.svelte.js",
+    "name": "entries/pages/admin/_page.svelte",
+    "src": "src/routes/admin/+page.svelte",
+    "isEntry": true,
+    "imports": [
+      "_ssr.js"
     ]
   },
   "src/routes/admin/blog/+page.server.ts": {

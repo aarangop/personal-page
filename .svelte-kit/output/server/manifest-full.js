@@ -10,7 +10,7 @@ return {
 	assets: new Set(["favicon.png","fonts/Inter-VariableFont_slnt,wght.ttf","fonts/Lora-Italic-VariableFont_wght.ttf","fonts/Lora-VariableFont_wght.ttf","fonts/NotoSansMono-VariableFont_wdth,wght.ttf","robots.txt"]),
 	mimeTypes: {".png":"image/png",".ttf":"font/ttf",".txt":"text/plain"},
 	_: {
-		client: {"start":"_app/immutable/entry/start.D5g_yeOf.js","app":"_app/immutable/entry/app.Duur0ki7.js","imports":["_app/immutable/entry/start.D5g_yeOf.js","_app/immutable/chunks/entry.Z-bY69p6.js","_app/immutable/chunks/scheduler.CIki45mO.js","_app/immutable/entry/app.Duur0ki7.js","_app/immutable/chunks/scheduler.CIki45mO.js","_app/immutable/chunks/index.CqOp4gxH.js"],"stylesheets":[],"fonts":[],"uses_env_dynamic_public":false},
+		client: {"start":"_app/immutable/entry/start.d9cmlXGy.js","app":"_app/immutable/entry/app.QRfFyl5W.js","imports":["_app/immutable/entry/start.d9cmlXGy.js","_app/immutable/chunks/entry.DLzDeUKm.js","_app/immutable/chunks/scheduler.B5yUOgXq.js","_app/immutable/entry/app.QRfFyl5W.js","_app/immutable/chunks/scheduler.B5yUOgXq.js","_app/immutable/chunks/index.DViKZBH0.js"],"stylesheets":[],"fonts":[],"uses_env_dynamic_public":false},
 		nodes: [
 			__memo(() => import('./nodes/0.js')),
 			__memo(() => import('./nodes/1.js')),
@@ -23,7 +23,8 @@ return {
 			__memo(() => import('./nodes/8.js')),
 			__memo(() => import('./nodes/9.js')),
 			__memo(() => import('./nodes/10.js')),
-			__memo(() => import('./nodes/11.js'))
+			__memo(() => import('./nodes/11.js')),
+			__memo(() => import('./nodes/12.js'))
 		],
 		routes: [
 			{
@@ -34,38 +35,45 @@ return {
 				endpoint: null
 			},
 			{
+				id: "/admin",
+				pattern: /^\/admin\/?$/,
+				params: [],
+				page: { layouts: [0,], errors: [1,], leaf: 3 },
+				endpoint: null
+			},
+			{
 				id: "/admin/blog",
 				pattern: /^\/admin\/blog\/?$/,
 				params: [],
-				page: { layouts: [0,], errors: [1,], leaf: 3 },
+				page: { layouts: [0,], errors: [1,], leaf: 4 },
 				endpoint: null
 			},
 			{
 				id: "/admin/blog/new",
 				pattern: /^\/admin\/blog\/new\/?$/,
 				params: [],
-				page: { layouts: [0,], errors: [1,], leaf: 4 },
+				page: { layouts: [0,], errors: [1,], leaf: 5 },
 				endpoint: null
 			},
 			{
 				id: "/admin/podcast",
 				pattern: /^\/admin\/podcast\/?$/,
 				params: [],
-				page: { layouts: [0,], errors: [1,], leaf: 5 },
+				page: { layouts: [0,], errors: [1,], leaf: 6 },
 				endpoint: null
 			},
 			{
 				id: "/admin/podcast/edit/[slug]",
 				pattern: /^\/admin\/podcast\/edit\/([^/]+?)\/?$/,
 				params: [{"name":"slug","optional":false,"rest":false,"chained":false}],
-				page: { layouts: [0,], errors: [1,], leaf: 6 },
+				page: { layouts: [0,], errors: [1,], leaf: 7 },
 				endpoint: null
 			},
 			{
 				id: "/admin/podcast/new",
 				pattern: /^\/admin\/podcast\/new\/?$/,
 				params: [],
-				page: { layouts: [0,], errors: [1,], leaf: 7 },
+				page: { layouts: [0,], errors: [1,], leaf: 8 },
 				endpoint: null
 			},
 			{
@@ -93,28 +101,28 @@ return {
 				id: "/blog",
 				pattern: /^\/blog\/?$/,
 				params: [],
-				page: { layouts: [0,], errors: [1,], leaf: 8 },
+				page: { layouts: [0,], errors: [1,], leaf: 9 },
 				endpoint: null
 			},
 			{
 				id: "/blog/[slug]",
 				pattern: /^\/blog\/([^/]+?)\/?$/,
 				params: [{"name":"slug","optional":false,"rest":false,"chained":false}],
-				page: { layouts: [0,], errors: [1,], leaf: 9 },
+				page: { layouts: [0,], errors: [1,], leaf: 10 },
 				endpoint: null
 			},
 			{
 				id: "/podcast",
 				pattern: /^\/podcast\/?$/,
 				params: [],
-				page: { layouts: [0,], errors: [1,], leaf: 10 },
+				page: { layouts: [0,], errors: [1,], leaf: 11 },
 				endpoint: null
 			},
 			{
 				id: "/podcast/[slug]",
 				pattern: /^\/podcast\/([^/]+?)\/?$/,
 				params: [{"name":"slug","optional":false,"rest":false,"chained":false}],
-				page: { layouts: [0,], errors: [1,], leaf: 11 },
+				page: { layouts: [0,], errors: [1,], leaf: 12 },
 				endpoint: null
 			}
 		],

@@ -1,5 +1,6 @@
 {
 	"/": [],
+	"/admin": [],
 	"/admin/blog": [
 		"src/routes/admin/blog/+page.server.ts"
 	],
