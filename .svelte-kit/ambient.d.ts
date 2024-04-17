@@ -30,6 +30,7 @@ declare module '$env/static/private' {
 	export const GCP_PROJECT: string;
 	export const GCP_BUCKET: string;
 	export const GCP_STORAGE_KEY: string;
+	export const NVM_INC: string;
 	export const MANPATH: string;
 	export const TERM_PROGRAM: string;
 	export const NODE: string;
@@ -38,8 +39,8 @@ declare module '$env/static/private' {
 	export const NVM_CD_FLAGS: string;
 	export const TERM: string;
 	export const SHELL: string;
-	export const HOMEBREW_REPOSITORY: string;
 	export const TMPDIR: string;
+	export const HOMEBREW_REPOSITORY: string;
 	export const npm_config_global_prefix: string;
 	export const CONDA_SHLVL: string;
 	export const TERM_PROGRAM_VERSION: string;
@@ -98,6 +99,7 @@ declare module '$env/static/private' {
 	export const LOGNAME: string;
 	export const npm_lifecycle_script: string;
 	export const VSCODE_GIT_IPC_HANDLE: string;
+	export const NVM_BIN: string;
 	export const BUN_INSTALL: string;
 	export const CONDA_DEFAULT_ENV: string;
 	export const npm_config_user_agent: string;
@@ -108,6 +110,7 @@ declare module '$env/static/private' {
 	export const npm_node_execpath: string;
 	export const npm_config_prefix: string;
 	export const COLORTERM: string;
+	export const NODE_ENV: string;
 }
 
 /**
@@ -143,6 +146,7 @@ declare module '$env/dynamic/private' {
 		GCP_PROJECT: string;
 		GCP_BUCKET: string;
 		GCP_STORAGE_KEY: string;
+		NVM_INC: string;
 		MANPATH: string;
 		TERM_PROGRAM: string;
 		NODE: string;
@@ -151,8 +155,8 @@ declare module '$env/dynamic/private' {
 		NVM_CD_FLAGS: string;
 		TERM: string;
 		SHELL: string;
-		HOMEBREW_REPOSITORY: string;
 		TMPDIR: string;
+		HOMEBREW_REPOSITORY: string;
 		npm_config_global_prefix: string;
 		CONDA_SHLVL: string;
 		TERM_PROGRAM_VERSION: string;
@@ -211,6 +215,7 @@ declare module '$env/dynamic/private' {
 		LOGNAME: string;
 		npm_lifecycle_script: string;
 		VSCODE_GIT_IPC_HANDLE: string;
+		NVM_BIN: string;
 		BUN_INSTALL: string;
 		CONDA_DEFAULT_ENV: string;
 		npm_config_user_agent: string;
@@ -221,6 +226,7 @@ declare module '$env/dynamic/private' {
 		npm_node_execpath: string;
 		npm_config_prefix: string;
 		COLORTERM: string;
+		NODE_ENV: string;
 		[key: `PUBLIC_${string}`]: undefined;
 		[key: `${string}`]: string | undefined;
 	}
