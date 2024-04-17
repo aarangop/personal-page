@@ -5,8 +5,9 @@
 
 	export let data: PageData;
 
-	const onPodcastClick = (slug: string) => {
-		goto(`/podcast/${slug}`);
+	const onPodcastClick = (event: Event) => {
+		console.log(event.target);
+		// goto(`/podcast/${slug}`);
 	};
 </script>
 
@@ -20,7 +21,7 @@
 		<div class="grid lg:grid-cols-2 sm:grid-cols-1 gap-2">
 			{#if data.podcastFeeds.length > 0}
 				{#each data.podcastFeeds as feed}
-					<PodcastCard enableEdit={false} onClick={() => onPodcastClick(feed.slug)} feedData={feed}
+					<PodcastCard enableEdit={false} onClick={onPodcastClick} feedData={feed}
 						>{feed.slug}</PodcastCard
 					>
 				{/each}

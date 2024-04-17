@@ -13,7 +13,7 @@ export const actions = {
 		if (!podcastFeed) {
 			return fail(400, { podcastFeed, missing: true });
 		}
-		await prisma.podcastFeeds.create({
+		await prisma.podcastFeed.create({
 			data: {
 				slug: data.get('podcast_slug')!.toString(),
 				rssFeed: data.get('rss_feed')!.toString()

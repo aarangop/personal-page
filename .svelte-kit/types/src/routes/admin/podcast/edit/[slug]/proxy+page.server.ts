@@ -4,7 +4,7 @@ import { redirect } from '@sveltejs/kit';
 import type { Actions, PageServerLoad } from './$types';
 
 export const load = async ({ params }: Parameters<PageServerLoad>[0]) => {
-	const feedData = await prisma.podcastFeeds.findUnique({ where: { slug: params.slug } });
+	const feedData = await prisma.podcastFeed.findUnique({ where: { slug: params.slug } });
 	return {
 		...feedData,
 		podcastId: feedData?.id
@@ -27,7 +27,7 @@ export const actions = {
 		if (!id) {
 			throw Error('Invalid podcast id');
 		}
-		const result = await prisma.podcastFeeds.delete({
+		const result = await prisma.podcastFeed.delete({
 			where: { id: id!.toString() }
 		});
 		redirect(303, '/admin/podcast');

@@ -7,6 +7,9 @@
 	"/admin/blog/new": [
 		"src/routes/admin/blog/new/+page.server.ts"
 	],
+	"/admin/blog/[slug]": [
+		"src/routes/admin/blog/[slug]/+page.server.ts"
+	],
 	"/admin/podcast": [
 		"src/routes/admin/podcast/+page.server.ts"
 	],

@@ -1,19 +1,5 @@
 import { XMLParser } from 'fast-xml-parser';
 
-export const getGCPCredentials = () => {
-	// for Vercel, use environment variables
-	return process.env.GOOGLE_PRIVATE_KEY
-		? {
-				credentials: {
-					client_email: process.env.GCLOUD_SERVICE_ACCOUNT_EMAIL,
-					private_key: process.env.GOOGLE_PRIVATE_KEY
-				},
-				projectId: process.env.GCP_PROJECT_ID
-			}
-		: // for local development, use gcloud CLI
-			{};
-};
-
 export function toSlug(text: string): string {
 	return text
 		.toLowerCase()
@@ -41,10 +27,6 @@ export const getBreadCrumbs = (
 		return [homeCrumb];
 	}
 	const breadCrumbs = crumbs.slice(1).split('/');
-
-	// if (breadCrumbs.length == 1) {
-	// 	return [homeCrumb];
-	// }
 
 	const breadCrumbsArray = breadCrumbs.map((crumb, i, allCrumbs) => ({
 		href: '/' + (i == 0 ? crumb : [...allCrumbs.slice(0, i), crumb].join('/')),
@@ -78,3 +60,5 @@ export const testFeed = async (rssFeed: string) => {
 			throw new Error(e);
 		});
 };
+
+export const readDuration = (text: string) => (text.length / 350).toFixed(0);
