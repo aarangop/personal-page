@@ -5,10 +5,16 @@ export type PodcastFeed = {
 	rssFeed: string;
 };
 
+export const PodcastLinkSchema = z.object({
+	platform: z.string(),
+	link: z.string().url()
+});
+
 export const PodcastFeedSchema = z.object({
 	id: z.string(),
 	slug: z.string().regex(/^[A-Za-z0-9]+(?:-[A-Za-z0-9]+)*$/),
-	rssFeed: z.string().url()
+	rssFeed: z.string().url(),
+	links: z.array(PodcastLinkSchema).optional()
 });
 
 export const PodcastEpisodeSchema = z.object({
