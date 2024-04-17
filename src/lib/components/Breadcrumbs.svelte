@@ -1,26 +1,12 @@
 <script lang="ts">
-	import { page } from '$app/stores';
-	import { fade, blur, fly } from 'svelte/transition';
+	import { getBreadCrumbs, type BreadCrumb } from '$lib/utils';
+	import { fade } from 'svelte/transition';
+	export let url: string;
 
-	const getCrumbDisplayText = (crumb: string) => {
-		return crumb.replace(/-/g, ' ').replace(/\b[a-z]/g, (substr) => substr[0].toUpperCase());
-	};
-	let breadCrumbs: { href: string; text: string }[] = [];
+	let breadCrumbs: BreadCrumb[] = [];
+
 	$: {
-		const url = $page.url.pathname;
-
-		const homeCrumb = {
-			href: '/',
-			text: 'Home'
-		};
-		const crumbs = url
-			.slice(1)
-			.split('/')
-			.map((crumb, i, allCrumbs) => ({
-				href: '/' + (i == 0 ? crumb : [...allCrumbs.slice(0, 1), crumb].join('/')),
-				text: `${getCrumbDisplayText(crumb)}`
-			}));
-		breadCrumbs = [homeCrumb, ...crumbs];
+		breadCrumbs = getBreadCrumbs(url, { href: '/', text: 'Home' });
 	}
 </script>
 
