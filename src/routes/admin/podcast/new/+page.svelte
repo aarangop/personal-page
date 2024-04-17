@@ -1,11 +1,10 @@
 <script lang="ts">
 	import PodcastFeedForm from '$lib/components/PodcastFeedForm.svelte';
-	import { Card } from 'flowbite-svelte';
 </script>
 
-<section class="flex flex-col grow lg:px-24 px-12 py-4 items-center">
-	<Card class="min-w-128 grow flex justify-center">
-		<h1 class="font-serif text-2xl mb-4 text-gray-950 dark:text-white">New Podcast Feed</h1>
+<section class="flex flex-col py-4 items-center">
+	<h1 class="font-serif flex-1 text-2xl mb-4">New Podcast Feed</h1>
+	<div class="card flex justify-center w-full">
 		<PodcastFeedForm submitFormAction="saveFeed"></PodcastFeedForm>
-	</Card>
+	</div>
 </section>

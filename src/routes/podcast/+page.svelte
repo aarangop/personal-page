@@ -10,6 +10,10 @@
 	};
 </script>
 
+<svelte:head>
+	<title>Podcasts</title>
+</svelte:head>
+
 <section class="flex flex-col">
 	<h2 class="h2 mb-4 dark:text-white text-2xl">My Podcasts</h2>
 	<div class="flex flex-col space-y-2 grow">

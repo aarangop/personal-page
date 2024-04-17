@@ -1,10 +1,10 @@
 <script lang="ts">
 	import Header from '$lib/components/Header.svelte';
 	import { AppShell } from '@skeletonlabs/skeleton';
-	import { onNavigate } from '$app/navigation';
 
 	import Breadcrumbs from '$lib/components/Breadcrumbs.svelte';
 	import './styles.css';
+	import { page } from '$app/stores';
 </script>
 
 <section class="flex flex-col min-h-screen">
@@ -15,7 +15,7 @@
 	</AppShell>
 	<main class="flex flex-col py-4 justify-center px-8">
 		<div class="self-center flex-0 sticky top-0 mb-2">
-			<Breadcrumbs />
+			<Breadcrumbs url={$page.url.pathname} />
 		</div>
 		<div class="lg:px-48">
 			<slot />

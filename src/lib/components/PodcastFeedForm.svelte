@@ -1,10 +1,9 @@
 <script lang="ts">
-	import { XMLParser } from 'fast-xml-parser';
-	import { Button, Helper, Input, Label } from 'flowbite-svelte';
+	import { testFeed } from '$lib/utils';
 	import Icon from '@iconify/svelte';
 	export let slug = '';
 	export let submitFormAction: String;
-	export let rssFeed = '';
+	export let feedUrl = '';
 	export let podcastId = '';
 	export let deleteAction = '';
 
@@ -12,44 +11,24 @@
 	let feedChecked = false;
 	let rssFeedError: any | null;
 
-	const validateUrl = (url: String) => {
-		return url.startsWith('http://') || url.startsWith('https://');
-	};
-	const testFeed = async () => {
-		feedOk = false;
-		rssFeedError = null;
-		if (!validateUrl(rssFeed)) {
-			rssFeedError = 'Invalid url.';
-			return;
+	const testRssFeed = async () => {
+		try {
+			await testFeed(feedUrl);
+			feedOk = true;
+		} catch (e) {
+			feedOk = false;
+		} finally {
+			feedChecked = true;
 		}
-		await fetch(rssFeed)
-			.then((response) => response.text())
-			.then((str) => {
-				const parser = new XMLParser({
-					ignoreAttributes: false
-				});
-				const feed = parser.parse(str);
-				const imgUrl = feed.rss.channel.image.url;
-				const title = feed.rss.channel.title;
-				const description = feed.rss.channel.description;
-				const episodes = feed.rss.channel.items;
-				feedOk = imgUrl && title && description && episodes;
-				feedOk = true;
-			})
-			.catch((e) => {
-				feedOk = false;
-				rssFeedError = e;
-			});
-		feedChecked = true;
 	};
 </script>
 
 <form method="POST" class="flex p-4 flex-col grow rounded-lg">
-	<div class="flex flex-col space-y-2 grow">
+	<div class="flex flex-col space-y-2 grow mb-4">
 		<div>
-			<Label class="mb-2" for="podcast_slug">Slug</Label>
-			<Input
-				class="lowercase"
+			<label class="mb-2 label" for="podcast_slug">Slug</label>
+			<input
+				class="lowercase input"
 				pattern="^[a-z0-9]+(?:-[a-z0-9]+)*$"
 				type="text"
 				name="podcast_slug"
@@ -59,36 +38,37 @@
 			/>
 		</div>
 		<div>
-			<Label class="mb-2" for="rss_feed">RSS Feed URL</Label>
-			<Input
-				color={!feedChecked ? 'base' : feedOk ? 'green' : 'red'}
+			<label class="label mb-2" for="rss_feed">RSS Feed URL</label>
+			<input
+				class={`input ${!feedChecked ? '' : feedOk ? 'input-success' : 'input-error'}`}
 				type="url"
 				name="rss_feed"
-				on:change={testFeed}
-				bind:value={rssFeed}
+				on:change={testRssFeed}
+				bind:value={feedUrl}
 				placeholder="https://my.awesome.podcast/rss"
 			/>
 			{#if feedOk}
-				<Helper class="mt-2" color="green">Feed okay!</Helper>
+				<span class="mt-2 text-success-600 dark:text-success-200">Feed okay!</span>
 			{:else if rssFeedError}
-				<Helper class="mt-2" color="red">{rssFeedError}</Helper>
+				<span class="mt-2 text-error-600 dark:text-error-200">{rssFeedError}</span>
 			{/if}
 			<div class="hidden">
 				<input name="podcast_id" bind:value={podcastId} />
 			</div>
 		</div>
-		<Button class="mb-4" disabled={!rssFeed} di color="alternative" on:click={testFeed}
-			>Test feed</Button
-		>
+		<button class="btn variant-filled" disabled={!feedUrl} on:click={testRssFeed}>Test feed</button>
 	</div>
 	<div class="flex flex-row justify-between space-x-2">
-		<Button type="submit" disabled={!feedChecked || !feedOk} formaction={`?/${submitFormAction}`}
-			>Save</Button
+		<button
+			type="submit"
+			class="btn variant-filled"
+			disabled={!feedChecked || !feedOk}
+			formaction={`?/${submitFormAction}`}>Save</button
 		>
 		{#if deleteAction.length}
-			<Button color="red" type="submit" formaction={`?/${deleteAction}`}>
+			<button class="btn variant-filled-error" type="submit" formaction={`?/${deleteAction}`}>
 				<Icon class="w-4 h-4 me-2" icon="flowbite:trash-bin-outline"></Icon>
-				Delete</Button
+				Delete</button
 			>
 		{/if}
 	</div>

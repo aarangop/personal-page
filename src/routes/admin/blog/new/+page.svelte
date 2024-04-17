@@ -1,5 +1,5 @@
 <script lang="ts">
-	import BlogForm from '$lib/components/BlogForm.svelte';
+	import BlogForm from '$lib/components/blog/BlogForm.svelte';
 </script>
 
 <section class=" content-center w-full p-4 flex justify-center">
