@@ -41,8 +41,6 @@ export const validateUrl = (url: String) => {
 	return url.startsWith('http://') || url.startsWith('https://');
 };
 export const testFeed = async (rssFeed: string) => {
-	const feedOk = false;
-	const rssFeedError = null;
 	if (!validateUrl(rssFeed)) {
 		throw new Error('Invalid feed url.');
 	}
