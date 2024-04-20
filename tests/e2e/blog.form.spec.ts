@@ -20,7 +20,7 @@ test.describe('Blog Form', () => {
 		await page.click('button:has-text("Save")');
 
 		// Assert redirection
-		const re = new RegExp(`/admin/blog/${slug}`);
+		const re = new RegExp(`(.*)/admin/blog/${slug}`);
 		await expect(page).toHaveURL(re); // Adjust the final URL pattern
 	});
 });

@@ -7,7 +7,7 @@ export type PodcastFeed = {
 
 export const PodcastLinkSchema = z.object({
 	platform: z.string(),
-	link: z.string().url()
+	url: z.string().url()
 });
 
 export const PodcastFeedSchema = z.object({

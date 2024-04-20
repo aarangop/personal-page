@@ -1,4 +1,5 @@
 <script lang="ts">
+	import { goto } from '$app/navigation';
 	import { PodcastFeedDataSchema } from '$lib/schemas';
 	import Icon from '@iconify/svelte';
 	import { Avatar } from '@skeletonlabs/skeleton';
@@ -7,7 +8,9 @@
 	export let feedData: z.infer<typeof PodcastFeedDataSchema>;
 	export let enableEdit: boolean = false;
 
-	export let onClick = (event: Event) => {};
+	const onClick = () => {
+		goto(`/podcast/${feedData.slug}`);
+	};
 	export let onEdit = () => {};
 </script>
 
@@ -38,7 +41,7 @@
 				<Icon icon="ph:arrow-up-right" />
 			</button>
 			{#if feedData.links}
-				<a type="button" class="btn variant-filled" href={feedData.links[0].link}>
+				<a type="button" class="btn variant-filled" href={feedData.links[0].url}>
 					<span><Icon icon="ant-design:spotify-filled" /></span>
 					<span>Listen on Spotify</span>
 				</a>
