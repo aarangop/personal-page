@@ -14,10 +14,11 @@ export const nodes = [
 	() => import('./nodes/10'),
 	() => import('./nodes/11'),
 	() => import('./nodes/12'),
-	() => import('./nodes/13')
+	() => import('./nodes/13'),
+	() => import('./nodes/14')
 ];
 
-export const server_loads = [];
+export const server_loads = [0];
 
 export const dictionary = {
 		"/": [2],
@@ -31,7 +32,8 @@ export const dictionary = {
 		"/blog": [~10],
 		"/blog/[slug]": [~11],
 		"/podcast": [~12],
-		"/podcast/[slug]": [13]
+		"/podcast/[slug]": [13],
+		"/signin": [~14]
 	};
 
 export const hooks = {
