@@ -1,14 +1,9 @@
 <script lang="ts">
 	import type { PageData } from './$types';
-	import PodcastCard from '$lib/components/PodcastCard.svelte';
+	import PodcastCard from '$lib/components/podcast/PodcastCard.svelte';
 	import { goto } from '$app/navigation';
 
 	export let data: PageData;
-
-	const onPodcastClick = (event: Event) => {
-		console.log(event.target);
-		// goto(`/podcast/${slug}`);
-	};
 </script>
 
 <svelte:head>
@@ -21,9 +16,7 @@
 		<div class="grid lg:grid-cols-2 sm:grid-cols-1 gap-2">
 			{#if data.podcastFeeds.length > 0}
 				{#each data.podcastFeeds as feed}
-					<PodcastCard enableEdit={false} onClick={onPodcastClick} feedData={feed}
-						>{feed.slug}</PodcastCard
-					>
+					<PodcastCard enableEdit={false} feedData={feed}>{feed.slug}</PodcastCard>
 				{/each}
 			{/if}
 		</div>
