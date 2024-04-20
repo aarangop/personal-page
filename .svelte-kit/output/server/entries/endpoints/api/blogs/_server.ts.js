@@ -5,18 +5,17 @@ import { t as toSlug } from "../../../../chunks/utils.js";
 import { B as BlogPostSchema } from "../../../../chunks/schemas.js";
 import { z } from "zod";
 import sharp from "sharp";
+const GCP_PROJECT_ID = "andresap-personal-page";
 const GCP_BUCKET = "andresap-perspage-dev";
+const GCP_KEY_FILE = "./secrets/andresap-personal-page-2d8f54d65feb.json";
 const getGCPCredentials = () => {
-  if (process.env.GOOGLE_PRIVATE_KEY) {
-    return {
-      credentials: {
-        client_email: process.env.GCLOUD_SERVICE_ACCOUNT_EMAIL,
-        private_key: process.env.GOOGLE_PRIVATE_KEY
-      },
-      projectId: process.env.GCP_PROJECT_ID
-    };
-  }
-  console.log("local env");
+  return {
+    credentials: {
+      client_email: process.env.GCLOUD_SERVICE_ACCOUNT_EMAIL,
+      private_key: process.env.GOOGLE_PRIVATE_KEY
+    },
+    projectId: process.env.GCP_PROJECT_ID
+  };
 };
 async function compressImage(imageFile) {
   const imageBuffer = await imageFile.arrayBuffer();
@@ -34,8 +33,15 @@ const POST = async ({ request }) => {
   const compressedImage = await compressImage(image);
   let imageUrl = null;
   let fileUrl = null;
-  console.log(getGCPCredentials());
-  const storage = new Storage(getGCPCredentials());
+  let storage;
+  if (process.env.GOOGLE_PRIVATE_KEY) {
+    storage = new Storage(getGCPCredentials());
+  } else {
+    storage = new Storage({
+      projectId: GCP_PROJECT_ID,
+      keyFilename: GCP_KEY_FILE
+    });
+  }
   const bucket = storage.bucket(GCP_BUCKET);
   try {
     if (image) {
@@ -53,7 +59,7 @@ const POST = async ({ request }) => {
       fileUrl = fileUpload.publicUrl();
     }
   } catch (e) {
-    error(500, { message: "Error saving data" });
+    error(500, { message: e });
   }
   const title = formData.get("title").toString();
   const dateCreated = /* @__PURE__ */ new Date();

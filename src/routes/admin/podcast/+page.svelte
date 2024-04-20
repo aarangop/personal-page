@@ -1,6 +1,6 @@
 <script lang="ts">
 	import { goto } from '$app/navigation';
-	import PodcastCard from '$lib/components/PodcastCard.svelte';
+	import PodcastCard from '$lib/components/podcast/PodcastCard.svelte';
 	import type { PageData } from './$types';
 	export let data: PageData;
 
