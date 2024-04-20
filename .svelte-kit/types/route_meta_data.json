@@ -1,0 +1,61 @@
+{
+	"/": [
+		"src/routes/+layout.server.ts",
+		"src/routes/+layout.server.ts"
+	],
+	"/admin": [
+		"src/routes/+layout.server.ts"
+	],
+	"/admin/blog": [
+		"src/routes/admin/blog/+page.server.ts",
+		"src/routes/+layout.server.ts"
+	],
+	"/admin/blog/new": [
+		"src/routes/admin/blog/new/+page.server.ts",
+		"src/routes/+layout.server.ts"
+	],
+	"/admin/blog/[slug]": [
+		"src/routes/admin/blog/[slug]/+page.server.ts",
+		"src/routes/+layout.server.ts"
+	],
+	"/admin/podcast": [
+		"src/routes/admin/podcast/+page.server.ts",
+		"src/routes/+layout.server.ts"
+	],
+	"/admin/podcast/edit/[slug]": [
+		"src/routes/admin/podcast/edit/[slug]/+page.server.ts",
+		"src/routes/+layout.server.ts"
+	],
+	"/admin/podcast/new": [
+		"src/routes/admin/podcast/new/+page.server.ts",
+		"src/routes/+layout.server.ts"
+	],
+	"/api/blogs": [
+		"src/routes/api/blogs/+server.ts"
+	],
+	"/api/blogs/[slug]": [
+		"src/routes/api/blogs/[slug]/+server.ts"
+	],
+	"/api/podcasts": [
+		"src/routes/api/podcasts/+server.ts"
+	],
+	"/blog": [
+		"src/routes/blog/+page.server.ts",
+		"src/routes/+layout.server.ts"
+	],
+	"/blog/[slug]": [
+		"src/routes/blog/[slug]/+page.server.ts",
+		"src/routes/+layout.server.ts"
+	],
+	"/podcast": [
+		"src/routes/podcast/+page.server.ts",
+		"src/routes/+layout.server.ts"
+	],
+	"/podcast/[slug]": [
+		"src/routes/+layout.server.ts"
+	],
+	"/signin": [
+		"src/routes/signin/+page.server.ts",
+		"src/routes/+layout.server.ts"
+	]
+}
