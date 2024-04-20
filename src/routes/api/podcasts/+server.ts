@@ -1,7 +1,9 @@
 import prisma from '$lib/prisma';
-import { PodcastFeedDataSchema } from '$lib/schemas';
-import { json } from '@sveltejs/kit';
+import { PodcastFeedDataSchema, PodcastLinkSchema } from '$lib/schemas';
+import { error, json } from '@sveltejs/kit';
+import logger from '$lib/server/logging';
 import { XMLParser } from 'fast-xml-parser';
+import { z } from 'zod';
 
 export async function GET() {
 	const response = await prisma.podcastFeed.findMany({});
@@ -37,8 +39,50 @@ export async function GET() {
 }
 
 export async function POST({ request }) {
+	const log = logger.child({ name: 'api/podcasts POST' });
+	const data = await request.formData();
+
+	const slug = data.get('podcast_slug');
+	if (!slug) {
+		throw Error('Invalid slug');
+	}
+	const feed = data.get('rss_feed');
+	if (!feed) {
+		throw Error('Invalid feed');
+	}
+	const spotifyUrl = data.get('spotify_link');
+	let links;
+	if (spotifyUrl) {
+		links = z.array(PodcastLinkSchema).parse([
+			{
+				platform: 'Spotify',
+				url: spotifyUrl
+			}
+		]);
+	}
+	try {
+		const result = await prisma.podcastFeed.create({
+			data: {
+				slug: slug!.toString(),
+				rssFeed: feed!.toString(),
+				links: {
+					create: links
+				}
+			}
+		});
+		log.info('Created new podcast feed', result);
+		return json(result);
+	} catch (e) {
+		log.error('Failed to create podcast feed', e);
+		error(500, { message: 'Error creating new podcast feed' });
+	}
+}
+
+export const PUT = async ({ request }) => {
+	const log = logger.child({ name: 'api/podcasts PUT' });
 	const data = await request.formData();
 	const id = data.get('podcast_id');
+
 	if (!id) {
 		throw Error('Invalid podcast id!');
 	}
@@ -50,12 +94,32 @@ export async function POST({ request }) {
 	if (!feed) {
 		throw Error('Invalid feed');
 	}
-	const result = await prisma.podcastFeed.update({
-		where: { id: id!.toString() },
-		data: {
-			slug: slug!.toString(),
-			rssFeed: feed!.toString()
-		}
-	});
-	return json(result);
-}
+
+	const spotifyUrl = data.get('spotify_link');
+	let updateQuery: any = {
+		slug: slug!.toString(),
+		rssFeed: feed!.toString()
+	};
+	if (spotifyUrl) {
+		updateQuery = {
+			...updateQuery,
+			links: {
+				deleteMany: {},
+				create: { platform: 'Spotify', url: spotifyUrl.toString() }
+			}
+		};
+	}
+	try {
+		const result = await prisma.podcastFeed.update({
+			where: {
+				id: id!.toString()
+			},
+			data: updateQuery
+		});
+		log.info('Podcast feed updated', result);
+		return json(result);
+	} catch (e) {
+		log.error(e);
+		return json(e);
+	}
+};

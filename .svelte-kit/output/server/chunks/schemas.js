@@ -1,7 +1,7 @@
 import { z } from "zod";
 const PodcastLinkSchema = z.object({
   platform: z.string(),
-  link: z.string().url()
+  url: z.string().url()
 });
 const PodcastFeedSchema = z.object({
   id: z.string(),
@@ -38,5 +38,6 @@ const BlogPostDisplaySchema = z.object({
 export {
   BlogPostSchema as B,
   PodcastFeedDataSchema as P,
-  BlogPostDisplaySchema as a
+  BlogPostDisplaySchema as a,
+  PodcastLinkSchema as b
 };

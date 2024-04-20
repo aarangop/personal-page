@@ -16,7 +16,7 @@ datasource db {
 model PodcastLink {
   id String @id @default(auto()) @map("_id") @db.ObjectId
   platform String
-  link String
+  url String
   podcastFeed PodcastFeed @relation(fields: [podcastFeedId], references: [id])
   podcastFeedId String @db.ObjectId
 }
@@ -24,7 +24,7 @@ model PodcastLink {
 model PodcastFeed {
   id String @id @default(auto()) @map("_id") @db.ObjectId
   slug String @unique
-  rssFeed String @unique 
+  rssFeed String 
   links PodcastLink[]
 }
 

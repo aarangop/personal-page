@@ -13,7 +13,8 @@ export const nodes = [
 	() => import('./nodes/9'),
 	() => import('./nodes/10'),
 	() => import('./nodes/11'),
-	() => import('./nodes/12')
+	() => import('./nodes/12'),
+	() => import('./nodes/13')
 ];
 
 export const server_loads = [];
@@ -22,14 +23,15 @@ export const dictionary = {
 		"/": [2],
 		"/admin": [3],
 		"/admin/blog": [~4],
-		"/admin/blog/new": [5],
-		"/admin/podcast": [~6],
-		"/admin/podcast/edit/[slug]": [~7],
-		"/admin/podcast/new": [8],
-		"/blog": [~9],
-		"/blog/[slug]": [~10],
-		"/podcast": [~11],
-		"/podcast/[slug]": [12]
+		"/admin/blog/new": [6],
+		"/admin/blog/[slug]": [~5],
+		"/admin/podcast": [~7],
+		"/admin/podcast/edit/[slug]": [~8],
+		"/admin/podcast/new": [9],
+		"/blog": [~10],
+		"/blog/[slug]": [~11],
+		"/podcast": [~12],
+		"/podcast/[slug]": [13]
 	};
 
 export const hooks = {

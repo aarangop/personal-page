@@ -16,7 +16,9 @@ const getBreadCrumbs = (crumbs, homeCrumb = { href: "/", text: "Home" }) => {
   }));
   return [homeCrumb, ...breadCrumbsArray];
 };
+const readDuration = (text) => (text.length / 350).toFixed(0);
 export {
   getBreadCrumbs as g,
+  readDuration as r,
   toSlug as t
 };
