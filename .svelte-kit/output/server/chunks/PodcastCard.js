@@ -1,4 +1,4 @@
-import { c as create_ssr_component, e as escape, a as add_attribute, v as validate_component } from "./ssr.js";
+import { c as create_ssr_component, e as escape, b as add_attribute, v as validate_component } from "./ssr.js";
 import "./client.js";
 import "./schemas.js";
 import { I as Icon } from "./Icon.js";

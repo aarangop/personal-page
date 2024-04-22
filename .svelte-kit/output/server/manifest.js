@@ -10,7 +10,7 @@ return {
 	assets: new Set(["favicon.png","fonts/Inter-VariableFont_slnt,wght.ttf","fonts/Lora-Italic-VariableFont_wght.ttf","fonts/Lora-VariableFont_wght.ttf","fonts/NotoSansMono-VariableFont_wdth,wght.ttf","robots.txt"]),
 	mimeTypes: {".png":"image/png",".ttf":"font/ttf",".txt":"text/plain"},
 	_: {
-		client: {"start":"_app/immutable/entry/start.C-r_U-Pw.js","app":"_app/immutable/entry/app.B5z99s_t.js","imports":["_app/immutable/entry/start.C-r_U-Pw.js","_app/immutable/chunks/entry.Del8H9hW.js","_app/immutable/chunks/scheduler.CRkTyoSA.js","_app/immutable/entry/app.B5z99s_t.js","_app/immutable/chunks/scheduler.CRkTyoSA.js","_app/immutable/chunks/index.C3GTAeEF.js"],"stylesheets":[],"fonts":[],"uses_env_dynamic_public":false},
+		client: {"start":"_app/immutable/entry/start.DV726Fo2.js","app":"_app/immutable/entry/app.DqVOKUpR.js","imports":["_app/immutable/entry/start.DV726Fo2.js","_app/immutable/chunks/entry.C5BBI4Ia.js","_app/immutable/chunks/scheduler.RyT_ppks.js","_app/immutable/entry/app.DqVOKUpR.js","_app/immutable/chunks/scheduler.RyT_ppks.js","_app/immutable/chunks/index.C3Nj-XYD.js"],"stylesheets":[],"fonts":[],"uses_env_dynamic_public":false},
 		nodes: [
 			__memo(() => import('./nodes/0.js')),
 			__memo(() => import('./nodes/1.js')),
@@ -25,7 +25,8 @@ return {
 			__memo(() => import('./nodes/10.js')),
 			__memo(() => import('./nodes/11.js')),
 			__memo(() => import('./nodes/12.js')),
-			__memo(() => import('./nodes/13.js'))
+			__memo(() => import('./nodes/13.js')),
+			__memo(() => import('./nodes/14.js'))
 		],
 		routes: [
 			{
@@ -131,6 +132,13 @@ return {
 				pattern: /^\/podcast\/([^/]+?)\/?$/,
 				params: [{"name":"slug","optional":false,"rest":false,"chained":false}],
 				page: { layouts: [0,], errors: [1,], leaf: 13 },
+				endpoint: null
+			},
+			{
+				id: "/signin",
+				pattern: /^\/signin\/?$/,
+				params: [],
+				page: { layouts: [0,], errors: [1,], leaf: 14 },
 				endpoint: null
 			}
 		],
