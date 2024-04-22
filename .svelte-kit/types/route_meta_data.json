@@ -57,10 +57,6 @@
 	"/podcast/[slug]": [
 		"src/routes/+layout.server.ts"
 	],
-	"/signin": [
-		"src/routes/signin/+page.server.ts",
-		"src/routes/+layout.server.ts"
-	],
 	"/signout": [
 		"src/routes/signout/+page.server.ts",
 		"src/routes/+layout.server.ts"
