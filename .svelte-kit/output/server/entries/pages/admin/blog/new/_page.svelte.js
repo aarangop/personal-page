@@ -1,4 +1,4 @@
-import { c as create_ssr_component, a as add_attribute, v as validate_component } from "../../../../../chunks/ssr.js";
+import { c as create_ssr_component, b as add_attribute, v as validate_component } from "../../../../../chunks/ssr.js";
 import { I as Icon } from "../../../../../chunks/Icon.js";
 const BlogForm = create_ssr_component(($$result, $$props, $$bindings, slots) => {
   let { submitAction } = $$props;

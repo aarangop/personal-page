@@ -1,4 +1,4 @@
-import { c as create_ssr_component, e as escape, a as add_attribute } from "./ssr.js";
+import { c as create_ssr_component, e as escape, b as add_attribute } from "./ssr.js";
 import { r as readDuration } from "./utils.js";
 import { marked } from "marked";
 const BlogView = create_ssr_component(($$result, $$props, $$bindings, slots) => {

@@ -47,6 +47,9 @@
 		"src/routes/blog/[slug]/+page.server.ts",
 		"src/routes/+layout.server.ts"
 	],
+	"/login": [
+		"src/routes/+layout.server.ts"
+	],
 	"/podcast": [
 		"src/routes/podcast/+page.server.ts",
 		"src/routes/+layout.server.ts"
@@ -56,6 +59,10 @@
 	],
 	"/signin": [
 		"src/routes/signin/+page.server.ts",
+		"src/routes/+layout.server.ts"
+	],
+	"/signout": [
+		"src/routes/signout/+page.server.ts",
 		"src/routes/+layout.server.ts"
 	]
 }
