@@ -1,7 +1,11 @@
-import { error, redirect, type Handle, type RequestEvent } from '@sveltejs/kit';
-import logger from './logging';
 import prisma from '$lib/prisma';
 import { UserRoles } from '$lib/schemas';
+import { error, redirect, type Handle, type RequestEvent } from '@sveltejs/kit';
+import { minimatch } from 'minimatch';
+import logger from './logging';
+
+const adminRoutes = ['/admin', '/admin/**/*', '/api/admin/**/*'];
+const privateRoutes = ['/private', '/private/**/*', '/api/private/**/*'];
 
 const userIsAuthorized = async (event: RequestEvent, authorizedRole = UserRoles.USER) => {
 	const session = await event.locals.auth();
@@ -20,12 +24,11 @@ const userIsAuthorized = async (event: RequestEvent, authorizedRole = UserRoles.
 };
 
 export const protectPrivateRoutesHandle: Handle = async ({ event, resolve }) => {
-	logger.info(`Checking privileges for route ${event.route.id}`);
-
-	const routeIsAdminOnly = event.url.pathname.startsWith('/admin');
-	const routeIsPrivate = event.url.pathname.startsWith('/private');
+	const routeIsAdminOnly = adminRoutes.some((pattern) => minimatch(event.url.pathname, pattern));
+	const routeIsPrivate = privateRoutes.some((pattern) => minimatch(event.url.pathname, pattern));
 
 	if (routeIsAdminOnly && !(await userIsAuthorized(event, UserRoles.ADMIN))) {
+		logger.info('This route is admin only');
 		throw error(401, { message: 'Unauthorized' });
 	}
 
