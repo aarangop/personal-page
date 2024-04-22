@@ -32,7 +32,7 @@
 		<LightSwitch></LightSwitch>
 		{#if $page.data.session?.user}
 			<div use:popup={avatarPopup}>
-				<Avatar src={$page.data.session?.user.image?.toString()}></Avatar>
+				<Avatar width="w-10" src={$page.data.session?.user.image?.toString()}></Avatar>
 				<div data-popup="avatarPopup" class="card p-4 shadow-xl">
 					<div class="arrow" />
 					<SignOut>

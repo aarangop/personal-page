@@ -29,7 +29,7 @@ declare module '$env/static/private' {
 	export const DATABASE_URL: string;
 	export const GCP_PROJECT_ID: string;
 	export const GCP_BUCKET: string;
-	export const GCP_KEY_FILE: string;
+	export const GCP_PRIVATE_KEY: string;
 	export const AUTH_SECRET: string;
 	export const AUTH_GITHUB_ID: string;
 	export const AUTH_GITHUB_SECRET: string;
@@ -116,6 +116,8 @@ declare module '$env/static/private' {
 	export const npm_config_prefix: string;
 	export const COLORTERM: string;
 	export const NODE_ENV: string;
+	export const GCP_KEY_FILE: string;
+	export const VIPSHOME: string;
 }
 
 /**
@@ -150,7 +152,7 @@ declare module '$env/dynamic/private' {
 		DATABASE_URL: string;
 		GCP_PROJECT_ID: string;
 		GCP_BUCKET: string;
-		GCP_KEY_FILE: string;
+		GCP_PRIVATE_KEY: string;
 		AUTH_SECRET: string;
 		AUTH_GITHUB_ID: string;
 		AUTH_GITHUB_SECRET: string;
@@ -237,6 +239,8 @@ declare module '$env/dynamic/private' {
 		npm_config_prefix: string;
 		COLORTERM: string;
 		NODE_ENV: string;
+		GCP_KEY_FILE: string;
+		VIPSHOME: string;
 		[key: `PUBLIC_${string}`]: undefined;
 		[key: `${string}`]: string | undefined;
 	}
