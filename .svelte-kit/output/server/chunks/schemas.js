@@ -36,8 +36,8 @@ const BlogPostDisplaySchema = z.object({
   markdown: z.string()
 }).merge(BlogPostSchema);
 export {
-  BlogPostSchema as B,
+  BlogPostDisplaySchema as B,
   PodcastFeedDataSchema as P,
-  BlogPostDisplaySchema as a,
-  PodcastLinkSchema as b
+  PodcastLinkSchema as a,
+  BlogPostSchema as b
 };

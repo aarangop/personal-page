@@ -5,7 +5,11 @@
     "src": ".svelte-kit/generated/server/internal.js",
     "isEntry": true,
     "imports": [
-      "_internal.js"
+      "_ssr.js",
+      "_environment.js"
+    ],
+    "dynamicImports": [
+      "src/hooks.server.ts"
     ]
   },
   "_BlogCard.js": {
@@ -62,12 +66,25 @@
       "_app/immutable/assets/ProgressBar.Cirlo5Z8.css"
     ]
   },
+  "_auth.js": {
+    "file": "chunks/auth.js",
+    "name": "auth",
+    "imports": [
+      "_environment.js",
+      "_prod-ssr.js",
+      "_index.js"
+    ]
+  },
   "_client.js": {
     "file": "chunks/client.js",
     "name": "client",
     "imports": [
       "_exports.js"
     ]
+  },
+  "_environment.js": {
+    "file": "chunks/environment.js",
+    "name": "environment"
   },
   "_exports.js": {
     "file": "chunks/exports.js",
@@ -84,16 +101,13 @@
       "_ssr.js"
     ]
   },
-  "_internal.js": {
-    "file": "chunks/internal.js",
-    "name": "internal",
-    "imports": [
-      "_ssr.js"
-    ]
-  },
   "_prisma.js": {
     "file": "chunks/prisma.js",
     "name": "prisma"
+  },
+  "_prod-ssr.js": {
+    "file": "chunks/prod-ssr.js",
+    "name": "prod-ssr"
   },
   "_schemas.js": {
     "file": "chunks/schemas.js",
@@ -131,15 +145,32 @@
     "src": "node_modules/@sveltejs/kit/src/runtime/server/index.js",
     "isEntry": true,
     "imports": [
-      "_internal.js",
+      "_prod-ssr.js",
+      "_environment.js",
       "_index.js",
       "_exports.js",
-      "_index2.js"
+      "_index2.js",
+      ".svelte-kit/generated/server/internal.js"
+    ]
+  },
+  "src/hooks.server.ts": {
+    "file": "chunks/hooks.server.js",
+    "name": "hooks.server",
+    "src": "src/hooks.server.ts",
+    "isDynamicEntry": true,
+    "imports": [
+      "_auth.js"
     ]
   },
   "src/lib/images/my_photo.jpg": {
     "file": "_app/immutable/assets/my_photo.naCLr7ks.jpg",
     "src": "src/lib/images/my_photo.jpg"
+  },
+  "src/routes/+layout.server.ts": {
+    "file": "entries/pages/_layout.server.ts.js",
+    "name": "entries/pages/_layout.server.ts",
+    "src": "src/routes/+layout.server.ts",
+    "isEntry": true
   },
   "src/routes/+layout.svelte": {
     "file": "entries/pages/_layout.svelte.js",
@@ -175,7 +206,8 @@
     "src": "src/routes/admin/+page.svelte",
     "isEntry": true,
     "imports": [
-      "_ssr.js"
+      "_ssr.js",
+      "_client.js"
     ]
   },
   "src/routes/admin/blog/+page.server.ts": {
@@ -380,6 +412,15 @@
     "isEntry": true,
     "imports": [
       "_ssr.js"
+    ]
+  },
+  "src/routes/signin/+page.server.ts": {
+    "file": "entries/pages/signin/_page.server.ts.js",
+    "name": "entries/pages/signin/_page.server.ts",
+    "src": "src/routes/signin/+page.server.ts",
+    "isEntry": true,
+    "imports": [
+      "_auth.js"
     ]
   }
 }

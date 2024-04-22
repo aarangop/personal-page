@@ -1,4 +1,10 @@
 import { z } from 'zod';
+
+export enum UserRoles {
+	ADMIN = 'admin',
+	USER = 'user'
+}
+
 export type PodcastFeed = {
 	id: string;
 	slug: string;

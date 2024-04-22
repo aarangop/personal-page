@@ -1,4 +1,4 @@
-import { c as create_ssr_component, g as each, v as validate_component } from "../../../../chunks/ssr.js";
+import { c as create_ssr_component, a as each, v as validate_component } from "../../../../chunks/ssr.js";
 import "../../../../chunks/client.js";
 import { P as PodcastCard } from "../../../../chunks/PodcastCard.js";
 const Page = create_ssr_component(($$result, $$props, $$bindings, slots) => {

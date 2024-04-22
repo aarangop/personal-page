@@ -27,6 +27,14 @@ function get_store_value(store) {
   subscribe(store, (_) => value = _)();
   return value;
 }
+function compute_rest_props(props, keys) {
+  const rest = {};
+  keys = new Set(keys);
+  for (const k in props)
+    if (!keys.has(k) && k[0] !== "$")
+      rest[k] = props[k];
+  return rest;
+}
 function compute_slots(slots) {
   const result = {};
   for (const key in slots) {
@@ -267,22 +275,24 @@ function add_styles(style_object) {
   return styles ? ` style="${styles}"` : "";
 }
 export {
-  add_attribute as a,
-  compute_slots as b,
+  each as a,
+  add_attribute as b,
   create_ssr_component as c,
-  add_styles as d,
+  safe_not_equal as d,
   escape as e,
-  subscribe as f,
-  each as g,
-  getContext as h,
-  get_store_value as i,
-  safe_not_equal as j,
-  spread as k,
-  escape_object as l,
+  compute_rest_props as f,
+  getContext as g,
+  spread as h,
+  escape_attribute_value as i,
+  escape_object as j,
+  createEventDispatcher as k,
+  setContext as l,
   missing_component as m,
   noop as n,
   onDestroy as o,
-  createEventDispatcher as p,
-  setContext as s,
+  get_store_value as p,
+  compute_slots as q,
+  add_styles as r,
+  subscribe as s,
   validate_component as v
 };

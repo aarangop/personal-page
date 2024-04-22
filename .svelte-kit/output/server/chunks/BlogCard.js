@@ -1,4 +1,4 @@
-import { c as create_ssr_component, a as add_attribute, e as escape, v as validate_component } from "./ssr.js";
+import { c as create_ssr_component, b as add_attribute, e as escape, v as validate_component } from "./ssr.js";
 import { I as Icon } from "./Icon.js";
 const BlogCard = create_ssr_component(($$result, $$props, $$bindings, slots) => {
   let { blogPost } = $$props;
