@@ -1,7 +1,15 @@
-<script>
-	import { AppBar, LightSwitch } from '@skeletonlabs/skeleton';
+<script lang="ts">
+	import { AppBar, Avatar, LightSwitch, popup, type PopupSettings } from '@skeletonlabs/skeleton';
 	import Icon from '@iconify/svelte';
 	import Link from './Link.svelte';
+	import { page } from '$app/stores';
+	import { SignOut } from '@auth/sveltekit/components';
+
+	const avatarPopup: PopupSettings = {
+		event: 'click',
+		target: 'avatarPopup',
+		placement: 'bottom'
+	};
 </script>
 
 <AppBar
@@ -22,5 +30,16 @@
 		<Icon icon="bi:github" />
 		<Icon icon="bi:linkedin" />
 		<LightSwitch></LightSwitch>
+		{#if $page.data.session?.user}
+			<div use:popup={avatarPopup}>
+				<Avatar src={$page.data.session?.user.image?.toString()}></Avatar>
+				<div data-popup="avatarPopup" class="card p-4 shadow-xl">
+					<div class="arrow" />
+					<SignOut>
+						<div class="btn variant-filled" slot="submitButton"><span>Log Out</span></div>
+					</SignOut>
+				</div>
+			</div>
+		{/if}
 	</svelte:fragment>
 </AppBar>

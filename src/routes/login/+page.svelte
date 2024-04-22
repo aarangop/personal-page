@@ -1,19 +1,22 @@
-<script>
+<script lang="ts">
 	import { page } from '$app/stores';
 	import { SignIn, SignOut } from '@auth/sveltekit/components';
+	import type { PageData } from './$types';
 </script>
 
-<h2 class="h2 mb-2">Log In</h2>
-{#if $page.data.session}
-	{#if $page.data.session.user?.name}
-		<p>Logged in as: {$page.data.session.user.id}</p>
+<div>
+	{#if $page.data.session?.user}
+		<p>Logged In as {$page.data.session?.user.name}</p>
 		<SignOut>
-			<div slot="submitButton" class="btn variant-filled">Sign Out</div>
+			<div slot="submitButton" class="btn variant-filled">
+				<span>Log Out</span>
+			</div>
 		</SignOut>
+	{:else}
+		<SignIn>
+			<div slot="submitButton" class="btn variant-filled">
+				<span>Log In</span>
+			</div>
+		</SignIn>
 	{/if}
-{/if}
-{#if !$page.data.session}
-	<SignIn>
-		<div slot="submitButton" class="btn variant-filled">Sing In</div>
-	</SignIn>
-{/if}
+</div>
