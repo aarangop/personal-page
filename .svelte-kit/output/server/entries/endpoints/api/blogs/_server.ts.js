@@ -2,7 +2,7 @@ import { j as json, e as error } from "../../../../chunks/index.js";
 import { Storage } from "@google-cloud/storage";
 import { p as prisma } from "../../../../chunks/prisma.js";
 import { t as toSlug } from "../../../../chunks/utils.js";
-import { B as BlogPostSchema } from "../../../../chunks/schemas.js";
+import { b as BlogPostSchema } from "../../../../chunks/schemas.js";
 import { z } from "zod";
 import sharp from "sharp";
 const GCP_PROJECT_ID = "andresap-personal-page";
