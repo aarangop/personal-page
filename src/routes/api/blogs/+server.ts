@@ -1,11 +1,10 @@
 import { error, json, type RequestHandler } from '@sveltejs/kit';
-import { GCP_BUCKET, GCP_PROJECT_ID, GCP_KEY_FILE } from '$env/static/private';
+import { GCP_BUCKET, GCP_PROJECT_ID, GCP_PRIVATE_KEY } from '$env/static/private';
 import { Storage } from '@google-cloud/storage';
 import prisma from '$lib/prisma';
 import { toSlug } from '$lib/utils';
 import { BlogPostSchema } from '$lib/schemas.js';
 import { z } from 'zod';
-import sharp from 'sharp';
 import { compressImage, getGCPCredentials } from '$lib/server/utils';
 
 export const GET: RequestHandler = async ({ url }) => {
@@ -26,12 +25,12 @@ export const POST = async ({ request }) => {
 
 	// Setup Google Cloud Platform
 	let storage;
-	if (process.env.GOOGLE_PRIVATE_KEY) {
+	if (process.env.VERCEL) {
 		storage = new Storage(getGCPCredentials());
 	} else {
 		storage = new Storage({
 			projectId: GCP_PROJECT_ID,
-			keyFilename: GCP_KEY_FILE
+			keyFilename: GCP_PRIVATE_KEY
 		});
 	}
 
