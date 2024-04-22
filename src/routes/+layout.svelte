@@ -1,10 +1,14 @@
 <script lang="ts">
 	import Header from '$lib/components/Header.svelte';
+	import { computePosition, autoUpdate, offset, shift, flip, arrow } from '@floating-ui/dom';
 	import { AppShell } from '@skeletonlabs/skeleton';
 
 	import Breadcrumbs from '$lib/components/Breadcrumbs.svelte';
 	import './styles.css';
 	import { page } from '$app/stores';
+	import { storePopup } from '@skeletonlabs/skeleton';
+
+	storePopup.set({ computePosition, autoUpdate, offset, shift, flip, arrow });
 	$: url = $page.url.pathname;
 </script>
 
