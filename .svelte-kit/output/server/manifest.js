@@ -10,7 +10,7 @@ return {
 	assets: new Set(["favicon.png","fonts/Inter-VariableFont_slnt,wght.ttf","fonts/Lora-Italic-VariableFont_wght.ttf","fonts/Lora-VariableFont_wght.ttf","fonts/NotoSansMono-VariableFont_wdth,wght.ttf","robots.txt"]),
 	mimeTypes: {".png":"image/png",".ttf":"font/ttf",".txt":"text/plain"},
 	_: {
-		client: {"start":"_app/immutable/entry/start.DV726Fo2.js","app":"_app/immutable/entry/app.DqVOKUpR.js","imports":["_app/immutable/entry/start.DV726Fo2.js","_app/immutable/chunks/entry.C5BBI4Ia.js","_app/immutable/chunks/scheduler.RyT_ppks.js","_app/immutable/entry/app.DqVOKUpR.js","_app/immutable/chunks/scheduler.RyT_ppks.js","_app/immutable/chunks/index.C3Nj-XYD.js"],"stylesheets":[],"fonts":[],"uses_env_dynamic_public":false},
+		client: {"start":"_app/immutable/entry/start.Dky6rO7N.js","app":"_app/immutable/entry/app.CmEjdEdW.js","imports":["_app/immutable/entry/start.Dky6rO7N.js","_app/immutable/chunks/entry.YchZaRP1.js","_app/immutable/chunks/16.DwSqnteW.js","_app/immutable/entry/app.CmEjdEdW.js","_app/immutable/chunks/16.DwSqnteW.js","_app/immutable/chunks/index.DO47-CzA.js"],"stylesheets":[],"fonts":[],"uses_env_dynamic_public":false},
 		nodes: [
 			__memo(() => import('./nodes/0.js')),
 			__memo(() => import('./nodes/1.js')),
@@ -26,7 +26,9 @@ return {
 			__memo(() => import('./nodes/11.js')),
 			__memo(() => import('./nodes/12.js')),
 			__memo(() => import('./nodes/13.js')),
-			__memo(() => import('./nodes/14.js'))
+			__memo(() => import('./nodes/14.js')),
+			__memo(() => import('./nodes/15.js')),
+			__memo(() => import('./nodes/16.js'))
 		],
 		routes: [
 			{
@@ -121,24 +123,38 @@ return {
 				endpoint: null
 			},
 			{
+				id: "/login",
+				pattern: /^\/login\/?$/,
+				params: [],
+				page: { layouts: [0,], errors: [1,], leaf: 12 },
+				endpoint: null
+			},
+			{
 				id: "/podcast",
 				pattern: /^\/podcast\/?$/,
 				params: [],
-				page: { layouts: [0,], errors: [1,], leaf: 12 },
+				page: { layouts: [0,], errors: [1,], leaf: 13 },
 				endpoint: null
 			},
 			{
 				id: "/podcast/[slug]",
 				pattern: /^\/podcast\/([^/]+?)\/?$/,
 				params: [{"name":"slug","optional":false,"rest":false,"chained":false}],
-				page: { layouts: [0,], errors: [1,], leaf: 13 },
+				page: { layouts: [0,], errors: [1,], leaf: 14 },
 				endpoint: null
 			},
 			{
 				id: "/signin",
 				pattern: /^\/signin\/?$/,
 				params: [],
-				page: { layouts: [0,], errors: [1,], leaf: 14 },
+				page: { layouts: [0,], errors: [1,], leaf: 15 },
+				endpoint: null
+			},
+			{
+				id: "/signout",
+				pattern: /^\/signout\/?$/,
+				params: [],
+				page: { layouts: [0,], errors: [1,], leaf: 16 },
 				endpoint: null
 			}
 		],
