@@ -5,7 +5,6 @@ import { twMerge } from "tailwind-merge";
 import { p as page } from "../../chunks/stores.js";
 import "devalue";
 import "../../chunks/client.js";
-import { S as SignOut } from "../../chunks/SignOut.js";
 import { computePosition, autoUpdate, offset, shift, flip, arrow } from "@floating-ui/dom";
 import { w as writable } from "../../chunks/index2.js";
 import { g as getBreadCrumbs } from "../../chunks/utils.js";
@@ -268,6 +267,31 @@ const Link = create_ssr_component(($$result, $$props, $$bindings, slots) => {
   if ($$props.href === void 0 && $$bindings.href && href !== void 0)
     $$bindings.href(href);
   return `<a${add_attribute("href", href, 0)}${add_attribute("class", twMerge($$props.class, "hover:font-semibold transition-all"), 0)}>${slots.default ? slots.default({}) : ``}</a>`;
+});
+const SignOut = create_ssr_component(($$result, $$props, $$bindings, slots) => {
+  let $$restProps = compute_rest_props($$props, ["className", "options", "signOutPage"]);
+  let { className = "" } = $$props;
+  let { options = void 0 } = $$props;
+  let { signOutPage = "signout" } = $$props;
+  if ($$props.className === void 0 && $$bindings.className && className !== void 0)
+    $$bindings.className(className);
+  if ($$props.options === void 0 && $$bindings.options && options !== void 0)
+    $$bindings.options(options);
+  if ($$props.signOutPage === void 0 && $$bindings.signOutPage && signOutPage !== void 0)
+    $$bindings.signOutPage(signOutPage);
+  return `<form${spread(
+    [
+      { method: "POST" },
+      {
+        action: escape_attribute_value(`/${signOutPage}`)
+      },
+      {
+        class: escape_attribute_value(`signOutButton ${className}`)
+      },
+      escape_object($$restProps)
+    ],
+    {}
+  )}>${options ? `${options?.redirect ? `<input type="hidden" name="redirect"${add_attribute("value", options.redirect, 0)}>` : ``} ${options?.redirectTo ? `<input type="hidden" name="redirectTo"${add_attribute("value", options.redirectTo, 0)}>` : ``}` : ``} <button type="submit">${slots.submitButton ? slots.submitButton({}) : `Sign Out`}</button></form>`;
 });
 const Header = create_ssr_component(($$result, $$props, $$bindings, slots) => {
   let $page, $$unsubscribe_page;

@@ -66,22 +66,6 @@
       "_app/immutable/assets/ProgressBar.BLtXAzjk.css"
     ]
   },
-  "_SignIn.js": {
-    "file": "chunks/SignIn.js",
-    "name": "SignIn",
-    "imports": [
-      "_ssr.js",
-      "_client.js"
-    ]
-  },
-  "_SignOut.js": {
-    "file": "chunks/SignOut.js",
-    "name": "SignOut",
-    "imports": [
-      "_ssr.js",
-      "_client.js"
-    ]
-  },
   "_auth.js": {
     "file": "chunks/auth.js",
     "name": "auth",
@@ -195,7 +179,10 @@
     "file": "entries/pages/_layout.server.ts.js",
     "name": "entries/pages/_layout.server.ts",
     "src": "src/routes/+layout.server.ts",
-    "isEntry": true
+    "isEntry": true,
+    "imports": [
+      "_index3.js"
+    ]
   },
   "src/routes/+layout.svelte": {
     "file": "entries/pages/_layout.svelte.js",
@@ -208,7 +195,6 @@
       "_Icon.js",
       "_stores.js",
       "_client.js",
-      "_SignOut.js",
       "_index2.js",
       "_utils.js"
     ],
@@ -235,7 +221,6 @@
     "isEntry": true,
     "imports": [
       "_ssr.js",
-      "_SignIn.js",
       "_client.js"
     ]
   },
@@ -418,6 +403,15 @@
       "_BlogView.js"
     ]
   },
+  "src/routes/login/+page.server.ts": {
+    "file": "entries/pages/login/_page.server.ts.js",
+    "name": "entries/pages/login/_page.server.ts",
+    "src": "src/routes/login/+page.server.ts",
+    "isEntry": true,
+    "imports": [
+      "_auth.js"
+    ]
+  },
   "src/routes/login/+page.svelte": {
     "file": "entries/pages/login/_page.svelte.js",
     "name": "entries/pages/login/_page.svelte",
@@ -425,9 +419,7 @@
     "isEntry": true,
     "imports": [
       "_ssr.js",
-      "_stores.js",
-      "_SignIn.js",
-      "_SignOut.js"
+      "_Icon.js"
     ]
   },
   "src/routes/podcast/+page.server.ts": {
@@ -454,15 +446,6 @@
     "isEntry": true,
     "imports": [
       "_ssr.js"
-    ]
-  },
-  "src/routes/signin/+page.server.ts": {
-    "file": "entries/pages/signin/_page.server.ts.js",
-    "name": "entries/pages/signin/_page.server.ts",
-    "src": "src/routes/signin/+page.server.ts",
-    "isEntry": true,
-    "imports": [
-      "_auth.js"
     ]
   },
   "src/routes/signout/+page.server.ts": {
