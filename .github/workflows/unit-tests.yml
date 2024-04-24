@@ -21,4 +21,3 @@ jobs:
           filename: personal-page-badge.json
           label: Unit Tests
           message: ${{job.status}}
-          color: ${{job.status == 'success' ? 'brightgreen' : 'red'}}
