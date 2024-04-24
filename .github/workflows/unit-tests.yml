@@ -13,3 +13,12 @@ jobs:
         run: npm install
       - name: Run unit tests
         run: npm run test:unit
+      - name: Generate Test Badge
+        uses: schneegans/dynamic-badges-action@v1.2.0
+        with:
+          auth: ${{ secrets.GIST_SECRET }}
+          gistID: 342d1aa6f4715de5044cd252b7c07a61
+          filename: personal-page-badges.json
+          label: Hello
+          message: World
+          color: orange
