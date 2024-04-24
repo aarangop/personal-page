@@ -20,7 +20,11 @@ export default defineConfig(({ mode }) => {
 		test: {
 			environment: 'jsdom',
 			setupFiles: ['./vitest-setup.ts'],
-			include: ['tests/unit_tests/**/*.{test,spec}.{js,ts}']
+			include: ['tests/unit/**/*.{test,spec}.{js,ts}'],
+			coverage: {
+				provider: 'v8',
+				reporter: ['text', 'json', 'html']
+			}
 		},
 		resolve: {
 			conditions: mode === 'test' ? ['browser'] : []
