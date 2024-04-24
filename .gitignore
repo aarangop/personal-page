@@ -133,3 +133,7 @@ dist
 =======
 .pnp.*
 >>>>>>> e7c7de8 (Initial commit)
+/test-results/
+/playwright-report/
+/blob-report/
+/playwright/.cache/
