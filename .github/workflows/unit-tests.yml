@@ -19,6 +19,6 @@ jobs:
           auth: ${{ secrets.GIST_SECRET }}
           gistID: 342d1aa6f4715de5044cd252b7c07a61
           filename: personal-page-badge.json
-          label: Hello
-          message: World
-          color: orange
+          label: Unit Tests
+          message: ${{job.status}}
+          color: ${{job.status == 'success' ? 'brightgreen' : 'red'}}
