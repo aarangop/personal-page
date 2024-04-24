@@ -18,7 +18,10 @@ if (process.env.NODE_ENV == 'development') {
 				password: { label: 'Password', type: 'password' }
 			},
 			authorize: (credentials) => {
-				if (credentials.password === 'password' && credentials.username === 'testuser') {
+				if (
+					credentials.password === process.env.TEST_PASSWORD &&
+					credentials.username === process.env.TEST_USERNAME
+				) {
 					return {
 						id: 'testuser',
 						email: 'test@user.com',
@@ -46,13 +49,16 @@ export const { handle, signIn, signOut } = SvelteKitAuth({
 	adapter: PrismaAdapter(prisma),
 	session: { strategy: process.env.NODE_ENV === 'development' ? 'jwt' : 'database' },
 	pages: {
-		signIn: '/signin'
+		signIn: '/login'
 	},
 	providers: providers,
 	debug: process.env.NODE_ENV == 'development',
 	callbacks: {
 		session({ session }) {
 			return session;
+		},
+		redirect({ baseUrl }) {
+			return baseUrl;
 		}
 	}
 });

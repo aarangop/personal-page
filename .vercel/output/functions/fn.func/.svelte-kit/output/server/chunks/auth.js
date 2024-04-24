@@ -6,6 +6,7 @@ import { D as DEV } from "./dev-ssr.js";
 import { r as redirect } from "./index.js";
 import { parse } from "set-cookie-parser";
 import "@auth/core/errors";
+import Credentials from "@auth/core/providers/credentials";
 import GitHub from "@auth/core/providers/github";
 const dev = DEV;
 function setEnvDefaults(envObject, config) {
@@ -138,16 +139,31 @@ function SvelteKitAuth(config) {
   };
 }
 const providers = [GitHub];
-const { handle, signIn, signOut } = SvelteKitAuth({
-  adapter: PrismaAdapter(prisma),
-  providers,
-  callbacks: {
-    session({ session }) {
-      return session;
-    }
-  }
-});
-providers.map((provider) => {
+if (process.env.NODE_ENV == "development") {
+  providers.push(
+    Credentials({
+      id: "credentials",
+      name: "Username and Password",
+      credentials: {
+        username: { label: "Username", type: "text" },
+        password: { label: "Password", type: "password" }
+      },
+      authorize: (credentials) => {
+        if (credentials.password === process.env.TEST_PASSWORD && credentials.username === process.env.TEST_USERNAME) {
+          return {
+            id: "testuser",
+            email: "test@user.com",
+            name: "Bob Alice",
+            role: "admin",
+            image: "https://media1.tenor.com/m/x8v1oNUOmg4AAAAd/rickroll-roll.gif"
+          };
+        }
+        return null;
+      }
+    })
+  );
+}
+const providerMap = providers.map((provider) => {
   if (typeof provider === "function") {
     const providerData = provider();
     return { id: providerData.id, name: providerData.name };
@@ -155,8 +171,26 @@ providers.map((provider) => {
     return { id: provider.id, name: provider.name };
   }
 });
+const { handle, signIn, signOut } = SvelteKitAuth({
+  adapter: PrismaAdapter(prisma),
+  session: { strategy: process.env.NODE_ENV === "development" ? "jwt" : "database" },
+  pages: {
+    signIn: "/login"
+  },
+  providers,
+  debug: process.env.NODE_ENV == "development",
+  callbacks: {
+    session({ session }) {
+      return session;
+    },
+    redirect({ baseUrl }) {
+      return baseUrl;
+    }
+  }
+});
 export {
   signOut as a,
   handle as h,
+  providerMap as p,
   signIn as s
 };
