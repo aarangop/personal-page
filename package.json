@@ -4,6 +4,7 @@
 	"scripts": {
 		"dev": "vite dev",
 		"build": "vite build",
+		"build:dev": "vite build --mode development",
 		"postinstall": "prisma generate",
 		"preview": "vite preview",
 		"vitest": "vitest run",
