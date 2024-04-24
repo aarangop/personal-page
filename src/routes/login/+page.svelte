@@ -18,7 +18,7 @@
 	</div>
 {:else}
 	<div class="flex flex-col space-y-2">
-		<button class="btn variant-filled" on:click={() => signIn('github', { redirect: true })}>
+		<button class="btn variant-filled" on:click={() => signIn('github', { callbackUrl: '/' })}>
 			<span> Sign In with GitHub </span>
 			<span>
 				<Icon icon="bi:github" />
@@ -37,7 +37,8 @@
 				<input class="input mb-2" type="password" name="password" bind:value={password} />
 				<button
 					class="btn variant-filled"
-					on:click={() => signIn('credentials', { username, password })}>Log In</button
+					on:click={() => signIn('credentials', { username, password, callbackUrl: '/' })}
+					>Log In</button
 				>
 			</form>
 		{/if}
