@@ -1,22 +1,45 @@
 <script lang="ts">
-	import { page } from '$app/stores';
-	import { SignIn, SignOut } from '@auth/sveltekit/components';
+	import { signIn, signOut } from '@auth/sveltekit/client';
 	import type { PageData } from './$types';
+	import Icon from '@iconify/svelte';
+
+	export let data: PageData;
+	let githubProvider = data.providers.filter((provider) => provider.id === 'github');
+	let credentialsProvider = data.providers.filter((provider) => provider.id === 'credentials');
+	let username = '';
+	let password = '';
 </script>
 
-<div>
-	{#if $page.data.session?.user}
-		<p>Logged In as {$page.data.session?.user.name}</p>
-		<SignOut>
-			<div slot="submitButton" class="btn variant-filled">
-				<span>Log Out</span>
+<h2 class="h2 mb-4">Log In</h2>
+{#if data.session}
+	<div class="flex flex-col space-y-2">
+		<div>You're currently logged in as {data.session.user?.name}</div>
+		<button class="btn variant-filled" on:click={() => signOut()}>Log Out</button>
+	</div>
+{:else}
+	<div class="flex flex-col space-y-2">
+		<button class="btn variant-filled" on:click={() => signIn('github', { redirect: true })}>
+			<span> Sign In with GitHub </span>
+			<span>
+				<Icon icon="bi:github" />
+			</span></button
+		>
+		{#if credentialsProvider}
+			<div class="flex flex-row justify-between items-center space-x-2">
+				<hr class="flex-1" />
+				<span>or</span>
+				<hr class="flex-1" />
 			</div>
-		</SignOut>
-	{:else}
-		<SignIn>
-			<div slot="submitButton" class="btn variant-filled">
-				<span>Log In</span>
-			</div>
-		</SignIn>
-	{/if}
-</div>
+			<form class="card flex flex-col p-4">
+				<label class="label" for="username">Username</label>
+				<input class="input mb-2" type="text" name="username" bind:value={username} />
+				<label class="label" for="password">Password</label>
+				<input class="input mb-2" type="password" name="password" bind:value={password} />
+				<button
+					class="btn variant-filled"
+					on:click={() => signIn('credentials', { username, password })}>Log In</button
+				>
+			</form>
+		{/if}
+	</div>
+{/if}

@@ -79,6 +79,7 @@ web_modules/
 .env.test.local
 .env.production.local
 .env.local
+.env.*.local
 
 # parcel-bundler cache (https://parceljs.org/)
 .cache
@@ -128,12 +129,11 @@ dist
 .yarn/unplugged
 .yarn/build-state.yml
 .yarn/install-state.gz
-<<<<<<< HEAD
 .pnp.*
-=======
-.pnp.*
->>>>>>> e7c7de8 (Initial commit)
 /test-results/
 /playwright-report/
 /blob-report/
 /playwright/.cache/
+
+# Testing auth
+playwright/.auth
