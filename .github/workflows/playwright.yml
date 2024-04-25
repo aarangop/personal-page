@@ -18,7 +18,9 @@ jobs:
       # - name: Install Playwright Browsers
       #   run: npx playwright install --with-deps
       - name: Test env variables
-        run: echo 'My gcp project ${{vars.GCP_PROJECT_ID}}'
+        run: echo 'My gcp project $GCP_PROJECT_ID'
+        env:
+          GCP_PROJECT_ID: ${{vars.GCP_PROJECT_ID}}
       # - name: Run Playwright tests
       #   run: npx playwright test
       # - uses: actions/upload-artifact@v4
