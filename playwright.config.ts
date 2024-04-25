@@ -25,7 +25,7 @@ const config: PlaywrightTestConfig = {
 			dependencies: ['setup']
 		}
 	],
-	testDir: 'tests/e2e',
+	testDir: 'e2e',
 	testMatch: /(.+\.)?(test|spec)\.[jt]s/
 };
 

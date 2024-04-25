@@ -1,5 +1,6 @@
 import { getBreadCrumbs } from '$lib/utils';
 import { expect, suite, test } from 'vitest';
+
 suite('getBreadCrumbs', () => {
 	test('get correct breadcrumbs for deep route', () => {
 		const url = '/my/sample/url';

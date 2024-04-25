@@ -1,5 +1,5 @@
 import { render, screen, within } from '@testing-library/svelte';
-import Breadcrumbs from '$lib/components/Breadcrumbs.svelte';
+import Breadcrumbs from '$lib/components/breadcrumbs/Breadcrumbs.svelte';
 import { expect, test } from 'vitest';
 
 test('no link for home route', () => {

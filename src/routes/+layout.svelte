@@ -3,7 +3,7 @@
 	import { computePosition, autoUpdate, offset, shift, flip, arrow } from '@floating-ui/dom';
 	import { AppShell } from '@skeletonlabs/skeleton';
 
-	import Breadcrumbs from '$lib/components/Breadcrumbs.svelte';
+	import Breadcrumbs from '$lib/components/breadcrumbs/Breadcrumbs.svelte';
 	import './styles.css';
 	import { page } from '$app/stores';
 	import { storePopup } from '@skeletonlabs/skeleton';
