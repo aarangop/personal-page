@@ -23,7 +23,7 @@ test('session data is stored', async ({ page }) => {
 	expect(sessionToken).not.toBe(null);
 });
 
-test('session token should be deleted after logout', async ({ page }) => {
+test('session token is deleted after logout', async ({ page }) => {
 	if (!process.env.TEST_PASSWORD) throw new TypeError('Missing TEST_PASSWORD');
 
 	await page.goto('/login');
