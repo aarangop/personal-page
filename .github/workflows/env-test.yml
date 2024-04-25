@@ -1,0 +1,10 @@
+name: Env variables test
+on:
+  push:
+    branches: [dev]
+jobs:
+  echo:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Echo variables
+        run: echo $TEST_ENV_VAR
