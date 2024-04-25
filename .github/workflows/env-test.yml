@@ -7,4 +7,6 @@ jobs:
     runs-on: ubuntu-latest
     steps:
       - name: Echo variables
-        run: echo $TEST_ENV_VAR
+        run: echo "$TEST_ENV_VAR"
+        env:
+          TEST_ENV_VAR: ${{vars.TEST_ENV_VAR}}
