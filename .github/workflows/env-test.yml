@@ -4,8 +4,8 @@ on:
     branches: [dev]
 jobs:
   echo:
-    environment: Preview
     runs-on: ubuntu-latest
+    environment: Preview
     steps:
       - name: Echo variables
         run: |
