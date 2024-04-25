@@ -1,15 +1,13 @@
-import { error, json, type RequestHandler } from '@sveltejs/kit';
-import { GCP_BUCKET, GCP_PROJECT_ID, GCP_PRIVATE_KEY } from '$env/static/private';
-import { Storage } from '@google-cloud/storage';
+import { GCP_BUCKET } from '$env/static/private';
 import prisma from '$lib/prisma';
+import { getBlogEntries } from '$lib/server/controllers/blogs.js';
+import { getGCPStorage } from '$lib/server/storage';
+import { compressImage } from '$lib/server/utils';
 import { toSlug } from '$lib/utils';
-import { BlogPostSchema } from '$lib/schemas.js';
-import { z } from 'zod';
-import { compressImage, getGCPCredentials } from '$lib/server/utils';
+import { error, json, type RequestHandler } from '@sveltejs/kit';
 
 export const GET: RequestHandler = async ({ url }) => {
-	const blogPosts = await prisma.blogPost.findMany();
-	return json(z.array(BlogPostSchema).parse(blogPosts));
+	return json(await getBlogEntries());
 };
 
 export const POST = async ({ request }) => {
@@ -25,13 +23,10 @@ export const POST = async ({ request }) => {
 
 	// Setup Google Cloud Platform
 	let storage;
-	if (process.env.VERCEL) {
-		storage = new Storage(getGCPCredentials());
-	} else {
-		storage = new Storage({
-			projectId: GCP_PROJECT_ID,
-			keyFilename: GCP_PRIVATE_KEY
-		});
+	try {
+		storage = getGCPStorage();
+	} catch (e) {
+		error(500, 'Could not obtain storage object');
 	}
 
 	const bucket = storage.bucket(GCP_BUCKET);
