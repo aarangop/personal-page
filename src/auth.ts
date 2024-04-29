@@ -18,19 +18,22 @@ if (process.env.NODE_ENV == 'development') {
 				username: { label: 'Username', type: 'text' },
 				password: { label: 'Password', type: 'password' }
 			},
-			authorize: (credentials) => {
+			authorize: async (credentials) => {
 				if (
 					credentials.password === process.env.TEST_PASSWORD &&
 					credentials.username === process.env.TEST_USERNAME
 				) {
-					logger.info('Authorizing test user');
-					return {
-						id: 'testuser',
-						email: 'test@user.com',
-						name: 'Bob Alice',
-						role: 'admin',
-						image: 'https://media1.tenor.com/m/x8v1oNUOmg4AAAAd/rickroll-roll.gif'
-					};
+					const user = await prisma.user.upsert({
+						where: { email: 'test@user.com' },
+						update: {},
+						create: {
+							email: 'test@user.com',
+							name: 'Test User',
+							role: 'admin',
+							image: 'https://media1.tenor.com/m/x8v1oNUOmg4AAAAd/rickroll-roll.gif'
+						}
+					});
+					return user;
 				}
 				return null;
 			}
@@ -56,10 +59,16 @@ export const { handle, signIn, signOut } = SvelteKitAuth({
 	providers: providers,
 	debug: process.env.NODE_ENV == 'development',
 	callbacks: {
-		session({ session }) {
+		session({ session, token, user }) {
+			if (token.id) {
+				session.user.id = token.id as string;
+			}
 			return session;
 		},
-		jwt({ token }) {
+		jwt({ token, user }) {
+			if (user) {
+				token.id = user.id;
+			}
 			return token;
 		}
 	}
