@@ -77,6 +77,16 @@
       "_index.js"
     ]
   },
+  "_blogs.js": {
+    "file": "chunks/blogs.js",
+    "name": "blogs",
+    "imports": [
+      "_prisma.js",
+      "_schemas.js",
+      "_index.js",
+      "_utils.js"
+    ]
+  },
   "_client.js": {
     "file": "chunks/client.js",
     "name": "client",
@@ -246,7 +256,10 @@
     "file": "entries/pages/admin/blog/_slug_/_page.server.ts.js",
     "name": "entries/pages/admin/blog/_slug_/_page.server.ts",
     "src": "src/routes/admin/blog/[slug]/+page.server.ts",
-    "isEntry": true
+    "isEntry": true,
+    "imports": [
+      "_blogs.js"
+    ]
   },
   "src/routes/admin/blog/[slug]/+page.svelte": {
     "file": "entries/pages/admin/blog/_slug_/_page.svelte.js",
@@ -264,7 +277,7 @@
     "src": "src/routes/admin/blog/new/+page.server.ts",
     "isEntry": true,
     "imports": [
-      "_index.js"
+      "_blogs.js"
     ]
   },
   "src/routes/admin/blog/new/+page.svelte": {
@@ -334,18 +347,6 @@
       "_PodcastFeedForm.js"
     ]
   },
-  "src/routes/api/blogs/+server.ts": {
-    "file": "entries/endpoints/api/blogs/_server.ts.js",
-    "name": "entries/endpoints/api/blogs/_server.ts",
-    "src": "src/routes/api/blogs/+server.ts",
-    "isEntry": true,
-    "imports": [
-      "_prisma.js",
-      "_schemas.js",
-      "_utils.js",
-      "_index.js"
-    ]
-  },
   "src/routes/api/blogs/[slug]/+server.ts": {
     "file": "entries/endpoints/api/blogs/_slug_/_server.ts.js",
     "name": "entries/endpoints/api/blogs/_slug_/_server.ts",
@@ -375,7 +376,7 @@
     "src": "src/routes/blog/+page.server.ts",
     "isEntry": true,
     "imports": [
-      "_schemas.js"
+      "_blogs.js"
     ]
   },
   "src/routes/blog/+page.svelte": {

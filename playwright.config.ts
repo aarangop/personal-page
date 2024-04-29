@@ -5,7 +5,7 @@ dotenv.config();
 
 const config: PlaywrightTestConfig = {
 	webServer: {
-		command: 'npm run build:dev && npm run preview',
+		command: 'npm run seed && npm run build:dev && npm run preview',
 		url: 'http://localhost:4173',
 		reuseExistingServer: !process.env.CI
 	},
@@ -20,8 +20,8 @@ const config: PlaywrightTestConfig = {
 			dependencies: ['setup']
 		}
 	],
-	testDir: 'e2e',
-	testMatch: /(.+\.)?(test|spec)\.[jt]s/
+	// testDir: 'e2e',
+	testMatch: /(.+\.)?(e2e)\.(test|spec)\.[jt]s/
 };
 
 export default config;
