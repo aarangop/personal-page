@@ -1,17 +1,11 @@
 <script lang="ts">
 	import Icon from '@iconify/svelte';
-	export let submitAction: string;
 	export let deleteFormAction: string | null = null;
 	export let onDelete: ((event: Event) => Promise<void>) | null = null;
 </script>
 
 <section class={$$props.class}>
-	<form
-		method="post"
-		class="flex flex-col"
-		enctype="multipart/form-data"
-		action={`?/${submitAction}`}
-	>
+	<form method="post" class="flex flex-col" enctype="multipart/form-data">
 		<label for="title" class="label mb-1">Title</label>
 		<input
 			type="text"

@@ -21,6 +21,7 @@ export default defineConfig(({ mode }) => {
 			environment: 'jsdom',
 			setupFiles: ['./vitest-setup.ts'],
 			include: ['src/**/*.{test,spec}.{js,ts}'],
+			exclude: ['src/**/*.e2e.{test,spec}.{js,ts}'],
 			alias: {
 				$lib: 'src/lib'
 			},
