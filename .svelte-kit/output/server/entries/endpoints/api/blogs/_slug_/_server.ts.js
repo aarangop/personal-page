@@ -1,5 +1,5 @@
 import { p as prisma } from "../../../../../chunks/prisma.js";
-import { a as BlogPostDisplaySchema } from "../../../../../chunks/schemas.js";
+import { B as BlogPostDisplaySchema } from "../../../../../chunks/schemas.js";
 import { e as error, j as json } from "../../../../../chunks/index.js";
 const GET = async ({ params }) => {
   const blogPost = await prisma.blogPost.findUnique({

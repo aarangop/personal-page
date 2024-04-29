@@ -4,7 +4,7 @@ const Page = create_ssr_component(($$result, $$props, $$bindings, slots) => {
   let { data } = $$props;
   if ($$props.data === void 0 && $$bindings.data && data !== void 0)
     $$bindings.data(data);
-  return `<section class="self-center py-4 flex flex-col">${validate_component(BlogView, "BlogView").$$render($$result, { post: data.blogPost }, {}, {})}</section>`;
+  return `<section class="self-center py-4 flex flex-col">${validate_component(BlogView, "BlogView").$$render($$result, { post: data.post }, {}, {})}</section>`;
 });
 export {
   Page as default
