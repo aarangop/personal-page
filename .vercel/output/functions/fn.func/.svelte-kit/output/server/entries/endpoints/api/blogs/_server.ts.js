@@ -1,14 +1,23 @@
-import { j as json, e as error } from "../../../../chunks/index.js";
-import { Storage } from "@google-cloud/storage";
 import { p as prisma } from "../../../../chunks/prisma.js";
-import { t as toSlug } from "../../../../chunks/utils.js";
 import { B as BlogPostSchema } from "../../../../chunks/schemas.js";
 import { z } from "zod";
+import { Storage } from "@google-cloud/storage";
+import * as fs from "fs";
 import sharp from "sharp";
-const GCP_PROJECT_ID = "andresap-personal-page";
+import { t as toSlug } from "../../../../chunks/utils.js";
+import { j as json, e as error } from "../../../../chunks/index.js";
 const GCP_BUCKET = "andresap-perspage-dev";
-const GCP_PRIVATE_KEY = "./secrets/andresap-personal-page-2d8f54d65feb.json";
+const getBlogEntries = async () => {
+  const entries = await prisma.blogPost.findMany();
+  return z.array(BlogPostSchema).parse(entries);
+};
 const getGCPCredentials = () => {
+  if (process.env.LOCAL) {
+    if (!process.env.GCP_PRIVATE_KEY) {
+      throw Error("GCP_PRIVATE_KEY environment variable required");
+    }
+    return JSON.parse(fs.readFileSync(process.env.GCP_PRIVATE_KEY, "utf-8"));
+  }
   return {
     credentials: {
       client_email: process.env.GCLOUD_SERVICE_ACCOUNT_EMAIL,
@@ -17,14 +26,17 @@ const getGCPCredentials = () => {
     projectId: process.env.GCP_PROJECT_ID
   };
 };
+const getGCPStorage = () => {
+  const credentials = getGCPCredentials();
+  return new Storage(credentials);
+};
 async function compressImage(imageFile) {
   const imageBuffer = await imageFile.arrayBuffer();
   const compressedImage = await sharp(imageBuffer).resize({ width: 700 }).jpeg({ quality: 80 }).toBuffer();
   return new File([compressedImage], imageFile.name, { type: imageFile.type });
 }
-const GET = async ({ url }) => {
-  const blogPosts = await prisma.blogPost.findMany();
-  return json(z.array(BlogPostSchema).parse(blogPosts));
+const GET = async ({}) => {
+  return json(await getBlogEntries());
 };
 const POST = async ({ request }) => {
   const formData = await request.formData();
@@ -34,13 +46,10 @@ const POST = async ({ request }) => {
   let imageUrl = null;
   let fileUrl = null;
   let storage;
-  if (process.env.VERCEL) {
-    storage = new Storage(getGCPCredentials());
-  } else {
-    storage = new Storage({
-      projectId: GCP_PROJECT_ID,
-      keyFilename: GCP_PRIVATE_KEY
-    });
+  try {
+    storage = getGCPStorage();
+  } catch (e) {
+    error(500, "Could not obtain storage object");
   }
   const bucket = storage.bucket(GCP_BUCKET);
   try {
