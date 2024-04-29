@@ -1,7 +1,6 @@
 import { toSlug } from '$lib/utils';
 import test, { expect } from '@playwright/test';
 import { generate } from 'random-words';
-import { authenticate } from '../utils/auth';
 
 test.describe('Blog Form', () => {
 	test('Successful submission redirects to new blog post', async ({ page }) => {
@@ -13,8 +12,8 @@ test.describe('Blog Form', () => {
 
 		await page.fill('input[name="title"]', title);
 		await page.fill('input[name="subtitle"]', 'A short description');
-		await page.setInputFiles('input[name="image"]', './tests/e2e/test-assets/blog_img.jpg');
-		await page.setInputFiles('input[name="file"]', './tests/e2e/test-assets/blog_entry.md');
+		await page.setInputFiles('input[name="image"]', './e2e/test-assets/blog_img.jpg');
+		await page.setInputFiles('input[name="file"]', './e2e/test-assets/blog_entry.md');
 
 		// Submit the form
 		await page.click('button:has-text("Save")');

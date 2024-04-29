@@ -10,7 +10,7 @@ return {
 	assets: new Set(["favicon.png","fonts/Inter-VariableFont_slnt,wght.ttf","fonts/Lora-Italic-VariableFont_wght.ttf","fonts/Lora-VariableFont_wght.ttf","fonts/NotoSansMono-VariableFont_wdth,wght.ttf","robots.txt"]),
 	mimeTypes: {".png":"image/png",".ttf":"font/ttf",".txt":"text/plain"},
 	_: {
-		client: {"start":"_app/immutable/entry/start.rwbEvgpa.js","app":"_app/immutable/entry/app.CSwR4MTg.js","imports":["_app/immutable/entry/start.rwbEvgpa.js","_app/immutable/chunks/entry.WtfxDy7j.js","_app/immutable/chunks/15.B-r9qISn.js","_app/immutable/chunks/paths.DfI-w9cX.js","_app/immutable/entry/app.CSwR4MTg.js","_app/immutable/chunks/15.B-r9qISn.js","_app/immutable/chunks/index.BHkzuj50.js"],"stylesheets":[],"fonts":[],"uses_env_dynamic_public":false},
+		client: {"start":"_app/immutable/entry/start.Veorufux.js","app":"_app/immutable/entry/app.CD7D4vpX.js","imports":["_app/immutable/entry/start.Veorufux.js","_app/immutable/chunks/entry.D2iZWFcb.js","_app/immutable/chunks/15.B-r9qISn.js","_app/immutable/chunks/paths.CxVw9jNI.js","_app/immutable/entry/app.CD7D4vpX.js","_app/immutable/chunks/15.B-r9qISn.js","_app/immutable/chunks/index.BHkzuj50.js"],"stylesheets":[],"fonts":[],"uses_env_dynamic_public":false},
 		nodes: [
 			__memo(() => import('../output/server/nodes/0.js')),
 			__memo(() => import('../output/server/nodes/1.js')),
