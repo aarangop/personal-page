@@ -1,4 +1,5 @@
 import { p as prisma } from "./prisma.js";
+import { l as logger } from "./index3.js";
 import { PrismaAdapter } from "@auth/prisma-adapter";
 import { j as building, b as base, k as private_env } from "./environment.js";
 import { setEnvDefaults as setEnvDefaults$1, createActionURL, Auth, raw, skipCSRFCheck, isAuthAction } from "@auth/core";
@@ -150,6 +151,7 @@ if (process.env.NODE_ENV == "development") {
       },
       authorize: (credentials) => {
         if (credentials.password === process.env.TEST_PASSWORD && credentials.username === process.env.TEST_USERNAME) {
+          logger.info("Authorizing test user");
           return {
             id: "testuser",
             email: "test@user.com",
@@ -183,8 +185,8 @@ const { handle, signIn, signOut } = SvelteKitAuth({
     session({ session }) {
       return session;
     },
-    redirect({ baseUrl }) {
-      return baseUrl;
+    jwt({ token }) {
+      return token;
     }
   }
 });

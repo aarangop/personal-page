@@ -31,11 +31,11 @@ const PodcastFeedDataSchema = z.object({
 const BlogPostSchema = z.object({
   id: z.string().optional(),
   title: z.string(),
-  subtitle: z.string().optional(),
+  subtitle: z.string(),
   slug: z.string(),
   dateCreated: z.coerce.date(),
-  fileUrl: z.string().url().optional(),
-  imageUrl: z.string().url().optional()
+  fileUrl: z.string().url(),
+  imageUrl: z.string().url()
 });
 const BlogPostDisplaySchema = z.object({
   markdown: z.string()

@@ -2,22 +2,29 @@ import prisma from '$lib/prisma';
 import { UserRoles } from '$lib/schemas';
 import { error, redirect, type Handle, type RequestEvent } from '@sveltejs/kit';
 import { minimatch } from 'minimatch';
+import { AUTH_SECRET } from '$env/static/private';
 import logger from './logging';
+import jwt from 'jsonwebtoken';
+import type { User } from '@prisma/client';
 
 const adminRoutes = ['/admin', '/admin/**/*', '/api/admin/**/*'];
 const privateRoutes = ['/private', '/private/**/*', '/api/private/**/*'];
 
-const userIsAuthorized = async (event: RequestEvent, authorizedRole = UserRoles.USER) => {
+const getUser = async (event: RequestEvent): Promise<User | null> => {
 	const session = await event.locals.auth();
-	if (!session) return false;
+	const userId = session?.user?.id;
 
-	const user = await prisma.user.findUnique({
+	if (!userId) return null;
+
+	return await prisma.user.findUnique({
 		where: {
-			id: session.user?.id
-		},
-		select: { role: true }
+			id: userId
+		}
 	});
+};
 
+const userIsAuthorized = async (event: RequestEvent, authorizedRole = UserRoles.USER) => {
+	const user = await getUser(event);
 	if (!user) return false;
 
 	return user.role == authorizedRole;
@@ -28,11 +35,12 @@ export const protectPrivateRoutesHandle: Handle = async ({ event, resolve }) => 
 	const routeIsPrivate = privateRoutes.some((pattern) => minimatch(event.url.pathname, pattern));
 
 	if (routeIsAdminOnly && !(await userIsAuthorized(event, UserRoles.ADMIN))) {
-		logger.info('This route is admin only');
+		logger.warn('User tried to access admin-protected resource.');
 		throw error(401, { message: 'Unauthorized' });
 	}
 
 	if (routeIsPrivate && !(await userIsAuthorized(event, UserRoles.USER))) {
+		logger.warn('Unauthenticated user tried to access a protected resource.');
 		throw redirect(303, '/login');
 	}
 

@@ -1,12 +1,12 @@
 import { GCP_BUCKET } from '$env/static/private';
 import prisma from '$lib/prisma';
-import { getBlogEntries } from '$lib/server/controllers/blogs.js';
+import { getBlogEntries } from '$lib/server/actions/blogs.js';
 import { getGCPStorage } from '$lib/server/storage';
 import { compressImage } from '$lib/server/utils';
 import { toSlug } from '$lib/utils';
 import { error, json, type RequestHandler } from '@sveltejs/kit';
 
-export const GET: RequestHandler = async ({ url }) => {
+export const GET: RequestHandler = async ({}) => {
 	return json(await getBlogEntries());
 };
 
