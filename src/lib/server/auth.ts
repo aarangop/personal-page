@@ -26,7 +26,6 @@ const getUser = async (event: RequestEvent): Promise<User | null> => {
 const userIsAuthorized = async (event: RequestEvent, authorizedRole = UserRoles.USER) => {
 	const user = await getUser(event);
 	if (!user) return false;
-
 	return user.role == authorizedRole;
 };
 
