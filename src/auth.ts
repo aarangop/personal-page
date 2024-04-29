@@ -1,5 +1,6 @@
 import { AUTH_GITHUB_ID, AUTH_SECRET } from '$env/static/private';
 import prisma from '$lib/prisma';
+import logger from '$lib/server/logging';
 import { PrismaAdapter } from '@auth/prisma-adapter';
 import { SvelteKitAuth } from '@auth/sveltekit';
 import type { Provider } from '@auth/sveltekit/providers';
@@ -22,6 +23,7 @@ if (process.env.NODE_ENV == 'development') {
 					credentials.password === process.env.TEST_PASSWORD &&
 					credentials.username === process.env.TEST_USERNAME
 				) {
+					logger.info('Authorizing test user');
 					return {
 						id: 'testuser',
 						email: 'test@user.com',
@@ -57,8 +59,8 @@ export const { handle, signIn, signOut } = SvelteKitAuth({
 		session({ session }) {
 			return session;
 		},
-		redirect({ baseUrl }) {
-			return baseUrl;
+		jwt({ token }) {
+			return token;
 		}
 	}
 });
