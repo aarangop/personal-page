@@ -5,5 +5,5 @@
 </script>
 
 <section class="self-center py-4 flex flex-col">
-	<BlogView post={data.blogPost}></BlogView>
+	<BlogView post={data.post}></BlogView>
 </section>

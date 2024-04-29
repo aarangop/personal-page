@@ -1,11 +1,9 @@
 import prisma from '$lib/prisma';
 import { UserRoles } from '$lib/schemas';
+import type { User } from '@prisma/client';
 import { error, redirect, type Handle, type RequestEvent } from '@sveltejs/kit';
 import { minimatch } from 'minimatch';
-import { AUTH_SECRET } from '$env/static/private';
 import logger from './logging';
-import jwt from 'jsonwebtoken';
-import type { User } from '@prisma/client';
 
 const adminRoutes = ['/admin', '/admin/**/*', '/api/admin/**/*'];
 const privateRoutes = ['/private', '/private/**/*', '/api/private/**/*'];

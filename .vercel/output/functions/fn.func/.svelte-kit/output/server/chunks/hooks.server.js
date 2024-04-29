@@ -3,7 +3,6 @@ import { p as prisma } from "./prisma.js";
 import { U as UserRoles } from "./schemas.js";
 import { minimatch } from "minimatch";
 import { l as logger } from "./index3.js";
-import "jsonwebtoken";
 import { h as handle$1 } from "./auth.js";
 function sequence(...handlers) {
   const length = handlers.length;

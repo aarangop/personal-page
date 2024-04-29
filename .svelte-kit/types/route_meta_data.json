@@ -30,9 +30,6 @@
 		"src/routes/admin/podcast/new/+page.server.ts",
 		"src/routes/+layout.server.ts"
 	],
-	"/api/blogs": [
-		"src/routes/api/blogs/+server.ts"
-	],
 	"/api/blogs/[slug]": [
 		"src/routes/api/blogs/[slug]/+server.ts"
 	],
