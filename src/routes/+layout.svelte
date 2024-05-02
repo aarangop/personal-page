@@ -12,18 +12,12 @@
 	$: url = $page.url.pathname;
 </script>
 
-<section class="flex flex-col min-h-screen">
-	<AppShell regionPage="relative" slotPageHeader="sticky top-0 z-10">
-		<svelte:fragment slot="header">
-			<Header></Header>
-		</svelte:fragment>
-	</AppShell>
-	<main class="flex flex-col py-4 justify-center px-8">
-		<div class="self-center flex-0 sticky top-0 mb-2">
-			<Breadcrumbs {url} />
-		</div>
-		<div class="lg:px-48">
-			<slot />
-		</div>
-	</main>
-</section>
+<main class="flex flex-col h-full w-full overflow-auto absolute top-0">
+	<Header />
+	<div class="self-center mb-2 mt-2">
+		<Breadcrumbs {url} />
+	</div>
+	<div class="h-full self-center p-2 lg:px-8 w-full md:w-4/5 lg:w-2/3">
+		<slot />
+	</div>
+</main>

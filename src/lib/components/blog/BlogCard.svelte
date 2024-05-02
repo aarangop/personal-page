@@ -8,7 +8,7 @@
 	export let onDelete: (() => {}) | null = null;
 </script>
 
-<div class="card flex flex-row overflow-clip items-center backdrop-blur-sm" data-testid="blog-post">
+<div class="card flex flex-row items-center backdrop-blur-sm flex-1" data-testid="blog-post">
 	<img src={blogPost.imageUrl} class="w-36 h-36 object-cover" alt={blogPost.title} />
 	<div class="flex flex-col h-full w-full p-4">
 		<h4 class="h4 text-left mb-2">{blogPost.title}</h4>
