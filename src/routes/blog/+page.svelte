@@ -5,7 +5,7 @@
 	export let data: PageData;
 </script>
 
-<section class="flex flex-col">
+<section class="flex flex-col h-full">
 	<h2 class="h2 text-2xl mb-2">My Blog</h2>
 	<div class="flex flex-col space-y-2">
 		{#each data.posts as blog}
