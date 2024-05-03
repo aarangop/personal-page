@@ -1,5 +1,5 @@
 import { p as prisma } from "./prisma.js";
-import { b as BlogPostSchema } from "./schemas.js";
+import { B as BlogPostSchema } from "./schemas.js";
 import { e as error, r as redirect, j as json } from "./index.js";
 import { z } from "zod";
 import { t as toSlug } from "./utils.js";
@@ -53,10 +53,10 @@ const getBlogPosts = async (query = {}) => {
 const getBlogPostBySlug = async (slug) => {
   const post = await prisma.blogPost.findUnique({ where: { slug } });
   if (!post?.fileUrl) {
-    throw new Error("Blog post content not found");
+    throw error(500, { message: "Blog post content not found" });
   }
   if (!post.imageUrl) {
-    throw new Error("Blog post image not found");
+    throw error(500, { message: "Blog post image not found" });
   }
   const file = await fetch(post.fileUrl);
   return {
@@ -113,7 +113,7 @@ const createNewBlogPost = async ({ request }, redirectUrl) => {
   return json(result);
 };
 export {
-  getBlogPosts as a,
+  getBlogPostBySlug as a,
   createNewBlogPost as c,
-  getBlogPostBySlug as g
+  getBlogPosts as g
 };

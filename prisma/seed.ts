@@ -5,18 +5,18 @@ const prisma = new PrismaClient();
 async function main() {
 	console.log('Start seeding');
 
-	const slug = 'this-is-an-awesome-test-post';
+	const slug = 'test-post';
 	const blogPost = await prisma.blogPost.upsert({
 		where: { slug },
 		update: {},
 		create: {
-			title: 'This is an awesome test post',
+			title: 'The Princess of Mismatched Dreams',
 			slug,
-			subtitle: 'This is a subtitle',
+			subtitle: 'A tale of courage, unicorns, rainbows, and swords',
 			fileUrl:
-				'https://storage.googleapis.com/andresap-perspage-dev/testing/Learning%20Machine%20Learning.md',
+				'https://storage.googleapis.com/andresap-perspage-dev/testing/The%20Princess%20of%20Mismatched%20Dreams.md',
 			imageUrl:
-				'https://storage.googleapis.com/andresap-perspage-dev/testing/Pasted%20image%2020221121144208.png',
+				'https://storage.googleapis.com/andresap-perspage-dev/testing/Gemini_Generated_Image_ocpu86ocpu86ocpu.jpeg',
 			dateCreated: new Date()
 		}
 	});
