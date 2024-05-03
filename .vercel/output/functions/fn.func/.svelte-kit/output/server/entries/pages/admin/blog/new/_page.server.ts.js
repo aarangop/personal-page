@@ -1,13 +1,6 @@
-import { r as redirect } from "../../../../../chunks/index.js";
+import { c as createNewBlogPost } from "../../../../../chunks/blogs.js";
 const actions = {
-  saveBlogPost: async ({ fetch, request }) => await fetch("/api/blogs", {
-    method: "POST",
-    body: await request.formData()
-  }).then(async (data) => {
-    const res = await data.json();
-    console.log(res);
-    throw redirect(303, `/admin/blog/${res.slug}`);
-  })
+  default: async (event) => await createNewBlogPost(event, "/admin/blog/:slug")
 };
 export {
   actions
