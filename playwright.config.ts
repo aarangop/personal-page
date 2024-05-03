@@ -5,7 +5,7 @@ dotenv.config();
 
 const config: PlaywrightTestConfig = {
 	webServer: {
-		command: 'npm run build:dev && npm run preview',
+		command: 'npm run seed && npm run build:dev && npm run preview',
 		url: 'http://localhost:4173',
 		reuseExistingServer: !process.env.CI
 	},
@@ -13,20 +13,15 @@ const config: PlaywrightTestConfig = {
 		baseURL: 'http://localhost:4173'
 	},
 	projects: [
-		{ name: 'setup', testMatch: /.*\.setup\.ts/ },
-		{ name: 'chromium authentication', testMatch: /.*\.auth\.(test|spec)\.ts/ },
+		{ name: 'setup', testMatch: /.*\.setup\.[jt]s/ },
 		{
 			name: 'chromium',
-			testMatch: /.*\.(test|spec).ts/,
-			use: {
-				...devices['Desktop Chrome'],
-				storageState: 'playwright/.auth/user.json'
-			},
+			use: { ...devices['Desktop Chrome'], storageState: 'playwright/.auth/user.json' },
 			dependencies: ['setup']
 		}
 	],
-	testDir: 'e2e',
-	testMatch: /(.+\.)?(test|spec)\.[jt]s/
+	// testDir: 'e2e',
+	testMatch: /(.+\.)?(e2e)\.(test|spec)\.[jt]s/
 };
 
 export default config;

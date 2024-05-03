@@ -31,19 +31,19 @@ const PodcastFeedDataSchema = z.object({
 const BlogPostSchema = z.object({
   id: z.string().optional(),
   title: z.string(),
-  subtitle: z.string().optional(),
+  subtitle: z.string(),
   slug: z.string(),
   dateCreated: z.coerce.date(),
-  fileUrl: z.string().url().optional(),
-  imageUrl: z.string().url().optional()
+  fileUrl: z.string().url(),
+  imageUrl: z.string().url()
 });
 const BlogPostDisplaySchema = z.object({
   markdown: z.string()
 }).merge(BlogPostSchema);
 export {
-  BlogPostSchema as B,
+  BlogPostDisplaySchema as B,
   PodcastFeedDataSchema as P,
   UserRoles as U,
-  BlogPostDisplaySchema as a,
-  PodcastLinkSchema as b
+  PodcastLinkSchema as a,
+  BlogPostSchema as b
 };

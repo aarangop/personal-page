@@ -4,7 +4,6 @@
 	import Icon from '@iconify/svelte';
 
 	export let data: PageData;
-	let githubProvider = data.providers.filter((provider) => provider.id === 'github');
 	let credentialsProvider = data.providers.filter((provider) => provider.id === 'credentials');
 	let username = '';
 	let password = '';
@@ -14,7 +13,9 @@
 {#if data.session}
 	<div class="flex flex-col space-y-2">
 		<div>You're currently logged in as {data.session.user?.name}</div>
-		<button class="btn variant-filled" on:click={() => signOut()}>Log Out</button>
+		<button class="btn variant-filled" on:click={() => signOut({ callbackUrl: '/' })}
+			>Log Out</button
+		>
 	</div>
 {:else}
 	<div class="flex flex-col space-y-2">

@@ -1,14 +1,6 @@
-import { redirect } from '@sveltejs/kit';
+import { createNewBlogPost } from '$lib/server/actions/blogs';
 import type { Actions } from './$types';
 
 export const actions = {
-	saveBlogPost: async ({ fetch, request }) =>
-		await fetch('/api/blogs', {
-			method: 'POST',
-			body: await request.formData()
-		}).then(async (data) => {
-			const res = await data.json();
-			console.log(res);
-			throw redirect(303, `/admin/blog/${res.slug}`);
-		})
+	default: async (event) => await createNewBlogPost(event, '/admin/blog/:slug')
 } satisfies Actions;
