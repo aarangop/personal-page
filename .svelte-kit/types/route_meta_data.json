@@ -30,14 +30,12 @@
 		"src/routes/admin/podcast/new/+page.server.ts",
 		"src/routes/+layout.server.ts"
 	],
-	"/api/blogs/[slug]": [
-		"src/routes/api/blogs/[slug]/+server.ts"
-	],
 	"/api/podcasts": [
 		"src/routes/api/podcasts/+server.ts"
 	],
 	"/blog": [
 		"src/routes/blog/+page.server.ts",
+		"src/routes/+layout.server.ts",
 		"src/routes/+layout.server.ts"
 	],
 	"/blog/[slug]": [
@@ -46,6 +44,7 @@
 	],
 	"/login": [
 		"src/routes/login/+page.server.ts",
+		"src/routes/+layout.server.ts",
 		"src/routes/+layout.server.ts"
 	],
 	"/podcast": [

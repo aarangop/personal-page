@@ -16,26 +16,28 @@ export const nodes = [
 	() => import('./nodes/12'),
 	() => import('./nodes/13'),
 	() => import('./nodes/14'),
-	() => import('./nodes/15')
+	() => import('./nodes/15'),
+	() => import('./nodes/16'),
+	() => import('./nodes/17')
 ];
 
 export const server_loads = [0];
 
 export const dictionary = {
-		"/": [2],
-		"/admin": [3],
-		"/admin/blog": [~4],
-		"/admin/blog/new": [~6],
-		"/admin/blog/[slug]": [~5],
-		"/admin/podcast": [~7],
-		"/admin/podcast/edit/[slug]": [~8],
-		"/admin/podcast/new": [~9],
-		"/blog": [~10],
-		"/blog/[slug]": [~11],
-		"/login": [~12],
-		"/podcast": [~13],
-		"/podcast/[slug]": [14],
-		"/signout": [~15]
+		"/": [4],
+		"/admin": [5],
+		"/admin/blog": [~6],
+		"/admin/blog/new": [~8],
+		"/admin/blog/[slug]": [~7],
+		"/admin/podcast": [~9],
+		"/admin/podcast/edit/[slug]": [~10],
+		"/admin/podcast/new": [~11],
+		"/blog": [~12,[2]],
+		"/blog/[slug]": [~13,[2]],
+		"/login": [~14,[3]],
+		"/podcast": [~15],
+		"/podcast/[slug]": [16],
+		"/signout": [~17]
 	};
 
 export const hooks = {
