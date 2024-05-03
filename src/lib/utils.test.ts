@@ -1,5 +1,5 @@
-import { getBreadCrumbs } from '$lib/utils';
 import { expect, suite, test } from 'vitest';
+import { getBreadCrumbs } from './client/utils/breadcrumbs';
 
 suite('getBreadCrumbs', () => {
 	test('get correct breadcrumbs for deep route', () => {

@@ -53,6 +53,6 @@ export const BlogPostSchema = z.object({
 
 export const BlogPostDisplaySchema = z
 	.object({
-		markdown: z.string()
+		content: z.string()
 	})
 	.merge(BlogPostSchema);

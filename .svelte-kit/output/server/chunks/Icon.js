@@ -1,4 +1,4 @@
-import { c as create_ssr_component, r as onDestroy, g as spread, i as escape_object, t as createEventDispatcher } from "./ssr.js";
+import { c as create_ssr_component, q as onDestroy, f as spread, h as escape_object, r as createEventDispatcher } from "./ssr.js";
 const matchIconName = /^[a-z0-9]+(-[a-z0-9]+)*$/;
 const stringToIcon = (value, validate, allowSimpleName, provider = "") => {
   const colonSeparated = value.split(":");
