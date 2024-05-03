@@ -1,5 +1,5 @@
 <script lang="ts">
-	import { testFeed, toSlug } from '$lib/utils';
+	import { testFeed, toSlug } from '$lib/client/utils/utils';
 	import Icon from '@iconify/svelte';
 	export let slug = '';
 	export let submitFormAction: String;

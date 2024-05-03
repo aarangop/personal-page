@@ -17,7 +17,7 @@
 	<div class="self-center mb-2 mt-2">
 		<Breadcrumbs {url} />
 	</div>
-	<div class="h-full self-center p-2 lg:px-8 w-full md:w-4/5 lg:w-2/3">
+	<div class="flex-1 flex justify-center p-2 lg:px-8">
 		<slot />
 	</div>
 </main>

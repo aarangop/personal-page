@@ -66,6 +66,13 @@
       "_app/immutable/assets/ProgressBar.BLtXAzjk.css"
     ]
   },
+  "_ReaderLayout.js": {
+    "file": "chunks/ReaderLayout.js",
+    "name": "ReaderLayout",
+    "imports": [
+      "_ssr.js"
+    ]
+  },
   "_auth.js": {
     "file": "chunks/auth.js",
     "name": "auth",
@@ -210,7 +217,7 @@
       "_utils.js"
     ],
     "css": [
-      "_app/immutable/assets/_layout.DqECdQVS.css"
+      "_app/immutable/assets/_layout.DlU1nff3.css"
     ]
   },
   "src/routes/+page.svelte": {
@@ -239,7 +246,10 @@
     "file": "entries/pages/admin/blog/_page.server.ts.js",
     "name": "entries/pages/admin/blog/_page.server.ts",
     "src": "src/routes/admin/blog/+page.server.ts",
-    "isEntry": true
+    "isEntry": true,
+    "imports": [
+      "_blogs.js"
+    ]
   },
   "src/routes/admin/blog/+page.svelte": {
     "file": "entries/pages/admin/blog/_page.svelte.js",
@@ -347,17 +357,6 @@
       "_PodcastFeedForm.js"
     ]
   },
-  "src/routes/api/blogs/[slug]/+server.ts": {
-    "file": "entries/endpoints/api/blogs/_slug_/_server.ts.js",
-    "name": "entries/endpoints/api/blogs/_slug_/_server.ts",
-    "src": "src/routes/api/blogs/[slug]/+server.ts",
-    "isEntry": true,
-    "imports": [
-      "_prisma.js",
-      "_schemas.js",
-      "_index.js"
-    ]
-  },
   "src/routes/api/podcasts/+server.ts": {
     "file": "entries/endpoints/api/podcasts/_server.ts.js",
     "name": "entries/endpoints/api/podcasts/_server.ts",
@@ -368,6 +367,16 @@
       "_schemas.js",
       "_index.js",
       "_index3.js"
+    ]
+  },
+  "src/routes/blog/+layout.svelte": {
+    "file": "entries/pages/blog/_layout.svelte.js",
+    "name": "entries/pages/blog/_layout.svelte",
+    "src": "src/routes/blog/+layout.svelte",
+    "isEntry": true,
+    "imports": [
+      "_ssr.js",
+      "_ReaderLayout.js"
     ]
   },
   "src/routes/blog/+page.server.ts": {
@@ -393,7 +402,10 @@
     "file": "entries/pages/blog/_slug_/_page.server.ts.js",
     "name": "entries/pages/blog/_slug_/_page.server.ts",
     "src": "src/routes/blog/[slug]/+page.server.ts",
-    "isEntry": true
+    "isEntry": true,
+    "imports": [
+      "_blogs.js"
+    ]
   },
   "src/routes/blog/[slug]/+page.svelte": {
     "file": "entries/pages/blog/_slug_/_page.svelte.js",
@@ -438,7 +450,8 @@
     "imports": [
       "_ssr.js",
       "_PodcastCard.js",
-      "_client.js"
+      "_client.js",
+      "_ReaderLayout.js"
     ]
   },
   "src/routes/podcast/[slug]/+page.svelte": {

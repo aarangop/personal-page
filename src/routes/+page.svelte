@@ -5,6 +5,7 @@
 <svelte:head>
 	<title>@andresap</title>
 </svelte:head>
+
 <section class="flex flex-col space-y-4 justify-start">
 	<h1 class="h2">About Me</h1>
 	<div
