@@ -62,6 +62,7 @@ declare module '$env/static/private' {
 	export const LESS: string;
 	export const LOGNAME: string;
 	export const LSCOLORS: string;
+	export const LaunchInstanceID: string;
 	export const MANPATH: string;
 	export const MallocNanoZone: string;
 	export const NVM_BIN: string;
@@ -74,9 +75,9 @@ declare module '$env/static/private' {
 	export const PAGER: string;
 	export const PATH: string;
 	export const PWD: string;
+	export const SECURITYSESSIONID: string;
 	export const SHELL: string;
 	export const SHLVL: string;
-	export const SQLITE_EXEMPT_PATH_FROM_VNODE_GUARDS: string;
 	export const SSH_AUTH_SOCK: string;
 	export const TERM: string;
 	export const TERM_PROGRAM: string;
@@ -100,9 +101,6 @@ declare module '$env/static/private' {
 	export const _P9K_TTY: string;
 	export const __CFBundleIdentifier: string;
 	export const __CF_USER_TEXT_ENCODING: string;
-	export const APPLICATION_INSIGHTS_NO_DIAGNOSTIC_CHANNEL: string;
-	export const DEBUG: string;
-	export const VSCODE_L10N_BUNDLE_LOCATION: string;
 	export const VITEST_VSCODE: string;
 	export const TEST: string;
 	export const VITEST: string;
@@ -178,6 +176,7 @@ declare module '$env/dynamic/private' {
 		LESS: string;
 		LOGNAME: string;
 		LSCOLORS: string;
+		LaunchInstanceID: string;
 		MANPATH: string;
 		MallocNanoZone: string;
 		NVM_BIN: string;
@@ -190,9 +189,9 @@ declare module '$env/dynamic/private' {
 		PAGER: string;
 		PATH: string;
 		PWD: string;
+		SECURITYSESSIONID: string;
 		SHELL: string;
 		SHLVL: string;
-		SQLITE_EXEMPT_PATH_FROM_VNODE_GUARDS: string;
 		SSH_AUTH_SOCK: string;
 		TERM: string;
 		TERM_PROGRAM: string;
@@ -216,9 +215,6 @@ declare module '$env/dynamic/private' {
 		_P9K_TTY: string;
 		__CFBundleIdentifier: string;
 		__CF_USER_TEXT_ENCODING: string;
-		APPLICATION_INSIGHTS_NO_DIAGNOSTIC_CHANNEL: string;
-		DEBUG: string;
-		VSCODE_L10N_BUNDLE_LOCATION: string;
 		VITEST_VSCODE: string;
 		TEST: string;
 		VITEST: string;

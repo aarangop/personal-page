@@ -1,4 +1,4 @@
-import { createNewBlogPost } from '$lib/server/actions/blogs';
+import { createNewBlogPost } from '$lib/server/actions/blog';
 import type { Actions } from './$types';
 
 export const actions = {

@@ -1,5 +1,5 @@
 <script lang="ts">
-	import { getBreadCrumbs, type BreadCrumb } from '$lib/utils';
+	import { getBreadCrumbs, type BreadCrumb } from '$lib/client/utils/breadcrumbs';
 	import { fade } from 'svelte/transition';
 	export let url: string;
 

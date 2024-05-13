@@ -1,7 +1,7 @@
 import { z } from 'zod';
 import { BlogPostSchema } from '../schemas';
 import { generate } from 'random-words';
-import { toSlug } from '$lib/utils';
+import { toSlug } from '$lib/client/utils/utils';
 
 export const getRandomBlogPost = () => {
 	// Generate random title and slug
