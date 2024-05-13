@@ -2,6 +2,11 @@ import { JSDOM } from 'jsdom';
 import DOMPurify from 'dompurify';
 import { marked } from 'marked';
 
+/**
+ * Takes a html string and structures it into sections based on the headings.
+ * @param html
+ * @returns html string
+ */
 const structureBlogPostHTML = (html: string) => {
 	const doc = new JSDOM(html).window.document;
 	const strcuturedDoc = new JSDOM('').window.document;
@@ -27,6 +32,11 @@ const structureBlogPostHTML = (html: string) => {
 	return strcuturedDoc.body.innerHTML;
 };
 
+/**
+ * Returns HTML content from a markdown string.
+ * @param markdown
+ * @returns Structured HTML content from markdown string
+ */
 export const getBlogPostHTMLContent = (markdown: string) => {
 	const window = new JSDOM('').window;
 	const purify = DOMPurify(window);
