@@ -10,6 +10,11 @@ import { z } from 'zod';
 import { getBlogPostHTMLContent } from '../utils/blog';
 
 /**
+ * This file contains functions for interacting with the blog posts in the database.
+ * The functions in this file should be thought of as the "controller" for the blog posts.
+ */
+
+/**
  * Fetches blog posts from the database using the provided query.
  * @param query Prisma.BlogPostWhereInput - The query to use when fetching blog posts.
  * @returns An array of BlogPostDisplaySchema objects.
