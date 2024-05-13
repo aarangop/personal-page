@@ -9,11 +9,21 @@ import { error, json, redirect, type RequestEvent } from '@sveltejs/kit';
 import { z } from 'zod';
 import { getBlogPostHTMLContent } from '../utils/blog';
 
+/**
+ * Fetches blog posts from the database using the provided query.
+ * @param query Prisma.BlogPostWhereInput - The query to use when fetching blog posts.
+ * @returns An array of BlogPostDisplaySchema objects.
+ */
 export const getBlogPosts = async (query: Prisma.BlogPostWhereInput = {}) => {
 	const entries = await prisma.blogPost.findMany({ where: query });
 	return z.array(BlogPostSchema).parse(entries);
 };
 
+/**
+ * Fetches a blog post from the database using the provided slug.
+ * @param slug The slug of the blog post to fetch.
+ * @returns A BlogPostDisplaySchema object.
+ */
 export const getBlogPostBySlug = async (slug: string) => {
 	const post = await prisma.blogPost.findUnique({ where: { slug } });
 	if (!post?.fileUrl) {
@@ -29,6 +39,11 @@ export const getBlogPostBySlug = async (slug: string) => {
 	} as z.infer<typeof BlogPostDisplaySchema>;
 };
 
+/**
+ * Creates a new blog post in the database.
+ * @param data Blog post data to create.
+ * @returns BlogPostSchema object.
+ */
 export const createBlogEntry = async (data: z.infer<typeof BlogPostSchema>) => {
 	const entry = await prisma.blogPost.create({ data });
 	return BlogPostSchema.parse(entry);
@@ -38,7 +53,9 @@ export const createBlogEntry = async (data: z.infer<typeof BlogPostSchema>) => {
  * Creates a new blog post from the provided Request object.
  * @param param0 RequestEvent
  * @param redirectUrl A url to redirect to. If undefined, no redirect will occur and the new blog post will be returned as JSON. If a url is provided, a 303 redirect will occur to the provided url with the new blog post's slug replacing :slug.
- * @returns
+ * @returns A JSON response containing the new blog post.
+ * @throws A 303 redirect response if a redirectUrl is provided.
+ * @throws A 500 error response if an error occurs.
  */
 export const createNewBlogPost = async (
 	{ request }: RequestEvent,

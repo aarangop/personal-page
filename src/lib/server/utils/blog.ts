@@ -24,7 +24,6 @@ const structureBlogPostHTML = (html: string) => {
 			currentSection.appendChild(element);
 		}
 	});
-	console.log(strcuturedDoc.body.innerHTML);
 	return strcuturedDoc.body.innerHTML;
 };
 
