@@ -1,4 +1,4 @@
-import { c as create_ssr_component, f as compute_rest_props, g as spread, h as escape_attribute_value, i as escape_object, a as add_attribute, l as each, e as escape, v as validate_component } from "../../../chunks/ssr.js";
+import { c as create_ssr_component, d as compute_rest_props, f as spread, g as escape_attribute_value, h as escape_object, a as add_attribute, k as each, e as escape, v as validate_component } from "../../../chunks/ssr.js";
 import "devalue";
 import "../../../chunks/client.js";
 const SignIn = create_ssr_component(($$result, $$props, $$bindings, slots) => {
@@ -38,7 +38,7 @@ const SignIn = create_ssr_component(($$result, $$props, $$bindings, slots) => {
   })}` : ``} ${provider === "credentials" ? `${slots.credentials ? slots.credentials({}) : ``}` : ``}  ${provider === "email" || provider === "sendgrid" || provider === "resend" ? `${slots.email ? slots.email({}) : ` <label class="section-header"${add_attribute("for", `input-email-for-${provider}-provider`, 0)}>Email</label> <input id="input-email-for-email-provider" type="email" name="email" placeholder="email@example.com" required> `}` : ``} <button type="submit">${slots.submitButton ? slots.submitButton({}) : `Signin${escape(provider ? ` with ${provider}` : "")}`}</button></form>`;
 });
 const Page = create_ssr_component(($$result, $$props, $$bindings, slots) => {
-  return `<div class="flex flex-row">${validate_component(SignIn, "SignIn").$$render($$result, { provider: "github", signInPage: "signin" }, {}, {})} <a class="card p-4" href="/admin/podcast" data-svelte-h="svelte-1wastld">Podcast</a> <a class="card p-4" href="/admin/blog" data-svelte-h="svelte-1s4kslt">Blog</a></div>`;
+  return `<section class="flex flex-row">${validate_component(SignIn, "SignIn").$$render($$result, { provider: "github", signInPage: "signin" }, {}, {})} <a class="card p-4" href="/admin/podcast" data-svelte-h="svelte-1wastld">Podcast</a> <a class="card p-4" href="/admin/blog" data-svelte-h="svelte-1s4kslt">Blog</a></section>`;
 });
 export {
   Page as default

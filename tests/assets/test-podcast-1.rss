@@ -1,0 +1,158 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<rss xmlns:dc="http://purl.org/dc/elements/1.1/"
+  xmlns:content="http://purl.org/rss/1.0/modules/content/" xmlns:atom="http://www.w3.org/2005/Atom"
+  version="2.0" xmlns:itunes="http://www.itunes.com/dtds/podcast-1.0.dtd"
+  xmlns:anchor="https://anchor.fm/xmlns">
+  <channel>
+    <title><![CDATA[Dejémonos de Vainas]]></title>
+    <description><![CDATA[Un espacio para cuestionar y ser cuestionado, y abrir mentes en el proceso, incluyendo la propia. 
+
+Me voy a sentar a conversar con la gente que me rodea, con esas personas que día a día me muestran nuevas perspectivas, y formas aproximarme al mundo. Son esas personas los maestros y maestras que me guían en esta corta existencia y que merecen ser escuchadas.
+
+ Así que acompáñenme en este viaje de entendimiento, para que encontremos, que a pesar de muchas diferencias, todos compartimos: una huamanidad.]]></description>
+    <link>https://podcasters.spotify.com/pod/show/andres728</link>
+    <image>
+      <url>
+        https://podcast-1.image.url.com
+      </url>
+      <title>Dejémonos de Vainas</title>
+      <link>https://podcasters.spotify.com/pod/show/andres728</link>
+    </image>
+    <generator>Anchor Podcasts</generator>
+    <lastBuildDate>Mon, 06 May 2024 10:55:08 GMT</lastBuildDate>
+    <atom:link href="https://anchor.fm/s/ef8e417c/podcast/rss" rel="self" type="application/rss+xml" />
+    <author><![CDATA[Andres]]></author>
+    <copyright><![CDATA[Andres]]></copyright>
+    <language><![CDATA[es]]></language>
+    <atom:link rel="hub" href="https://pubsubhubbub.appspot.com/" />
+    <itunes:author>Andres</itunes:author>
+    <itunes:summary>Un espacio para cuestionar y ser cuestionado, y abrir mentes en el proceso,
+      incluyendo la propia.
+
+      Me voy a sentar a conversar con la gente que me rodea, con esas personas que día a día me
+      muestran nuevas perspectivas, y formas aproximarme al mundo. Son esas personas los maestros y
+      maestras que me guían en esta corta existencia y que merecen ser escuchadas.
+
+      Así que acompáñenme en este viaje de entendimiento, para que encontremos, que a pesar de
+      muchas diferencias, todos compartimos: una huamanidad.</itunes:summary>
+    <itunes:type>episodic</itunes:type>
+    <itunes:owner>
+      <itunes:name>Andres</itunes:name>
+      <itunes:email></itunes:email>
+    </itunes:owner>
+    <itunes:explicit>No</itunes:explicit>
+    <itunes:category text="Society &amp; Culture">
+      <itunes:category text="Personal Journals" />
+    </itunes:category>
+    <itunes:image
+      href="https://d3t3ozftmdmh3i.cloudfront.net/staging/podcast_uploaded_nologo/40090775/40090775-1703323786979-8015ae0004076.jpg" />
+    <item>
+      <title><![CDATA[2. Amigos de toda la vida]]></title>
+      <description><![CDATA[<p>En este episodio acompáñennos en nuestra conversación con dos amigos con quienes hemos compartido muchas cosas por mucho tiempo, desde venirnos a vivir a Alemania, pasando por nuestros primeros trabajos y conseguir nuestros primeros apartamentos. Aquí recordamos algunas de las historias memorables de todo este tiempo y reflexionamos sobre cómo esta experiencia nos ha cambiado. </p>
+]]></description>
+      <link>
+        https://podcasters.spotify.com/pod/show/andres728/episodes/2--Amigos-de-toda-la-vida-e2i2vju</link>
+      <guid isPermaLink="false">79e17c6c-a2cb-4af4-b387-5b1ad82a719b</guid>
+      <dc:creator><![CDATA[Andres]]></dc:creator>
+      <pubDate>Sun, 07 Apr 2024 10:16:52 GMT</pubDate>
+      <enclosure
+        url="https://anchor.fm/s/ef8e417c/podcast/play/85081150/https%3A%2F%2Fd3ctxlq1ktw2nl.cloudfront.net%2Fstaging%2F2024-3-7%2F373492759-44100-2-ee6173a37ba15.m4a"
+        length="115928967" type="audio/x-m4a" />
+      <itunes:summary>&lt;p&gt;En este episodio acompáñennos en nuestra conversación con dos amigos
+        con quienes hemos compartido muchas cosas por mucho tiempo, desde venirnos a vivir a
+        Alemania, pasando por nuestros primeros trabajos y conseguir nuestros primeros apartamentos.
+        Aquí recordamos algunas de las historias memorables de todo este tiempo y reflexionamos
+        sobre cómo esta experiencia nos ha cambiado. &lt;/p&gt;
+</itunes:summary>
+      <itunes:explicit>Yes</itunes:explicit>
+      <itunes:duration>01:59:28</itunes:duration>
+      <itunes:image
+        href="https://d3t3ozftmdmh3i.cloudfront.net/staging/podcast_uploaded_nologo/40090775/40090775-1703323786979-8015ae0004076.jpg" />
+      <itunes:season>1</itunes:season>
+      <itunes:episode>2</itunes:episode>
+      <itunes:episodeType>full</itunes:episodeType>
+    </item>
+    <item>
+      <title><![CDATA[1. Feliz Año 2!]]></title>
+      <description><![CDATA[<p>Esta es una conversación con mi pareja Natalia. En este episodio celebramos el año nuevo. Revisamos el año que pasó, cómo llegamos a donde estamos, cómo nuestros sueños han cambiado y lo que esperamos para el futuro. Hablamos también de lo que creemos es una buena vida. </p>
+<p><br></p>
+<p>Es mi primer episodio de un podcast y como tal, hay muchas cosas que mejorar, pero es un primer paso en esta jornada!</p>
+]]></description>
+      <link>https://podcasters.spotify.com/pod/show/andres728/episodes/1--Feliz-Ao-e2emohr</link>
+      <guid isPermaLink="false">0742d0b3-b717-4ade-8e25-7572b31b7fa9</guid>
+      <dc:creator><![CDATA[Andres]]></dc:creator>
+      <pubDate>Sat, 20 Jan 2024 14:12:55 GMT</pubDate>
+      <enclosure
+        url="https://anchor.fm/s/ef8e417c/podcast/play/81534971/https%3A%2F%2Fd3ctxlq1ktw2nl.cloudfront.net%2Fstaging%2F2024-0-20%2F364199672-44100-2-27fd6ffbde1a5.m4a"
+        length="60897863" type="audio/x-m4a" />
+      <itunes:summary>&lt;p&gt;Esta es una conversación con mi pareja Natalia. En este episodio
+        celebramos el año nuevo. Revisamos el año que pasó, cómo llegamos a donde estamos, cómo
+        nuestros sueños han cambiado y lo que esperamos para el futuro. Hablamos también de lo que
+        creemos es una buena vida. &lt;/p&gt;
+        &lt;p&gt;&lt;br&gt;&lt;/p&gt;
+        &lt;p&gt;Es mi primer episodio de un podcast y como tal, hay muchas cosas que mejorar, pero
+        es un primer paso en esta jornada!&lt;/p&gt;
+</itunes:summary>
+      <itunes:explicit>Yes</itunes:explicit>
+      <itunes:duration>01:02:45</itunes:duration>
+      <itunes:image
+        href="https://d3t3ozftmdmh3i.cloudfront.net/staging/podcast_uploaded_nologo/40090775/40090775-1703323786979-8015ae0004076.jpg" />
+      <itunes:season>1</itunes:season>
+      <itunes:episode>1</itunes:episode>
+      <itunes:episodeType>full</itunes:episodeType>
+    </item>
+    <item>
+      <title><![CDATA[1. Feliz Año!]]></title>
+      <description><![CDATA[<p>Esta es una conversación con mi pareja Natalia. En este episodio celebramos el año nuevo. Revisamos el año que pasó, cómo llegamos a donde estamos, cómo nuestros sueños han cambiado y lo que esperamos para el futuro. Hablamos también de lo que creemos es una buena vida. </p>
+<p><br></p>
+<p>Es mi primer episodio de un podcast y como tal, hay muchas cosas que mejorar, pero es un primer paso en esta jornada!</p>
+]]></description>
+      <link>https://podcasters.spotify.com/pod/show/andres728/episodes/1--Feliz-Ao-e2emohr</link>
+      <guid isPermaLink="false">0742d0b3-b717-4ade-8e25-7572b31b7fa9</guid>
+      <dc:creator><![CDATA[Andres]]></dc:creator>
+      <pubDate>Sat, 20 Jan 2024 14:12:55 GMT</pubDate>
+      <enclosure
+        url="https://anchor.fm/s/ef8e417c/podcast/play/81534971/https%3A%2F%2Fd3ctxlq1ktw2nl.cloudfront.net%2Fstaging%2F2024-0-20%2F364199672-44100-2-27fd6ffbde1a5.m4a"
+        length="60897863" type="audio/x-m4a" />
+      <itunes:summary>&lt;p&gt;Esta es una conversación con mi pareja Natalia. En este episodio
+        celebramos el año nuevo. Revisamos el año que pasó, cómo llegamos a donde estamos, cómo
+        nuestros sueños han cambiado y lo que esperamos para el futuro. Hablamos también de lo que
+        creemos es una buena vida. &lt;/p&gt;
+        &lt;p&gt;&lt;br&gt;&lt;/p&gt;
+        &lt;p&gt;Es mi primer episodio de un podcast y como tal, hay muchas cosas que mejorar, pero
+        es un primer paso en esta jornada!&lt;/p&gt;
+</itunes:summary>
+      <itunes:explicit>Yes</itunes:explicit>
+      <itunes:duration>01:02:45</itunes:duration>
+      <itunes:image
+        href="https://d3t3ozftmdmh3i.cloudfront.net/staging/podcast_uploaded_nologo/40090775/40090775-1703323786979-8015ae0004076.jpg" />
+      <itunes:season>1</itunes:season>
+      <itunes:episode>1</itunes:episode>
+      <itunes:episodeType>full</itunes:episodeType>
+    </item>
+    <item>
+      <title><![CDATA[Trailer]]></title>
+      <description><![CDATA[<p>Hola! bienvenid@ a mi proyecto de hobby, un podcast en el que filosofaré y me sentaré a conversar con las personas que me rodean. El objetivo será cuestionar y ser cuestionado, y abrir mentes en el proceso, incluyendo la propia.</p>
+<p>Acompáñenme en este viaje de entendimiento, para que encontremos, que a pesar de muchas diferencias, todos compartimos: una humanidad.</p>
+]]></description>
+      <link>https://podcasters.spotify.com/pod/show/andres728/episodes/Trailer-e2djgev</link>
+      <guid isPermaLink="false">230bb1ae-c20c-4789-8490-79ea347af822</guid>
+      <dc:creator><![CDATA[Andres]]></dc:creator>
+      <pubDate>Sat, 23 Dec 2023 09:29:59 GMT</pubDate>
+      <enclosure
+        url="https://anchor.fm/s/ef8e417c/podcast/play/80379807/https%3A%2F%2Fd3ctxlq1ktw2nl.cloudfront.net%2Fstaging%2F2023-11-23%2F361007654-44100-2-6acecf83ea323.m4a"
+        length="723679" type="audio/x-m4a" />
+      <itunes:summary>&lt;p&gt;Hola! bienvenid@ a mi proyecto de hobby, un podcast en el que
+        filosofaré y me sentaré a conversar con las personas que me rodean. El objetivo será
+        cuestionar y ser cuestionado, y abrir mentes en el proceso, incluyendo la propia.&lt;/p&gt;
+        &lt;p&gt;Acompáñenme en este viaje de entendimiento, para que encontremos, que a pesar de
+        muchas diferencias, todos compartimos: una humanidad.&lt;/p&gt;
+</itunes:summary>
+      <itunes:explicit>No</itunes:explicit>
+      <itunes:duration>00:00:44</itunes:duration>
+      <itunes:image
+        href="https://d3t3ozftmdmh3i.cloudfront.net/staging/podcast_uploaded_nologo/40090775/40090775-1703323786979-8015ae0004076.jpg" />
+      <itunes:episodeType>trailer</itunes:episodeType>
+    </item>
+  </channel>
+</rss>

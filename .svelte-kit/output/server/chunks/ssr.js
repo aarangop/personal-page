@@ -275,30 +275,25 @@ function add_attribute(name, value, boolean) {
 function style_object_to_string(style_object) {
   return Object.keys(style_object).filter((key) => style_object[key]).map((key) => `${key}: ${escape_attribute_value(style_object[key])};`).join(" ");
 }
-function add_styles(style_object) {
-  const styles = style_object_to_string(style_object);
-  return styles ? ` style="${styles}"` : "";
-}
 export {
   add_attribute as a,
   compute_slots as b,
   create_ssr_component as c,
-  add_styles as d,
+  compute_rest_props as d,
   escape as e,
-  compute_rest_props as f,
-  spread as g,
-  escape_attribute_value as h,
-  escape_object as i,
-  validate_store as j,
-  subscribe as k,
-  each as l,
+  spread as f,
+  escape_attribute_value as g,
+  escape_object as h,
+  validate_store as i,
+  subscribe as j,
+  each as k,
+  getContext as l,
   missing_component as m,
-  getContext as n,
-  get_store_value as o,
-  noop as p,
-  safe_not_equal as q,
-  onDestroy as r,
+  get_store_value as n,
+  noop as o,
+  safe_not_equal as p,
+  onDestroy as q,
+  createEventDispatcher as r,
   setContext as s,
-  createEventDispatcher as t,
   validate_component as v
 };

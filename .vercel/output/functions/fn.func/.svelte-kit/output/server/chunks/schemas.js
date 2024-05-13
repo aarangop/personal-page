@@ -37,13 +37,12 @@ const BlogPostSchema = z.object({
   fileUrl: z.string().url(),
   imageUrl: z.string().url()
 });
-const BlogPostDisplaySchema = z.object({
+z.object({
   markdown: z.string()
 }).merge(BlogPostSchema);
 export {
-  BlogPostDisplaySchema as B,
+  BlogPostSchema as B,
   PodcastFeedDataSchema as P,
   UserRoles as U,
-  PodcastLinkSchema as a,
-  BlogPostSchema as b
+  PodcastLinkSchema as a
 };

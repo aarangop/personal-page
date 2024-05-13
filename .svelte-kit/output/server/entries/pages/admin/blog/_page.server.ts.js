@@ -1,5 +1,6 @@
-const load = async ({ fetch }) => ({
-  blogPosts: await fetch("/api/blogs").then((response) => response.json()).then((data) => data)
+import { g as getBlogPosts } from "../../../../chunks/blogs.js";
+const load = async () => ({
+  blogPosts: await getBlogPosts()
 });
 export {
   load
