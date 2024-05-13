@@ -101,9 +101,6 @@ declare module '$env/static/private' {
 	export const _P9K_TTY: string;
 	export const __CFBundleIdentifier: string;
 	export const __CF_USER_TEXT_ENCODING: string;
-	export const DEBUG: string;
-	export const APPLICATION_INSIGHTS_NO_DIAGNOSTIC_CHANNEL: string;
-	export const VSCODE_L10N_BUNDLE_LOCATION: string;
 	export const VITEST_VSCODE: string;
 	export const TEST: string;
 	export const VITEST: string;
@@ -218,9 +215,6 @@ declare module '$env/dynamic/private' {
 		_P9K_TTY: string;
 		__CFBundleIdentifier: string;
 		__CF_USER_TEXT_ENCODING: string;
-		DEBUG: string;
-		APPLICATION_INSIGHTS_NO_DIAGNOSTIC_CHANNEL: string;
-		VSCODE_L10N_BUNDLE_LOCATION: string;
 		VITEST_VSCODE: string;
 		TEST: string;
 		VITEST: string;
