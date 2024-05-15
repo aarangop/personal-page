@@ -1,4 +1,5 @@
 secrets
+playwright/.auth/*.json
 
 # SvelteKit & vercel
 .svelte-kit
