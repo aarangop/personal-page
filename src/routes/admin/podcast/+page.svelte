@@ -18,9 +18,7 @@
 			{:else}
 				<div class="grid lg:grid-cols-3 gap-2">
 					{#each data.podcastFeeds as feed}
-						<div data-testid="podcast-episode-card">
-							<PodcastCard enableEdit={true} feedData={feed} />
-						</div>
+						<PodcastCard enableEdit={true} feedData={feed} />
 					{/each}
 				</div>
 			{/if}

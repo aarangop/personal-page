@@ -18,9 +18,7 @@
 			<div class="grid lg:grid-cols-2 sm:grid-cols-1 gap-2">
 				{#if data.podcastFeeds.length > 0}
 					{#each data.podcastFeeds as feed}
-						<div data-testid="podcast-episode-card">
-							<PodcastCard enableEdit={false} feedData={feed}>{feed.slug}</PodcastCard>
-						</div>
+						<PodcastCard enableEdit={false} feedData={feed}>{feed.slug}</PodcastCard>
 					{/each}
 				{/if}
 			</div>
