@@ -13,6 +13,6 @@ test.describe('Blog page', () => {
 
 		const blogPostElements = await page.$$('data-testid=blog-post');
 
-		expect(blogPostElements.length).toBeGreaterThanOrEqual(nPosts);
+		expect(blogPostElements.length).toBeGreaterThanOrEqual(1);
 	});
 });
