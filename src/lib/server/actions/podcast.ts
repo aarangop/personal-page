@@ -5,6 +5,7 @@ import { error } from '@sveltejs/kit';
 import { XMLParser } from 'fast-xml-parser';
 import { z } from 'zod';
 import logger from '../logging';
+import { error, json, type RequestEvent } from '@sveltejs/kit';
 
 /**
  * Returns a list of podcast feeds from the database.
