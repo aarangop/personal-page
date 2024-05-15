@@ -2,7 +2,6 @@
 	import { goto } from '$app/navigation';
 	import { PodcastFeedDataSchema } from '$lib/schemas';
 	import Icon from '@iconify/svelte';
-	import { Avatar } from '@skeletonlabs/skeleton';
 	import { z } from 'zod';
 
 	export let feedData: z.infer<typeof PodcastFeedDataSchema>;
@@ -14,7 +13,7 @@
 	export let onEdit = () => {};
 </script>
 
-<div class="card p-4 flex flex-col backdrop-blur-sm">
+<div class="card p-4 flex flex-col backdrop-blur-sm" data-testid="podcast-feed-card">
 	<div class="flex flex-row justify-between items-center space-x-2 mb-2 h-24">
 		<div class="flex flex-col p-2 w-full h-full justify-between">
 			<h5 class="h5 text-lg font-medium line-clamp-1">
@@ -47,7 +46,12 @@
 				</a>
 			{/if}
 			{#if enableEdit}
-				<button type="button" class="btn variant-filled-secondary" on:click={onEdit}>Edit</button>
+				<button
+					type="button"
+					data-testid="edit-button"
+					class="btn variant-filled-secondary"
+					on:click={onEdit}>Edit</button
+				>
 			{/if}
 		</div>
 	</div>
