@@ -20,6 +20,17 @@ async function main() {
 			dateCreated: new Date()
 		}
 	});
+
+	const podcastFeedSlug = 'test-podcast-feed';
+	await prisma.podcastFeed.upsert({
+		where: { slug: podcastFeedSlug },
+		update: {},
+		create: {
+			slug: podcastFeedSlug,
+			rssFeed: 'https://anchor.fm/s/ef8e417c/podcast/rss'
+		}
+	});
+
 	console.log(blogPost);
 }
 
