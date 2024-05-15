@@ -1,9 +1,9 @@
-import { describe, afterEach, it, vi, expect, beforeAll, afterAll } from 'vitest';
-import { getPodcastFeeds, getPodcastFeedsWithMetaData } from './podcast';
-import { setupServer } from 'msw/node';
-import { HttpResponse, http } from 'msw';
 import prisma from '$lib/__mocks__/prisma';
 import * as fs from 'fs';
+import { HttpResponse, http } from 'msw';
+import { setupServer } from 'msw/node';
+import { afterAll, afterEach, beforeAll, describe, expect, it, test, vi } from 'vitest';
+import { getPodcastFeedMetaData, getPodcastFeeds, validatePodcastFeedFormData } from './podcast';
 
 vi.mock('../../prisma');
 
@@ -52,7 +52,7 @@ describe('getPodcastsWithMetaData', async () => {
 			{ id: '1', slug: 'test-podcast', rssFeed: 'https://test.feed.rss' },
 			{ id: '2', slug: 'test-podcast-2', rssFeed: 'https://test.feed-2.rss' }
 		]);
-		const podcasts = await getPodcastFeedsWithMetaData();
+		const podcasts = await getPodcastFeedMetaData();
 		const imageUrls = ['https://podcast-1.image.url.com', 'https://podcast-2.image.url.com'];
 		expect(podcasts.map((podcast) => podcast.imgUrl)).toStrictEqual(imageUrls);
 	});
@@ -62,8 +62,21 @@ describe('getPodcastsWithMetaData', async () => {
 			{ id: '1', slug: 'test-podcast', rssFeed: 'https://test.feed.rss' },
 			{ id: '2', slug: 'test-podcast-2', rssFeed: 'https://test.feed-2.rss' }
 		]);
-		const podcasts = await getPodcastFeedsWithMetaData();
+		const podcasts = await getPodcastFeedMetaData();
 		const numberOfEpisodes = [4, 3];
 		expect(podcasts.map((podcast) => podcast.numberOfEpisodes)).toStrictEqual(numberOfEpisodes);
+	});
+});
+
+describe('validatePodcastFeedFormData', () => {
+	test('should return a 400 error if slug is missing', async () => {
+		const formData = new FormData();
+		formData.append('rss_feed', 'https://test.feed.rss');
+		expect(validatePodcastFeedFormData(formData)).rejects.toThrow('Invalid slug');
+	});
+	test('should return a 400 error if feed is missing', async () => {
+		const formData = new FormData();
+		formData.append('podcast_slug', 'test-podcast');
+		expect(validatePodcastFeedFormData(formData)).rejects.toThrow('Invalid feed');
 	});
 });

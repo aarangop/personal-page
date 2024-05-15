@@ -17,7 +17,7 @@ export const PodcastLinkSchema = z.object({
 });
 
 export const PodcastFeedSchema = z.object({
-	id: z.string(),
+	id: z.string().optional(),
 	slug: z.string().regex(/^[A-Za-z0-9]+(?:-[A-Za-z0-9]+)*$/),
 	rssFeed: z.string().url(),
 	links: z.array(PodcastLinkSchema).optional()
