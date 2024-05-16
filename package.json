@@ -60,6 +60,7 @@
 		"supertest": "^7.0.0",
 		"svelte": "^4.2.7",
 		"svelte-check": "^3.6.0",
+		"sveltekit-superforms": "^2.13.1",
 		"tailwindcss": "^3.4.3",
 		"ts-node": "^10.9.2",
 		"tslib": "^2.4.1",

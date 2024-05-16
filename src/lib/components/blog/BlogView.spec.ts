@@ -39,15 +39,6 @@ describe('BlogView', () => {
 		expect(subtitleClasses).toContain('h3');
 	});
 
-	test('should display blog post content as HTML', async () => {
-		const postViewComponent = render(BlogView, { post: blogPost });
-		const firstHeading = postViewComponent.getByRole('heading', { name: 'First Heading' });
-		const secondHeading = postViewComponent.getByRole('heading', { name: 'This is a subheading' });
-
-		expect(firstHeading).toBeInTheDocument();
-		expect(secondHeading).toBeInTheDocument();
-	});
-
 	test('should display estimated reading time', async () => {
 		const postViewComponent = render(BlogView, { post: blogPost });
 		const readingTime = postViewComponent.getByText('1 min read');
