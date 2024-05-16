@@ -1,8 +1,8 @@
-import { render } from '@testing-library/svelte';
-import { describe, expect, test, vitest } from 'vitest';
-import BlogPostList from './BlogPostList.svelte';
-import type { z } from 'zod';
 import type { BlogPostSchema } from '$lib/schemas';
+import { render } from '@testing-library/svelte';
+import { describe, expect, test } from 'vitest';
+import type { z } from 'zod';
+import BlogPostList from './BlogPostList.svelte';
 
 describe('BlogPostList', async () => {
 	test('should display a list of blog posts', async () => {

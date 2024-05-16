@@ -22,6 +22,8 @@ export const getPodcastFeeds = async (query: Prisma.PodcastFeedWhereInput = {}) 
  */
 export const getPodcastFeedMetaData = async (query: Prisma.PodcastFeedWhereInput = {}) => {
 	const feeds = await getPodcastFeeds(query);
+	const slugs = feeds.map((feed) => feed.slug);
+	console.log(slugs);
 	const promises = feeds.map(async (feed) => {
 		const rss = await fetch(feed.rssFeed);
 		const rssText = await rss.text();
