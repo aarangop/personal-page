@@ -1,18 +1,27 @@
-import { json, redirect, type RequestEvent } from '@sveltejs/kit';
+import { createPodcastFeed, createPodcastFeedFromFormData } from '$lib/server/actions/podcast';
+import { fail, redirect, type RequestEvent } from '@sveltejs/kit';
 import type { Actions } from './$types';
-import {
-	createPodcastFeed,
-	createPodcastFeedFromFormData,
-	getPodcastFeedDataFromFormData
-} from '$lib/server/actions/podcast';
+import { superValidate } from 'sveltekit-superforms';
+import { zod } from 'sveltekit-superforms/adapters';
+import { podcastFeedSchema } from '$lib/schemas';
+
+export const load = async () => {
+	const form = await superValidate(zod(podcastFeedSchema));
+	return { form };
+};
 
 export const actions = {
-	createFeed: async (event: RequestEvent) => {
-		const feed = await createPodcastFeedFromFormData(await event.request.formData()).catch(
-			(error) => {
-				throw error(...error);
-			}
-		);
+	createFeed: async ({ request }) => {
+		console.log('Creating feed');
+		// Validate form with super-form
+		const form = await superValidate(request, zod(podcastFeedSchema));
+		if (!form.valid) {
+			console.log(form.errors);
+			return fail(400, { form });
+		}
+		// Create podcast feed from form data
+		const feed = await createPodcastFeed(form.data);
+		// Redirect to feed page
 		throw redirect(303, `/podcast/${feed.slug}`);
 	},
 	updateFeed: async ({ request, fetch }) =>

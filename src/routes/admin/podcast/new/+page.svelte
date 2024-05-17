@@ -1,13 +1,18 @@
 <script lang="ts">
+	import ReaderLayout from '$lib/components/ReaderLayout.svelte';
 	import PodcastFeedForm from '$lib/components/podcast/PodcastFeedForm.svelte';
+	import type { PageData } from './$types';
+	export let data: PageData;
 </script>
 
 <svelte:head>
 	<title>New Podcast</title>
 </svelte:head>
-<section class="flex flex-col py-4 items-center">
-	<h1 class="font-serif flex-1 text-2xl mb-4">New Podcast Feed</h1>
-	<div class="card flex justify-center w-full overflow-scroll">
-		<PodcastFeedForm submitFormAction="createFeed"></PodcastFeedForm>
-	</div>
-</section>
+<ReaderLayout>
+	<section class="flex flex-col items-center w-full">
+		<h2 class="h2 mb-2">New Podcast Feed</h2>
+		<div class="card flex justify-center w-full">
+			<PodcastFeedForm data={data.form} submitFormAction="createFeed"></PodcastFeedForm>
+		</div>
+	</section>
+</ReaderLayout>
