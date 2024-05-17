@@ -1,11 +1,18 @@
 <script lang="ts">
 	import { testFeed, toSlug } from '$lib/client/utils/utils';
+	import { type PodcastFeedSchema } from '$lib/schemas';
 	import Icon from '@iconify/svelte';
-	export let slug = '';
+	import { superForm, type Infer, type SuperValidated } from 'sveltekit-superforms/client';
+	import SuperDebug from 'sveltekit-superforms';
+	import { twMerge } from 'tailwind-merge';
+
 	export let submitFormAction: String;
 	export let feedUrl = '';
 	export let podcastId = '';
 	export let deleteAction = '';
+	export let data: SuperValidated<Infer<PodcastFeedSchema>>;
+
+	const { form, errors, enhance, constraints, message } = superForm(data);
 
 	let feedOk = false;
 	let feedChecked = false;
@@ -13,7 +20,7 @@
 
 	const testRssFeed = async () => {
 		try {
-			await testFeed(feedUrl);
+			await testFeed($form.rssFeed);
 			feedOk = true;
 		} catch (e) {
 			feedOk = false;
@@ -21,10 +28,17 @@
 			feedChecked = true;
 		}
 	};
-	$: slug = toSlug(title);
+	$: $form.slug = toSlug(title);
 </script>
 
-<form method="POST" class="flex p-4 flex-col grow rounded-lg" action={`?/${submitFormAction}`}>
+<SuperDebug data={$form}></SuperDebug>
+{#if $message}<h3>{$message}</h3>{/if}
+<form
+	method="POST"
+	class="flex p-4 flex-col grow rounded-lg"
+	action={`?/${submitFormAction}`}
+	use:enhance
+>
 	<div class="flex flex-col space-y-2 grow mb-4">
 		<div>
 			<label class="mb-2 label" for="podcast_title">Title</label>
@@ -39,23 +53,31 @@
 			/>
 			<label class="mb-2 label" for="podcast_slug">Slug</label>
 			<input
-				bind:value={slug}
-				id="podcast_slug"
-				name="podcast_slug"
+				name="slug"
 				pattern="^[a-z0-9]+(?:-[a-z0-9]+)*$"
 				placeholder="my-awesome-podcast"
-				class="input mb-2 text-gray-400 label"
+				class={twMerge('input mb-2 label', $errors.slug ? 'input-error' : '')}
+				bind:value={$form.slug}
+				{...$constraints.slug}
 				readonly
 			/>
+			{#if $errors.slug}
+				<p
+					class="flex-1 text-error-500 px-2 py-1 rounded-full bg-error-200/30 dark:bg-error-700/30"
+				>
+					{$errors.slug}
+				</p>
+			{/if}
 		</div>
 		<div>
 			<label class="label mb-2" for="rss_feed">RSS Feed URL</label>
 			<input
 				class={`input ${!feedChecked ? '' : feedOk ? 'input-success' : 'input-error'}`}
 				type="url"
-				name="rss_feed"
+				name="rssFeed"
 				on:change={testRssFeed}
-				bind:value={feedUrl}
+				bind:value={$form.rssFeed}
+				{...$constraints.rssFeed}
 				placeholder="https://my.awesome.podcast/rss"
 			/>
 			{#if !feedOk && feedChecked}

@@ -16,12 +16,14 @@ export const PodcastLinkSchema = z.object({
 	url: z.string().url()
 });
 
-export const PodcastFeedSchema = z.object({
+export const podcastFeedSchema = z.object({
 	id: z.string().optional(),
-	slug: z.string().regex(/^[A-Za-z0-9]+(?:-[A-Za-z0-9]+)*$/),
+	slug: z.string().regex(/^[A-Za-z0-9]+(?:-[A-Za-z0-9]+)*$/, { message: 'Invalid slug' }),
 	rssFeed: z.string().url(),
 	links: z.array(PodcastLinkSchema).optional()
 });
+
+export type PodcastFeedSchema = typeof podcastFeedSchema;
 
 export const PodcastEpisodeSchema = z.object({
 	id: z.string().optional(),
@@ -39,7 +41,7 @@ export const PodcastFeedDataSchema = z
 		numberOfEpisodes: z.number().int(),
 		episodes: z.array(z.object({})).optional()
 	})
-	.merge(PodcastFeedSchema);
+	.merge(podcastFeedSchema);
 
 export const BlogPostSchema = z.object({
 	id: z.string().optional(),

@@ -1,5 +1,5 @@
 import prisma from '$lib/prisma';
-import { PodcastFeedDataSchema, PodcastFeedSchema, PodcastLinkSchema } from '$lib/schemas';
+import { PodcastFeedDataSchema, podcastFeedSchema, PodcastLinkSchema } from '$lib/schemas';
 import { Prisma } from '@prisma/client';
 import { XMLParser } from 'fast-xml-parser';
 import { z } from 'zod';
@@ -84,7 +84,7 @@ export const createPodcastFeedFromFormData = async (data: FormData) => {
 	const podcastFeedData = getPodcastFeedDataFromFormData(data);
 	return await createPodcastFeed(podcastFeedData);
 };
-export const createPodcastFeed = async (podcastFeedData: z.infer<typeof PodcastFeedSchema>) => {
+export const createPodcastFeed = async (podcastFeedData: z.infer<typeof podcastFeedSchema>) => {
 	const log = logger.child({ name: 'createPodcastFeed' });
 
 	try {
