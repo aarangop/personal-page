@@ -2,7 +2,6 @@
 	import { goto } from '$app/navigation';
 	import { PodcastFeedDataSchema } from '$lib/schemas';
 	import Icon from '@iconify/svelte';
-	import { Avatar } from '@skeletonlabs/skeleton';
 	import { z } from 'zod';
 
 	export let feedData: z.infer<typeof PodcastFeedDataSchema>;

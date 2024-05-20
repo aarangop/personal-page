@@ -1,16 +1,45 @@
-import { render, fireEvent } from '@testing-library/svelte';
-import { describe, expect, it, test } from 'vitest';
+import { podcastFeedSchema } from '$lib/schemas';
+import { fireEvent, render } from '@testing-library/svelte';
+import { superValidate } from 'sveltekit-superforms';
+import { zod } from 'sveltekit-superforms/adapters';
+import { describe, expect, it } from 'vitest';
 import PodcastFeedForm from './PodcastFeedForm.svelte';
 
-describe('PodcastFeedForm', async () => {
-	it('should validate the title', async () => {
-		const { getByLabelText, getByText } = render(PodcastFeedForm);
-		const titleInput = getByLabelText('Title');
+describe('PodcastFeedForm', () => {
+	it('should render the form', async () => {
+		const formData = await superValidate(zod(podcastFeedSchema));
+		const form = render(PodcastFeedForm, {
+			props: { data: formData, submitFormAction: 'form-action' }
+		});
+	});
 
-		// Enter an invalid string in the title input
-		fireEvent.input(titleInput, { target: { value: '*&hello mama' } });
+	it('should display a validation error for invalid slug', async () => {
+		const formData = await superValidate(zod(podcastFeedSchema));
+		const { findByText, getByLabelText } = render(PodcastFeedForm, {
+			props: { data: formData, submitFormAction: 'form-action' }
+		});
 
-		// Assert that a validation error message appears
-		expect(getByText('Invalid title')).toBeInTheDocument();
+		const titleInput = getByLabelText('Slug');
+		await fireEvent.input(titleInput, { target: { value: '!invalid-slug!' } });
+
+		const errorMessage = await findByText('Invalid slug');
+		expect(errorMessage).toBeInTheDocument();
+	});
+
+	it('should display a validation message for a valid feed upon validation via validation button', async () => {
+		const formData = await superValidate(zod(podcastFeedSchema));
+		const { findByText, getByLabelText, getByRole } = render(PodcastFeedForm, {
+			props: { data: formData, submitFormAction: 'form-action' }
+		});
+
+		const feedInput = getByLabelText('RSS Feed URL');
+		await fireEvent.input(feedInput, {
+			target: { value: 'https://anchor.fm/s/ef8e417c/podcast/rss' }
+		});
+		const validateFeedButton = getByRole('button', { name: /test feed/i });
+		await fireEvent.click(validateFeedButton);
+
+		const validationMessage = await findByText('Feed okay!');
+		expect(validationMessage).toBeInTheDocument();
 	});
 });
