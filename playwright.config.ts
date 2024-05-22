@@ -17,11 +17,10 @@ const config: PlaywrightTestConfig = {
 		{
 			name: 'chromium',
 			use: { ...devices['Desktop Chrome'], storageState: 'playwright/.auth/user.json' },
-			dependencies: ['setup']
+			dependencies: ['setup'],
+			testMatch: /(.+\.)?(e2e)\.(test|spec)\.[jt]s/
 		}
-	],
-	// testDir: 'e2e',
-	testMatch: /(.+\.)?(e2e)\.(test|spec)\.[jt]s/
+	]
 };
 
 export default config;

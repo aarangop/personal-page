@@ -49,8 +49,6 @@
 	}
 </script>
 
-<SuperDebug data={$form}></SuperDebug>
-{#if $message}<h3>{$message}</h3>{/if}
 <form
 	method="POST"
 	class="flex p-4 flex-col grow rounded-lg"
