@@ -29,13 +29,4 @@
 			{@html post.content}
 		</BlogContent>
 	</div>
-	<div class="flex flex-row mb-64 space-x-2">
-		<button class="btn variant-filled-primary">Share</button>
-		<button
-			class="btn variant-soft"
-			on:click={() => {
-				window.scrollTo({ top: 0, behavior: 'smooth' });
-			}}>Back to top</button
-		>
-	</div>
 </div>
