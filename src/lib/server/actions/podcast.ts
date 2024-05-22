@@ -1,10 +1,10 @@
 import prisma from '$lib/prisma';
 import { PodcastFeedDataSchema, podcastFeedSchema, PodcastLinkSchema } from '$lib/schemas';
 import { Prisma } from '@prisma/client';
+import { error } from '@sveltejs/kit';
 import { XMLParser } from 'fast-xml-parser';
 import { z } from 'zod';
 import logger from '../logging';
-import { error, json, type RequestEvent } from '@sveltejs/kit';
 
 /**
  * Returns a list of podcast feeds from the database.
@@ -22,8 +22,7 @@ export const getPodcastFeeds = async (query: Prisma.PodcastFeedWhereInput = {}) 
  */
 export const getPodcastFeedMetaData = async (query: Prisma.PodcastFeedWhereInput = {}) => {
 	const feeds = await getPodcastFeeds(query);
-	const slugs = feeds.map((feed) => feed.slug);
-	console.log(slugs);
+
 	const promises = feeds.map(async (feed) => {
 		const rss = await fetch(feed.rssFeed);
 		const rssText = await rss.text();
@@ -85,8 +84,6 @@ export const createPodcastFeedFromFormData = async (data: FormData) => {
 	return await createPodcastFeed(podcastFeedData);
 };
 export const createPodcastFeed = async (podcastFeedData: z.infer<typeof podcastFeedSchema>) => {
-	const log = logger.child({ name: 'createPodcastFeed' });
-
 	try {
 		const result = await prisma.podcastFeed.create({
 			data: {
