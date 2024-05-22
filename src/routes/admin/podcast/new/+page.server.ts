@@ -1,9 +1,9 @@
-import { createPodcastFeed, createPodcastFeedFromFormData } from '$lib/server/actions/podcast';
-import { fail, redirect, type RequestEvent } from '@sveltejs/kit';
-import type { Actions } from './$types';
+import { podcastFeedSchema } from '$lib/schemas';
+import { createPodcastFeed } from '$lib/server/actions/podcast';
+import { fail, redirect } from '@sveltejs/kit';
 import { superValidate } from 'sveltekit-superforms';
 import { zod } from 'sveltekit-superforms/adapters';
-import { podcastFeedSchema } from '$lib/schemas';
+import type { Actions } from './$types';
 
 export const load = async () => {
 	const form = await superValidate(zod(podcastFeedSchema));
