@@ -1,30 +1,44 @@
-import { Prisma, PrismaClient } from '@prisma/client';
+import { PrismaClient } from '@prisma/client';
 
 const prisma = new PrismaClient();
 
-// async function main() {
-// 	console.log('Start seeding');
+async function main() {
+	console.log('Start seeding');
 
-// 	// await prisma.podcastFeeds
-// 	// 	.create({
-// 	// 		data: {
-// 	// 			name: 'Dejémonos de vainas',
-// 	// 			rssFeed: 'https://anchor.fm/s/ef8e417c/podcast/rss'
-// 	// 		}
-// 	// 	})
-// 	// 	.catch((e) => {
-// 	// 		console.log(e);
-// 	// 	});
+	const slug = 'test-post';
+	const blogPost = await prisma.blogPost.upsert({
+		where: { slug },
+		update: {},
+		create: {
+			title: 'The Princess of Mismatched Dreams',
+			slug,
+			subtitle: 'A tale of courage, unicorns, rainbows, and swords',
+			fileUrl:
+				'https://storage.googleapis.com/andresap-perspage-dev/testing/The%20Princess%20of%20Mismatched%20Dreams.md',
+			imageUrl:
+				'https://storage.googleapis.com/andresap-perspage-dev/testing/Gemini_Generated_Image_ocpu86ocpu86ocpu.jpeg',
+			dateCreated: new Date()
+		}
+	});
 
-// 	const allPosts = await prisma.podcastFeeds.findMany({});
-// 	console.dir(allPosts);
-// }
+	const podcastFeedSlug = 'test-podcast-feed';
+	await prisma.podcastFeed.upsert({
+		where: { slug: podcastFeedSlug },
+		update: {},
+		create: {
+			slug: podcastFeedSlug,
+			rssFeed: 'https://anchor.fm/s/ef8e417c/podcast/rss'
+		}
+	});
 
-// main()
-// 	.catch(async (e) => {
-// 		console.error(e);
-// 		process.exit(1);
-// 	})
-// 	.finally(async () => {
-// 		await prisma.$disconnect();
-// 	});
+	console.log(blogPost);
+}
+
+main()
+	.catch(async (e) => {
+		console.error(e);
+		process.exit(1);
+	})
+	.finally(async () => {
+		await prisma.$disconnect();
+	});

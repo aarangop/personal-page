@@ -1,5 +1,5 @@
 <script lang="ts">
-	import PodcastFeedForm from '$lib/components/PodcastFeedForm.svelte';
+	import PodcastFeedForm from '$lib/components/podcast/PodcastFeedForm.svelte';
 
 	export let data;
 	let podcastId = data.id;

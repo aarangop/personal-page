@@ -1,4 +1,10 @@
 import { z } from 'zod';
+
+export enum UserRoles {
+	ADMIN = 'admin',
+	USER = 'user'
+}
+
 export type PodcastFeed = {
 	id: string;
 	slug: string;
@@ -7,15 +13,17 @@ export type PodcastFeed = {
 
 export const PodcastLinkSchema = z.object({
 	platform: z.string(),
-	link: z.string().url()
+	url: z.string().url()
 });
 
-export const PodcastFeedSchema = z.object({
-	id: z.string(),
-	slug: z.string().regex(/^[A-Za-z0-9]+(?:-[A-Za-z0-9]+)*$/),
+export const podcastFeedSchema = z.object({
+	id: z.string().optional(),
+	slug: z.string().regex(/^[A-Za-z0-9]+(?:-[A-Za-z0-9]+)*$/, { message: 'Invalid slug' }),
 	rssFeed: z.string().url(),
 	links: z.array(PodcastLinkSchema).optional()
 });
+
+export type PodcastFeedSchema = typeof podcastFeedSchema;
 
 export const PodcastEpisodeSchema = z.object({
 	id: z.string().optional(),
@@ -33,20 +41,20 @@ export const PodcastFeedDataSchema = z
 		numberOfEpisodes: z.number().int(),
 		episodes: z.array(z.object({})).optional()
 	})
-	.merge(PodcastFeedSchema);
+	.merge(podcastFeedSchema);
 
 export const BlogPostSchema = z.object({
 	id: z.string().optional(),
 	title: z.string(),
-	subtitle: z.string().optional(),
+	subtitle: z.string(),
 	slug: z.string(),
 	dateCreated: z.coerce.date(),
-	fileUrl: z.string().url().optional(),
-	imageUrl: z.string().url().optional()
+	fileUrl: z.string().url(),
+	imageUrl: z.string().url()
 });
 
 export const BlogPostDisplaySchema = z
 	.object({
-		markdown: z.string()
+		content: z.string()
 	})
 	.merge(BlogPostSchema);

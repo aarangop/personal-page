@@ -2,9 +2,9 @@
 	import BlogForm from '$lib/components/blog/BlogForm.svelte';
 </script>
 
-<section class=" content-center w-full p-4 flex justify-center">
-	<div class="card min-w-64 lg:w-1/3 md:w-1/2 p-4">
-		<h3 class="h3 mb-2">New Blog Post</h3>
-		<BlogForm submitAction="saveBlogPost" class=""></BlogForm>
+<section class="card p-4 flex-1 flex flex-col">
+	<h3 class="h3 mb-2">New Blog Post</h3>
+	<div class="flex-1">
+		<BlogForm />
 	</div>
 </section>

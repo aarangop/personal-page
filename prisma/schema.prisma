@@ -8,6 +8,7 @@ generator client {
   provider = "prisma-client-js"
 }
 
+
 datasource db {
   provider = "mongodb"
   url      = env("DATABASE_URL")
@@ -16,7 +17,7 @@ datasource db {
 model PodcastLink {
   id String @id @default(auto()) @map("_id") @db.ObjectId
   platform String
-  link String
+  url String
   podcastFeed PodcastFeed @relation(fields: [podcastFeedId], references: [id])
   podcastFeedId String @db.ObjectId
 }
@@ -24,7 +25,7 @@ model PodcastLink {
 model PodcastFeed {
   id String @id @default(auto()) @map("_id") @db.ObjectId
   slug String @unique
-  rssFeed String @unique 
+  rssFeed String 
   links PodcastLink[]
 }
 
@@ -36,4 +37,51 @@ model BlogPost {
   fileUrl String
   imageUrl String
   dateCreated DateTime @default(now())
+}
+
+model Account {
+  id                 String  @id @default(auto()) @map("_id") @db.ObjectId
+  userId             String  @db.ObjectId
+  type               String
+  provider           String
+  providerAccountId  String
+  refresh_token      String?  @db.String
+  access_token       String?  @db.String
+  expires_at         Int?
+  token_type         String?
+  scope              String?
+  id_token           String?  @db.String
+  session_state      String?
+ 
+  user User @relation(fields: [userId], references: [id], onDelete: Cascade)
+ 
+  @@unique([provider, providerAccountId])
+}
+ 
+model Session {
+  id           String   @id @default(auto()) @map("_id") @db.ObjectId
+  sessionToken String   @unique
+  userId       String   @db.ObjectId
+  expires      DateTime
+  user         User     @relation(fields: [userId], references: [id], onDelete: Cascade)
+}
+ 
+model User {
+  id            String    @id @default(auto()) @map("_id") @db.ObjectId
+  name          String?
+  email         String?   @unique
+  emailVerified DateTime?
+  image         String?
+  role          String @default("user")
+  accounts      Account[]
+  sessions      Session[]
+}
+ 
+model VerificationToken {
+  id         String @id @default(auto()) @map("_id") @db.ObjectId
+  identifier String
+  token      String   @unique
+  expires    DateTime
+ 
+  @@unique([identifier, token])
 }

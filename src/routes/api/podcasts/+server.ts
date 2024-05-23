@@ -1,44 +1,14 @@
 import prisma from '$lib/prisma';
-import { PodcastFeedDataSchema } from '$lib/schemas';
-import { json } from '@sveltejs/kit';
-import { XMLParser } from 'fast-xml-parser';
+import { PodcastLinkSchema } from '$lib/schemas';
+import logger from '$lib/server/logging';
+import { error, json } from '@sveltejs/kit';
+import { z } from 'zod';
 
-export async function GET() {
-	const response = await prisma.podcastFeed.findMany({});
-	const fetchFeedDataPromises = response.map(async (feedMetaData) => {
-		return await fetch(feedMetaData.rssFeed)
-			.then((res) => res.text())
-			.then((str) => {
-				const parser = new XMLParser({
-					ignoreAttributes: false
-				});
-				let feed = parser.parse(str);
-				let name = feed.rss.channel.title;
-				if (!name) {
-					name = 'Unknown';
-				}
-				let imgUrl = feed.rss.channel.image?.url;
-				if (!imgUrl) {
-					imgUrl = 'https://media1.tenor.com/m/x8v1oNUOmg4AAAAd/rickroll-roll.gif';
-				}
-				let numberOfEpisodes = feed.rss.channel.item.length;
-				let description = feed.rss.channel.description;
-				return PodcastFeedDataSchema.parse({
-					...feedMetaData,
-					title: name,
-					imgUrl,
-					description,
-					numberOfEpisodes
-				});
-			});
-	});
-	const podcasts = await Promise.all(fetchFeedDataPromises);
-	return json(podcasts);
-}
-
-export async function POST({ request }) {
+export const PUT = async ({ request }) => {
+	const log = logger.child({ name: 'api/podcasts PUT' });
 	const data = await request.formData();
 	const id = data.get('podcast_id');
+
 	if (!id) {
 		throw Error('Invalid podcast id!');
 	}
@@ -50,12 +20,32 @@ export async function POST({ request }) {
 	if (!feed) {
 		throw Error('Invalid feed');
 	}
-	const result = await prisma.podcastFeed.update({
-		where: { id: id!.toString() },
-		data: {
-			slug: slug!.toString(),
-			rssFeed: feed!.toString()
-		}
-	});
-	return json(result);
-}
+
+	const spotifyUrl = data.get('spotify_link');
+	let updateQuery: any = {
+		slug: slug!.toString(),
+		rssFeed: feed!.toString()
+	};
+	if (spotifyUrl) {
+		updateQuery = {
+			...updateQuery,
+			links: {
+				deleteMany: {},
+				create: { platform: 'Spotify', url: spotifyUrl.toString() }
+			}
+		};
+	}
+	try {
+		const result = await prisma.podcastFeed.update({
+			where: {
+				id: id!.toString()
+			},
+			data: updateQuery
+		});
+		log.info('Podcast feed updated', result);
+		return json(result);
+	} catch (e) {
+		log.error(e);
+		return json(e);
+	}
+};

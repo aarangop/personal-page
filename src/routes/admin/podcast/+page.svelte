@@ -1,6 +1,6 @@
 <script lang="ts">
 	import { goto } from '$app/navigation';
-	import PodcastCard from '$lib/components/PodcastCard.svelte';
+	import PodcastCard from '$lib/components/podcast/PodcastCard.svelte';
 	import type { PageData } from './$types';
 	export let data: PageData;
 
@@ -18,7 +18,9 @@
 			{:else}
 				<div class="grid lg:grid-cols-3 gap-2">
 					{#each data.podcastFeeds as feed}
-						<PodcastCard enableEdit={true} feedData={feed} />
+						<div data-testid="podcast-episode-card">
+							<PodcastCard enableEdit={true} feedData={feed} />
+						</div>
 					{/each}
 				</div>
 			{/if}

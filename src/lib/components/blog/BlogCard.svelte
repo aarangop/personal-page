@@ -8,11 +8,19 @@
 	export let onDelete: (() => {}) | null = null;
 </script>
 
-<div class="card flex flex-row overflow-clip items-center backdrop-blur-sm">
-	<img src={blogPost.imageUrl} class="w-36 h-36 object-cover" alt={blogPost.title} />
-	<div class="flex flex-col h-full w-full p-4">
-		<h4 class="h4 text-left mb-2">{blogPost.title}</h4>
-		<span class="text-left flex-1 text-gray-600 dark:text-gray-300 line-clamp-1 mb-1 font-serif"
+<div
+	class="card flex flex-row max-h-24 lg:max-h-32 items-center overflow-clip"
+	data-testid="blog-post"
+>
+	<img
+		src={blogPost.imageUrl}
+		class="w-24 h-24 lg:w-32 lg:h-32 object-cover"
+		alt={blogPost.title}
+	/>
+	<div class="flex flex-col p-4 flex-1 justify-between h-full">
+		<h4 class="h4 text-left mb-2 text-wrap line-clamp-1 sm:line-clamp-2">{blogPost.title}</h4>
+		<span
+			class="text-left hidden sm:block flex-1 text-gray-600 dark:text-gray-300 line-clamp-1 mb-1 font-serif"
 			>{blogPost.subtitle}</span
 		>
 		<span class="text-left text-gray-500 dark:text-gray-400 text-sm"

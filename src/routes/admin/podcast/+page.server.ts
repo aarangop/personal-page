@@ -1,5 +1,6 @@
+import { getPodcastFeedMetaData } from '$lib/server/actions/podcast';
 import type { PageServerLoad } from './$types';
 
-export const load: PageServerLoad = async ({ fetch }) => ({
-	podcastFeeds: await fetch('/api/podcasts').then(async (data) => await data.json())
+export const load: PageServerLoad = async () => ({
+	podcastFeeds: await getPodcastFeedMetaData()
 });
