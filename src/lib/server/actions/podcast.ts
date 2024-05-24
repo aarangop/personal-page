@@ -9,6 +9,7 @@ import { Prisma } from '@prisma/client';
 import { error } from '@sveltejs/kit';
 import { XMLParser } from 'fast-xml-parser';
 import { z } from 'zod';
+import logger from '../logging';
 
 /**
  * Returns a list of podcast feeds from the database.
@@ -70,4 +71,34 @@ export const createPodcastFeed = async (podcastFeedData: PodcastFeedSchema) => {
 	}
 };
 
-export const updatePodcastFeed = async (id: string, data: PodcastFeedSchema) => {};
+export const updatePodcastFeed = async (data: PodcastFeedSchema) => {
+	const id = data.id;
+	if (!id) {
+		throw error(400, 'Podcast feed ID is required');
+	}
+	const log = logger.child({ name: 'api/podcasts PUT' });
+
+	const spotifyUrl = data.links?.find((link) => link.platform === 'Spotify')?.url;
+
+	let updateQuery: any = {
+		slug: data.slug,
+		rssFeed: data.rssFeed
+	};
+	if (spotifyUrl) {
+		updateQuery = {
+			...updateQuery,
+			links: {
+				deleteMany: {},
+				create: { platform: 'Spotify', url: spotifyUrl.toString() }
+			}
+		};
+	}
+	const result = await prisma.podcastFeed.update({
+		where: {
+			id: id!.toString()
+		},
+		data: updateQuery
+	});
+	log.info('Podcast feed updated', result);
+	return result;
+};
