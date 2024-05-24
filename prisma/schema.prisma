@@ -24,6 +24,7 @@ model PodcastLink {
 
 model PodcastFeed {
   id String @id @default(auto()) @map("_id") @db.ObjectId
+  title String
   slug String @unique
   rssFeed String 
   links PodcastLink[]

@@ -23,11 +23,5 @@ export const actions = {
 		const feed = await createPodcastFeed(form.data);
 		// Redirect to feed page
 		throw redirect(303, `/podcast/${feed.slug}`);
-	},
-	updateFeed: async ({ request, fetch }) =>
-		await fetch('/api/podcasts', { method: 'PUT', body: await request.formData() })
-			.then((response) => response.json())
-			.then((data) => {
-				throw redirect(303, `/podcast/${data.slug}`);
-			})
+	}
 } satisfies Actions;

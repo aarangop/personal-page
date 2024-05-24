@@ -3,7 +3,7 @@ import * as fs from 'fs';
 import { HttpResponse, http } from 'msw';
 import { setupServer } from 'msw/node';
 import { afterAll, afterEach, beforeAll, describe, expect, it, test, vi } from 'vitest';
-import { getPodcastFeedMetaData, getPodcastFeeds, validatePodcastFeedFormData } from './podcast';
+import { getPodcastFeedMetaData, getPodcastFeeds } from './podcast';
 
 vi.mock('../../prisma');
 
@@ -49,8 +49,13 @@ describe('getPodcastsWithMetaData', async () => {
 
 	it('should return a list of podcast with an image url', async () => {
 		prisma.podcastFeed.findMany.mockResolvedValue([
-			{ id: '1', slug: 'test-podcast', rssFeed: 'https://test.feed.rss' },
-			{ id: '2', slug: 'test-podcast-2', rssFeed: 'https://test.feed-2.rss' }
+			{ id: '1', title: 'Test Podcast 1', slug: 'test-podcast', rssFeed: 'https://test.feed.rss' },
+			{
+				id: '2',
+				title: 'Test Podcast 2',
+				slug: 'test-podcast-2',
+				rssFeed: 'https://test.feed-2.rss'
+			}
 		]);
 		const podcasts = await getPodcastFeedMetaData();
 		const imageUrls = ['https://podcast-1.image.url.com', 'https://podcast-2.image.url.com'];
@@ -59,8 +64,13 @@ describe('getPodcastsWithMetaData', async () => {
 
 	it('should return objects with number of episodes', async () => {
 		prisma.podcastFeed.findMany.mockResolvedValue([
-			{ id: '1', slug: 'test-podcast', rssFeed: 'https://test.feed.rss' },
-			{ id: '2', slug: 'test-podcast-2', rssFeed: 'https://test.feed-2.rss' }
+			{ id: '1', title: 'Test podcast 1', slug: 'test-podcast', rssFeed: 'https://test.feed.rss' },
+			{
+				id: '2',
+				title: 'Test podacst 2',
+				slug: 'test-podcast-2',
+				rssFeed: 'https://test.feed-2.rss'
+			}
 		]);
 		const podcasts = await getPodcastFeedMetaData();
 		const numberOfEpisodes = [4, 3];
@@ -68,15 +78,4 @@ describe('getPodcastsWithMetaData', async () => {
 	});
 });
 
-describe('validatePodcastFeedFormData', () => {
-	test('should return a 400 error if slug is missing', async () => {
-		const formData = new FormData();
-		formData.append('rss_feed', 'https://test.feed.rss');
-		expect(validatePodcastFeedFormData(formData)).rejects.toThrow('Invalid slug');
-	});
-	test('should return a 400 error if feed is missing', async () => {
-		const formData = new FormData();
-		formData.append('podcast_slug', 'test-podcast');
-		expect(validatePodcastFeedFormData(formData)).rejects.toThrow('Invalid feed');
-	});
-});
+describe('updatePodcastFeed', () => {});

@@ -26,6 +26,7 @@ async function main() {
 		where: { slug: podcastFeedSlug },
 		update: {},
 		create: {
+			title: 'This is a test podcast feed',
 			slug: podcastFeedSlug,
 			rssFeed: 'https://anchor.fm/s/ef8e417c/podcast/rss'
 		}

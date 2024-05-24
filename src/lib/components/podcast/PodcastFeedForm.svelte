@@ -10,9 +10,9 @@
 
 	export let submitFormAction: String;
 	export let deleteAction = '';
-	export let data: SuperValidated<Infer<PodcastFeedSchema>>;
+	export let data: SuperValidated<PodcastFeedSchema>;
 
-	const { form, errors, enhance, constraints, message, validate } = superForm(data, {
+	const { form, errors, enhance, constraints, validate } = superForm(data, {
 		onChange(event) {
 			if (!event.target) return;
 			if (event.path === 'slug') {
@@ -42,9 +42,10 @@
 			feedChecked = true;
 		}
 	};
+
 	$: {
 		if (!manualSlug) {
-			$form.slug = toSlug(title);
+			$form.slug = toSlug($form.title);
 		}
 	}
 </script>
@@ -61,10 +62,11 @@
 			<input
 				class="input mb-2"
 				type="text"
+				id="title"
 				name="title"
 				placeholder="My Awesome Podcast"
 				required
-				bind:value={title}
+				bind:value={$form.title}
 			/>
 			<label class="mb-2 label" for="slug">Slug</label>
 			<input
@@ -73,6 +75,7 @@
 				pattern="^[a-z0-9]+(?:-[a-z0-9]+)*$"
 				placeholder="my-awesome-podcast"
 				class={twMerge('input mb-2 label', $errors.slug ? 'input-error' : '')}
+				required
 				bind:value={$form.slug}
 				on:input={setManualSlug}
 				{...$constraints.slug}
@@ -105,8 +108,8 @@
 			on:click|preventDefault={testRssFeed}>Test feed</button
 		>
 		<div>
-			<label class="label mb-2" for="spotify_link">Spotify</label>
-			<input class="input" type="url" id="spotify_link" name="spotify_link" />
+			<label class="label mb-2" for="spotifyLink">Spotify</label>
+			<input class="input" type="url" id="spotifyLink" name="spotifyLink" />
 		</div>
 	</div>
 	<div class="flex flex-row justify-between space-x-2">

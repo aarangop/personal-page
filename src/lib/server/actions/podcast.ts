@@ -1,9 +1,15 @@
 import prisma from '$lib/prisma';
-import { PodcastFeedDataSchema, podcastFeedSchema, PodcastLinkSchema } from '$lib/schemas';
+import {
+	PodcastFeedDataSchema,
+	podcastFeedSchema,
+	PodcastLinkSchema,
+	type PodcastFeedSchema
+} from '$lib/schemas';
 import { Prisma } from '@prisma/client';
 import { error } from '@sveltejs/kit';
 import { XMLParser } from 'fast-xml-parser';
 import { z } from 'zod';
+import logger from '../logging';
 
 /**
  * Returns a list of podcast feeds from the database.
@@ -48,44 +54,11 @@ export const getPodcastFeedMetaData = async (query: Prisma.PodcastFeedWhereInput
 	return z.array(PodcastFeedDataSchema).parse(feedData);
 };
 
-export const validatePodcastFeedFormData = async (data: FormData) => {
-	const slug = data.get('podcast_slug');
-	if (!slug) {
-		throw error(400, { message: 'Invalid slug' });
-	}
-	const feed = data.get('rss_feed');
-	if (!feed) {
-		throw error(400, { message: 'Invalid feed' });
-	}
-};
-
-export const getPodcastFeedDataFromFormData = (data: FormData) => {
-	validatePodcastFeedFormData(data);
-	const spotifyUrl = data.get('spotify_link');
-	let links: z.infer<typeof PodcastLinkSchema>[] = [];
-	if (spotifyUrl) {
-		links = z.array(PodcastLinkSchema).parse([
-			{
-				platform: 'Spotify',
-				url: spotifyUrl
-			}
-		]);
-	}
-	return {
-		slug: data.get('podcast_slug')!.toString(),
-		rssFeed: data.get('rss_feed')!.toString(),
-		links
-	};
-};
-
-export const createPodcastFeedFromFormData = async (data: FormData) => {
-	const podcastFeedData = getPodcastFeedDataFromFormData(data);
-	return await createPodcastFeed(podcastFeedData);
-};
-export const createPodcastFeed = async (podcastFeedData: z.infer<typeof podcastFeedSchema>) => {
+export const createPodcastFeed = async (podcastFeedData: PodcastFeedSchema) => {
 	try {
 		const result = await prisma.podcastFeed.create({
 			data: {
+				title: podcastFeedData.title,
 				slug: podcastFeedData.slug,
 				rssFeed: podcastFeedData.rssFeed,
 				links: {
@@ -97,4 +70,36 @@ export const createPodcastFeed = async (podcastFeedData: z.infer<typeof podcastF
 	} catch (e) {
 		throw Error('Failed to create podcast feed');
 	}
+};
+
+export const updatePodcastFeed = async (data: PodcastFeedSchema) => {
+	const id = data.id;
+	if (!id) {
+		throw error(400, 'Podcast feed ID is required');
+	}
+	const log = logger.child({ name: 'api/podcasts PUT' });
+
+	const spotifyUrl = data.links?.find((link) => link.platform === 'Spotify')?.url;
+
+	let updateQuery: any = {
+		slug: data.slug,
+		rssFeed: data.rssFeed
+	};
+	if (spotifyUrl) {
+		updateQuery = {
+			...updateQuery,
+			links: {
+				deleteMany: {},
+				create: { platform: 'Spotify', url: spotifyUrl.toString() }
+			}
+		};
+	}
+	const result = await prisma.podcastFeed.update({
+		where: {
+			id: id!.toString()
+		},
+		data: updateQuery
+	});
+	log.info('Podcast feed updated', result);
+	return result;
 };
