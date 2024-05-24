@@ -1,5 +1,10 @@
 import prisma from '$lib/prisma';
-import { PodcastFeedDataSchema, podcastFeedSchema, PodcastLinkSchema } from '$lib/schemas';
+import {
+	PodcastFeedDataSchema,
+	podcastFeedSchema,
+	PodcastLinkSchema,
+	type PodcastFeedSchema
+} from '$lib/schemas';
 import { Prisma } from '@prisma/client';
 import { error } from '@sveltejs/kit';
 import { XMLParser } from 'fast-xml-parser';
@@ -48,41 +53,7 @@ export const getPodcastFeedMetaData = async (query: Prisma.PodcastFeedWhereInput
 	return z.array(PodcastFeedDataSchema).parse(feedData);
 };
 
-export const validatePodcastFeedFormData = async (data: FormData) => {
-	const slug = data.get('podcast_slug');
-	if (!slug) {
-		throw error(400, { message: 'Invalid slug' });
-	}
-	const feed = data.get('rss_feed');
-	if (!feed) {
-		throw error(400, { message: 'Invalid feed' });
-	}
-};
-
-export const getPodcastFeedDataFromFormData = (data: FormData) => {
-	validatePodcastFeedFormData(data);
-	const spotifyUrl = data.get('spotify_link');
-	let links: z.infer<typeof PodcastLinkSchema>[] = [];
-	if (spotifyUrl) {
-		links = z.array(PodcastLinkSchema).parse([
-			{
-				platform: 'Spotify',
-				url: spotifyUrl
-			}
-		]);
-	}
-	return {
-		slug: data.get('podcast_slug')!.toString(),
-		rssFeed: data.get('rss_feed')!.toString(),
-		links
-	};
-};
-
-export const createPodcastFeedFromFormData = async (data: FormData) => {
-	const podcastFeedData = getPodcastFeedDataFromFormData(data);
-	return await createPodcastFeed(podcastFeedData);
-};
-export const createPodcastFeed = async (podcastFeedData: z.infer<typeof podcastFeedSchema>) => {
+export const createPodcastFeed = async (podcastFeedData: PodcastFeedSchema) => {
 	try {
 		const result = await prisma.podcastFeed.create({
 			data: {
@@ -98,3 +69,5 @@ export const createPodcastFeed = async (podcastFeedData: z.infer<typeof podcastF
 		throw Error('Failed to create podcast feed');
 	}
 };
+
+export const updatePodcastFeed = async (id: string, data: PodcastFeedSchema) => {};

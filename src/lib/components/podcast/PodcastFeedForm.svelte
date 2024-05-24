@@ -10,9 +10,9 @@
 
 	export let submitFormAction: String;
 	export let deleteAction = '';
-	export let data: SuperValidated<Infer<PodcastFeedSchema>>;
+	export let data: SuperValidated<PodcastFeedSchema>;
 
-	const { form, errors, enhance, constraints, message, validate } = superForm(data, {
+	const { form, errors, enhance, constraints, validate } = superForm(data, {
 		onChange(event) {
 			if (!event.target) return;
 			if (event.path === 'slug') {

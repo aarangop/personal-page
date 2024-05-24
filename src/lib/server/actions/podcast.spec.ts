@@ -3,7 +3,7 @@ import * as fs from 'fs';
 import { HttpResponse, http } from 'msw';
 import { setupServer } from 'msw/node';
 import { afterAll, afterEach, beforeAll, describe, expect, it, test, vi } from 'vitest';
-import { getPodcastFeedMetaData, getPodcastFeeds, validatePodcastFeedFormData } from './podcast';
+import { getPodcastFeedMetaData, getPodcastFeeds } from './podcast';
 
 vi.mock('../../prisma');
 
@@ -68,15 +68,4 @@ describe('getPodcastsWithMetaData', async () => {
 	});
 });
 
-describe('validatePodcastFeedFormData', () => {
-	test('should return a 400 error if slug is missing', async () => {
-		const formData = new FormData();
-		formData.append('rss_feed', 'https://test.feed.rss');
-		expect(validatePodcastFeedFormData(formData)).rejects.toThrow('Invalid slug');
-	});
-	test('should return a 400 error if feed is missing', async () => {
-		const formData = new FormData();
-		formData.append('podcast_slug', 'test-podcast');
-		expect(validatePodcastFeedFormData(formData)).rejects.toThrow('Invalid feed');
-	});
-});
+describe('updatePodcastFeed', () => {});

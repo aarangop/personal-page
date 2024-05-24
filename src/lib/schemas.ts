@@ -23,7 +23,7 @@ export const podcastFeedSchema = z.object({
 	links: z.array(PodcastLinkSchema).optional()
 });
 
-export type PodcastFeedSchema = typeof podcastFeedSchema;
+export type PodcastFeedSchema = z.infer<typeof podcastFeedSchema>;
 
 export const PodcastEpisodeSchema = z.object({
 	id: z.string().optional(),

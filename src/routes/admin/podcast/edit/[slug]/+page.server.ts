@@ -1,35 +1,17 @@
 import prisma from '$lib/prisma';
 import { redirect } from '@sveltejs/kit';
 import type { Actions, PageServerLoad } from './$types';
+import { superValidate } from 'sveltekit-superforms';
+import { zod } from 'sveltekit-superforms/adapters';
+import { podcastFeedSchema } from '$lib/schemas';
 
 export const load: PageServerLoad = async ({ params }) => {
 	const feedData = await prisma.podcastFeed.findUnique({ where: { slug: params.slug } });
-	return {
-		...feedData,
-		podcastId: feedData?.id
-	};
+	const form = await superValidate(feedData, zod(podcastFeedSchema));
+	return { form };
 };
 
 export const actions = {
-	saveFeed: async ({ fetch, request }) =>
-		await fetch('/api/podcast', {
-			method: 'POST',
-			body: await request.formData()
-		}).then(async (data) => {
-			const res = await data.json();
-			redirect(303, `/admin/podcast/${res.slug}`);
-		}),
-	deleteFeed: async ({ request }) => {
-		const data = await request.formData();
-		console.log('Deleting feed');
-		const id = data.get('podcast_id');
-		if (!id) {
-			throw Error('Invalid podcast id');
-		}
-		const result = await prisma.podcastFeed.delete({
-			where: { id: id!.toString() }
-		});
-		redirect(303, '/admin/podcast');
-		return result;
-	}
+	saveFeed: async ({ fetch, request }) => {},
+	deleteFeed: async ({ request }) => {}
 } satisfies Actions;
