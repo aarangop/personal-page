@@ -5,12 +5,6 @@ export enum UserRoles {
 	USER = 'user'
 }
 
-export type PodcastFeed = {
-	id: string;
-	slug: string;
-	rssFeed: string;
-};
-
 export const PodcastLinkSchema = z.object({
 	platform: z.string(),
 	url: z.string().url()
@@ -18,6 +12,7 @@ export const PodcastLinkSchema = z.object({
 
 export const podcastFeedSchema = z.object({
 	id: z.string().optional(),
+	title: z.string(),
 	slug: z.string().regex(/^[A-Za-z0-9]+(?:-[A-Za-z0-9]+)*$/, { message: 'Invalid slug' }),
 	rssFeed: z.string().url(),
 	links: z.array(PodcastLinkSchema).optional()

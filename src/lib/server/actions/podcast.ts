@@ -58,6 +58,7 @@ export const createPodcastFeed = async (podcastFeedData: PodcastFeedSchema) => {
 	try {
 		const result = await prisma.podcastFeed.create({
 			data: {
+				title: podcastFeedData.title,
 				slug: podcastFeedData.slug,
 				rssFeed: podcastFeedData.rssFeed,
 				links: {

@@ -1,16 +1,10 @@
 <script lang="ts">
-	import { goto } from '$app/navigation';
 	import { PodcastFeedDataSchema } from '$lib/schemas';
 	import Icon from '@iconify/svelte';
 	import { z } from 'zod';
 
 	export let feedData: z.infer<typeof PodcastFeedDataSchema>;
 	export let enableEdit: boolean = false;
-
-	const onClick = () => {
-		goto(`/podcast/${feedData.slug}`);
-	};
-	export let onEdit = () => {};
 </script>
 
 <div class="card p-4 flex flex-col backdrop-blur-sm" data-testid="podcast-feed-card">
@@ -36,22 +30,17 @@
 	</div>
 	<div class="justify-end flex">
 		<div class="btn-group variant-soft">
-			<button on:click={onClick}>
+			<a href={`/podcast/${feedData.slug}`}>
 				<Icon icon="ph:arrow-up-right" />
-			</button>
+			</a>
 			{#if feedData.links}
-				<a type="button" class="btn variant-filled" href={feedData.links[0].url}>
+				<a class="btn variant-filled" href={feedData.links[0].url}>
 					<span><Icon icon="ant-design:spotify-filled" /></span>
 					<span>Listen on Spotify</span>
 				</a>
 			{/if}
 			{#if enableEdit}
-				<button
-					type="button"
-					data-testid="edit-button"
-					class="btn variant-filled-secondary"
-					on:click={onEdit}>Edit</button
-				>
+				<a data-testid="edit-button" href={`/admin/podcast/edit/${feedData.slug}`}>Edit</a>
 			{/if}
 		</div>
 	</div>
