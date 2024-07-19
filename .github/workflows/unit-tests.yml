@@ -14,6 +14,8 @@ jobs:
         run: npm run test:unit
         env:
           GCP_PROJECT_ID: ${{secrets.GCP_PROJECT_ID}}
+          GCP_BUCKET: ${{secrets.GCP_BUCKET}}
+          DATABASE_URL: $${{secrets.DATABASE_URL}}
       - name: Generate Test Badge
         uses: schneegans/dynamic-badges-action@v1.2.0
         with:
