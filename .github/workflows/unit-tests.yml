@@ -15,7 +15,7 @@ jobs:
         env:
           GCP_PROJECT_ID: ${{vars.GCP_PROJECT_ID}}
           GCP_BUCKET: ${{vars.GCP_BUCKET}}
-          DATABASE_URL: $${{secrets.DATABASE_URL}}
+          DATABASE_URL: ${{secrets.DATABASE_URL}}
       - name: Generate Test Badge
         uses: schneegans/dynamic-badges-action@v1.2.0
         with:
