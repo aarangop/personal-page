@@ -8,6 +8,10 @@ jobs:
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v3
+      - uses: actions/setup-node@v4
+        with:
+          node-version: '20'
+          cache: 'npm'
       - name: Install Dependencies
         run: npm install
       - name: Run unit tests
@@ -16,11 +20,4 @@ jobs:
           GCP_PROJECT_ID: ${{vars.GCP_PROJECT_ID}}
           GCP_BUCKET: ${{vars.GCP_BUCKET}}
           DATABASE_URL: ${{secrets.DATABASE_URL}}
-      - name: Generate Test Badge
-        uses: schneegans/dynamic-badges-action@v1.2.0
-        with:
-          auth: ${{ secrets.GIST_SECRET }}
-          gistID: 342d1aa6f4715de5044cd252b7c07a61
-          filename: personal-page-badge.json
-          label: Unit Tests
-          message: ${{job.status}}
+          GCLOUD_SERVICE_ACCOUNT_EMAIL: ${{secrets.GCLOUD_SERVICE_ACCOUNT_EMAIL}}
