@@ -22,7 +22,10 @@ jobs:
         env:
           DATABASE_URL: ${{ secrets.DATABASE_URL }}
       - name: Run unit tests
-        run: npm run test:unit
+        run: |
+          echo "GCP_PROJECT_ID: $GCP_PROJECT_ID"
+          echo "GCP_BUCKET: $GCP_BUCKET"
+          npm run test:unit
         env:
           GCP_PROJECT_ID: ${{ vars.GCP_PROJECT_ID }}
           GCP_BUCKET: ${{ vars.GCP_BUCKET }}
