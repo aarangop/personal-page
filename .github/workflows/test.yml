@@ -12,8 +12,6 @@ jobs:
         with:
           node-version: '20'
           cache: 'npm'
-      - name: Test env variables
-        run: echo "GCP_BUCKET: $GCP_BUCKET"
       - name: Install Dependencies
         run: npm install
       - name: Run unit tests
