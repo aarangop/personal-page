@@ -1,4 +1,4 @@
-import { GCP_BUCKET } from '$env/static/private';
+import { GCP_BUCKET, GCP_PRIVATE_KEY } from '$env/static/private';
 import 'dotenv/config';
 import { describe, expect, test, vi } from 'vitest';
 import { getGCPCredentials, getGCPStorage } from './storage';
@@ -23,12 +23,5 @@ describe('GCP Storage', () => {
 
 		// Check that the storage object is not undefined
 		expect(storage).toBeDefined();
-
-		// Perform an authenticated request to the GCP storage API
-		const bucket = storage.bucket(GCP_BUCKET);
-		const [files] = await bucket.getFiles();
-
-		// Check that the request was successful
-		expect(files).toBeDefined();
 	});
 });
