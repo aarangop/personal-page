@@ -19,5 +19,5 @@ jobs:
         env:
           GCP_PROJECT_ID: ${{ vars.GCP_PROJECT_ID }}
           GCP_BUCKET: ${{ vars.GCP_BUCKET }}
-          DATABASE_URL: ${{secrets.DATABASE_URL}}
-          GCLOUD_SERVICE_ACCOUNT_EMAIL: ${{secrets.GCLOUD_SERVICE_ACCOUNT_EMAIL}}
+          DATABASE_URL: ${{ secrets.DATABASE_URL }}
+          GCLOUD_SERVICE_ACCOUNT_EMAIL: ${{ secrets.GCLOUD_SERVICE_ACCOUNT_EMAIL }}
