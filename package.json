@@ -5,7 +5,6 @@
 		"dev": "vite dev",
 		"build": "vite build",
 		"build:dev": "vite build --mode development",
-		"postinstall": "prisma generate && npx tsx ./prisma/seed.ts -y",
 		"preview": "vite preview",
 		"vitest": "vitest run",
 		"test": "npm run test:unit",
@@ -18,7 +17,7 @@
 		"coverage": "vitest run coverage",
 		"test:ui": "vitest --ui",
 		"test:watch": "vitest",
-		"seed": "npx tsx ./prisma/seed.ts"
+		"seed": "prisma generate && npx tsx ./prisma/seed.ts -y"
 	},
 	"devDependencies": {
 		"@actions/core": "^1.10.1",

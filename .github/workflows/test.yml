@@ -15,6 +15,12 @@ jobs:
           cache: 'npm'
       - name: Install Dependencies
         run: npm install
+      - name: Seed Database
+        run: |
+          echo "Seeding database"
+          npm run seed
+        env:
+          DATABASE_URL: ${{ secrets.DATABASE_URL }}
       - name: Run unit tests
         run: npm run test:unit
         env:
