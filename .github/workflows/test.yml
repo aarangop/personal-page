@@ -2,7 +2,7 @@ name: Tests
 run-name: ${{github.actor}} run unit tests
 on:
   push:
-    branches: [auto-unit-test]
+    branches: [dev]
 jobs:
   unit-tests:
     runs-on: ubuntu-latest
