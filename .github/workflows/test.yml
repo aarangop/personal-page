@@ -22,12 +22,10 @@ jobs:
         env:
           DATABASE_URL: ${{ secrets.DATABASE_URL }}
       - name: Run unit tests
-        run: |
-          echo "GCP_PROJECT_ID: $GCP_PROJECT_ID"
-          echo "GCP_BUCKET: $GCP_BUCKET"
-          npm run test:unit
+        run: npm run test:unit
         env:
           GCP_PROJECT_ID: ${{ vars.GCP_PROJECT_ID }}
           GCP_BUCKET: ${{ vars.GCP_BUCKET }}
           DATABASE_URL: ${{ secrets.DATABASE_URL }}
           GCLOUD_SERVICE_ACCOUNT_EMAIL: ${{ secrets.GCLOUD_SERVICE_ACCOUNT_EMAIL }}
+          GOOGLE_PRIVATE_KEY: ${{ secrets.GOOGLE_PRIVATE_KEY }}
