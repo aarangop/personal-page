@@ -2,7 +2,7 @@ name: Tests
 run-name: ${{github.actor}} run unit tests
 on:
   push:
-    branches: [dev]
+    branches: [dev, main]
 jobs:
   unit-tests:
     environment: Preview
