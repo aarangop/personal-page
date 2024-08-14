@@ -26,7 +26,7 @@
 		<svelte:fragment slot="default">
 			<Link href="/" class="min-w-20">Home</Link>
 			<!-- <Link href="/podcast" class="min-w-20">Podcast</Link> -->
-			<Link href="/blog" class="min-w-20">Blog</Link>
+			<!-- <Link href="/blog" class="min-w-20">Blog</Link> -->
 		</svelte:fragment>
 		<svelte:fragment slot="trail">
 			<a href="https://github.com/aarangop/personal-page" target="_blank">
