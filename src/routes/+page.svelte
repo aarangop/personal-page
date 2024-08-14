@@ -50,7 +50,9 @@
 									<p class="list-item">
 										<span class="font-bold">2 years</span>
 										professional experience as <span>front-end developer</span> at
-										<a class="font-mono underline" href="https://cavorit.de/">Cavorit GmbH</a>
+										<a class="font-mono underline" target="_blank" href="https://cavorit.de/"
+											>Cavorit GmbH</a
+										>
 									</p>
 									<p class="list-item">
 										Development of <span class="font-bold">Virtual Reality</span> applications for Flight
@@ -63,6 +65,7 @@
 										at aero-engine manufacturer
 										<a
 											class="font-mono underline"
+											target="_blank"
 											href="https://careers.rolls-royce.com/usa/our-locations/germany"
 											>Rolls-Royce</a
 										>
@@ -72,7 +75,10 @@
 										<span class="font-bold">2 years</span> of experience as
 										<span class="font-bold">System Administrator </span> at the Technical University
 										of Brunswick's (TUBS)
-										<a class="font-mono underline" href="https://www.tu-braunschweig.de/en/iff"
+										<a
+											class="font-mono underline"
+											target="_blank"
+											href="https://www.tu-braunschweig.de/en/iff"
 											>Institute of Flight Guidance (IFF)</a
 										>
 									</p></svelte:fragment
@@ -89,6 +95,7 @@
 								<svelte:fragment slot="content">
 									<p class="list-item">
 										Researcher at the <a
+											target="_blank"
 											class="font-mono underline"
 											href="https://magazin.tu-braunschweig.de/en/pi-post/5g-disaster-relief-agriculture-high-altitude-pseudo-satellites-in-action/"
 										>
@@ -102,11 +109,13 @@
 									</p>
 									<p class="list-item">
 										Published cientific author with publications on the use of <a
+											target="_blank"
 											class="font-mono underline"
 											href="https://doi.org/10.1109/ICNSURV.2019.8735185">VR in the cockpit</a
 										>
 										and the
 										<a
+											target="_blank"
 											class="font-mono underline"
 											href="https://ieeexplore.ieee.org/document/8735185"
 											>integration of HAPS into the ATM system</a
@@ -134,6 +143,7 @@
 									<p class="list-item">
 										Development of Augmented Reality applications for the visualization of flight
 										data, and pilot assistance at the TH Wildau (see <a
+											target="_blank"
 											class="font-mono underline"
 											href="https://doi.org/10.1109/ICNSURV.2019.8735185">publication</a
 										>).
@@ -223,13 +233,17 @@
 					<svelte:fragment slot="content">
 						<div class="flex flex-col space-y-2">
 							<p class="h-full drop-shadow-sm">
-								This is a <a href="https://kit.svelte.dev/" class="font-mono underline">SvelteKit</a
+								This is a <a
+									href="https://kit.svelte.dev/"
+									target="_blank"
+									class="font-mono underline">SvelteKit</a
 								> project that I'll use as entry point for my portfolio, and that I'll keep on updating
 								with new content and features.
 							</p>
 							<p class="h-full drop-shadow-sm">
 								Check out the source code on <a
 									class="font-mono underline"
+									target="_blank"
 									href="https://github.com/aarangop/personal-page">GitHub</a
 								>
 							</p>
