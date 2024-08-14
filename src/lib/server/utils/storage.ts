@@ -3,16 +3,6 @@ import { Storage } from '@google-cloud/storage';
 import * as fs from 'fs';
 
 export const getGCPCredentials = () => {
-	if (!process.env.VERCEL) {
-		if (!process.env.GCP_PRIVATE_KEY) {
-			throw Error('GCP_PRIVATE_KEY environment variable required');
-		}
-		const credentialsObj = JSON.parse(fs.readFileSync(process.env.GCP_PRIVATE_KEY!, 'utf-8'));
-		return {
-			projectId: credentialsObj.project_id,
-			credentials: credentialsObj
-		};
-	}
 	return {
 		projectId: process.env.GCP_PROJECT_ID,
 		credentials: {

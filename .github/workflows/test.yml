@@ -1,0 +1,31 @@
+name: Tests
+run-name: ${{github.actor}} run unit tests
+on:
+  push:
+    branches: [dev, main]
+jobs:
+  unit-tests:
+    environment: Preview
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v3
+      - uses: actions/setup-node@v4
+        with:
+          node-version: '20'
+          cache: 'npm'
+      - name: Install Dependencies
+        run: npm install
+      - name: Seed Database
+        run: |
+          echo "Seeding database"
+          npm run seed
+        env:
+          DATABASE_URL: ${{ secrets.DATABASE_URL }}
+      - name: Run unit tests
+        run: npm run test:unit
+        env:
+          GCP_PROJECT_ID: ${{ vars.GCP_PROJECT_ID }}
+          GCP_BUCKET: ${{ vars.GCP_BUCKET }}
+          DATABASE_URL: ${{ secrets.DATABASE_URL }}
+          GCLOUD_SERVICE_ACCOUNT_EMAIL: ${{ secrets.GCLOUD_SERVICE_ACCOUNT_EMAIL }}
+          GOOGLE_PRIVATE_KEY: ${{ secrets.GOOGLE_PRIVATE_KEY }}

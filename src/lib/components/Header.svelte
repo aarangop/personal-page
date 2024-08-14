@@ -1,9 +1,9 @@
 <script lang="ts">
-	import { AppBar, Avatar, LightSwitch, popup, type PopupSettings } from '@skeletonlabs/skeleton';
-	import Icon from '@iconify/svelte';
-	import Link from './Link.svelte';
 	import { page } from '$app/stores';
 	import { SignOut } from '@auth/sveltekit/components';
+	import Icon from '@iconify/svelte';
+	import { AppBar, Avatar, LightSwitch, popup, type PopupSettings } from '@skeletonlabs/skeleton';
+	import Link from './Link.svelte';
 
 	const avatarPopup: PopupSettings = {
 		event: 'click',
@@ -29,8 +29,15 @@
 			<Link href="/blog" class="min-w-20">Blog</Link>
 		</svelte:fragment>
 		<svelte:fragment slot="trail">
-			<Icon icon="bi:github" />
-			<Icon icon="bi:linkedin" />
+			<a href="https://github.com/aarangop/personal-page" target="_blank">
+				<Icon icon="bi:github" />
+			</a>
+			<a
+				href="https://www.linkedin.com/in/andr%C3%A9s-arango-p%C3%A9rez-789493228/"
+				target="_blank"
+			>
+				<Icon icon="bi:linkedin" />
+			</a>
 			<LightSwitch></LightSwitch>
 			{#if $page.data.session?.user}
 				<div use:popup={avatarPopup}>
